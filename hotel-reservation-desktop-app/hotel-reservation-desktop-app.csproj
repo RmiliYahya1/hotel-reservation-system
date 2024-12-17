@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net9.0-windows</TargetFramework>
+        <RootNamespace>hotel_reservation_desktop_app</RootNamespace>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\hotel-reservation-DAL\hotel-reservation-DAL.csproj" />
+    </ItemGroup>
+
+</Project>

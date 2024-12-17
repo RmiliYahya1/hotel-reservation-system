@@ -1,0 +1,133 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-desktop-app\\hotel-reservation-desktop-app.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-DAL\\hotel-reservation-DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-DAL\\hotel-reservation-DAL.csproj",
+        "projectName": "hotel-reservation-DAL",
+        "projectPath": "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-DAL\\hotel-reservation-DAL.csproj",
+        "packagesPath": "C:\\Users\\yahya\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-DAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\yahya\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Users\\yahya\\.dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-desktop-app\\hotel-reservation-desktop-app.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-desktop-app\\hotel-reservation-desktop-app.csproj",
+        "projectName": "hotel-reservation-desktop-app",
+        "projectPath": "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-desktop-app\\hotel-reservation-desktop-app.csproj",
+        "packagesPath": "C:\\Users\\yahya\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-desktop-app\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\yahya\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0-windows"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0-windows7.0": {
+            "targetAlias": "net9.0-windows",
+            "projectReferences": {
+              "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-DAL\\hotel-reservation-DAL.csproj": {
+                "projectPath": "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-DAL\\hotel-reservation-DAL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0-windows7.0": {
+          "targetAlias": "net9.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Users\\yahya\\.dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
