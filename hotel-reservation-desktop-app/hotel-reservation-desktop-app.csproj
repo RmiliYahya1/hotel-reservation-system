@@ -13,4 +13,10 @@
       <ProjectReference Include="..\hotel-reservation-DAL\hotel-reservation-DAL.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Services\" />
+      <Folder Include="ViewModels\" />
+      <Folder Include="Views\" />
+    </ItemGroup>
+
 </Project>

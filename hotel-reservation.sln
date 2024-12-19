@@ -1,10 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hotel-reservation-DAL", "hotel-reservation-DAL\hotel-reservation-DAL.csproj", "{55FB5650-7956-4AED-91C4-7791D9849A20}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hotel-reservation-web-app", "hotel-reservation-web-app\hotel-reservation-web-app.csproj", "{B84F4484-DD2D-4C71-A95B-D960D879F01E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hotel-reservation-desktop-app", "hotel-reservation-desktop-app\hotel-reservation-desktop-app.csproj", "{179DC9A4-AAFC-4BDD-9541-7FBF2A5D23BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{A8816B79-C55F-4267-94A2-917FA18D6F74}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +32,8 @@ Global
 		{179DC9A4-AAFC-4BDD-9541-7FBF2A5D23BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{179DC9A4-AAFC-4BDD-9541-7FBF2A5D23BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{179DC9A4-AAFC-4BDD-9541-7FBF2A5D23BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

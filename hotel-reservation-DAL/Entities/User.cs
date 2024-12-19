@@ -7,20 +7,19 @@ using System.Threading.Tasks;
 
 namespace hotel_reservation_DAL.Entities
 {
-    public class Client
+    public class User
     {
         public int ID { get; set; }
         [Required]
-        public string FirstName { get; set; }
+        [StringLength(50)]
+        public string Username { get; set; }
         [Required]
-        public string LastName { get; set; }
-        public string PhoneNumber { get; set; }
         [EmailAddress]
-        [Required]
         public string Email { get; set; }
         [Required]
-
-        public string Cin { get; set; }
-        public virtual ICollection<Reservation> Reservations { get; set; }
+        public string PasswordHash { get; set; }
+        [Required]
+        [StringLength(20)]
+        public string Role { get; set; }
     }
 }
