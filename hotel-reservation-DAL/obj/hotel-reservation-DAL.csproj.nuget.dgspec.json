@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-DAL\\hotel-reservation-DAL.csproj": {}
+    "C:\\Emsi\\S1\\.Net\\hotel-reservation-system\\hotel-reservation-DAL\\hotel-reservation-DAL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-DAL\\hotel-reservation-DAL.csproj": {
+    "C:\\Emsi\\S1\\.Net\\hotel-reservation-system\\hotel-reservation-DAL\\hotel-reservation-DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-DAL\\hotel-reservation-DAL.csproj",
+        "projectUniqueName": "C:\\Emsi\\S1\\.Net\\hotel-reservation-system\\hotel-reservation-DAL\\hotel-reservation-DAL.csproj",
         "projectName": "hotel-reservation-DAL",
-        "projectPath": "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-DAL\\hotel-reservation-DAL.csproj",
-        "packagesPath": "C:\\Users\\yahya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yahya\\RiderProjects\\hotel-reservation-DAL\\hotel-reservation-DAL\\obj\\",
+        "projectPath": "C:\\Emsi\\S1\\.Net\\hotel-reservation-system\\hotel-reservation-DAL\\hotel-reservation-DAL.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Emsi\\S1\\.Net\\hotel-reservation-system\\hotel-reservation-DAL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\yahya\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -36,7 +42,7 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
         "SdkAnalysisLevel": "9.0.100"
       },
@@ -59,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\yahya\\.dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
