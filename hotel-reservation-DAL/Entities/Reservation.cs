@@ -1,9 +1,10 @@
 
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace hotel_reservation_DAL.Entities
-{
-    public class Reservation
+{  
+  public class Reservation
     {
         public int ID { get; set; }
         [Required]
@@ -15,10 +16,9 @@ namespace hotel_reservation_DAL.Entities
         [Required]
         public int RoomId { get; set; }
         public virtual Room Room { get; set; }
-        public decimal Price { get; set; }
-        public int PaymentId { get; set; }
+        public double Price { get; set; }
+        public int? PaymentId { get; set; }
         public virtual Payment Payment { get; set; }
-
 
     }
 }

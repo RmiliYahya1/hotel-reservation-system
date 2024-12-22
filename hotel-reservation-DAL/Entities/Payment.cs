@@ -14,7 +14,6 @@ namespace hotel_reservation_DAL.Entities
         [Required]
         public decimal Amount { get; set; }
         public DateTime Date { get; set; }
-        public int ReservationId { get; set; }
         public virtual Reservation Reservation { get; set; }
         public string PaymentMethod { get; set; }
     }
