@@ -6,8 +6,10 @@
 *.sln.docstates
 
 # Fichiers de build
-bin/
-obj/
+hotel-reservation-DAL/bin/
+hotel-reservation-desktop-app/bin/
+hotel-reservation-DAL/obj/
+hotel-reservation-desktop-app/obj/
 
 # Fichiers de configuration
 *.config
