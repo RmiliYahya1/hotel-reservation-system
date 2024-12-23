@@ -1,57 +1,16 @@
-# Fichiers générés par Visual Studio
-.vs/
-*.user
-*.suo
-*.userosscache
-*.sln.docstates
-
-# Fichiers de build
+# Fichiers générés par .NET
 bin/
 obj/
 
-# Fichiers de configuration
-*.config
-*.config.*
-*.json
-*.json.*
+# Fichiers spécifiques à Visual Studio
+.vs/
+*.user
+*.suo
 
-# Fichiers de log
-*.log
+# Fichiers de build
+*.dll
+*.exe
+*.pdb
 
-# Fichiers de package
-*.nupkg
-*.snupkg
-
-# Fichiers de déploiement
-*.publish/
-*.deploy/
-
-# Fichiers de cache
-*.cache/
-*.temp/
-
-# Fichiers de sauvegarde
-*.bak
-*.swp
-
-# Fichiers de base de données
-*.mdf
-*.ldf
-
-# Fichiers de test
-TestResults/
-*.trx
-*.coverage
-
-# Fichiers de configuration de l'IDE
-.idea/
-*.iml
-
-# Fichiers de configuration de l'éditeur
-.vscode/
-*.code-workspace
-
-# Fichiers de configuration de l'outil de build
-*.csproj.user
-*.csproj.nuget.g.props
-*.csproj.nuget.g.targets
+# Autres
+*.cache
