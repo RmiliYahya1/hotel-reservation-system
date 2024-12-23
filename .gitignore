@@ -1,59 +1,16 @@
-# Fichiers générés par Visual Studio
+# Fichiers gÃ©nÃ©rÃ©s par .NET
+bin/
+obj/
+
+# Fichiers spÃ©cifiques Ã  Visual Studio
 .vs/
 *.user
 *.suo
-*.userosscache
-*.sln.docstates
 
 # Fichiers de build
-hotel-reservation-DAL/bin/
-hotel-reservation-desktop-app/bin/
-hotel-reservation-DAL/obj/
-hotel-reservation-desktop-app/obj/
+*.dll
+*.exe
+*.pdb
 
-# Fichiers de configuration
-*.config
-*.config.*
-*.json
-*.json.*
-
-# Fichiers de log
-*.log
-
-# Fichiers de package
-*.nupkg
-*.snupkg
-
-# Fichiers de déploiement
-*.publish/
-*.deploy/
-
-# Fichiers de cache
-*.cache/
-*.temp/
-
-# Fichiers de sauvegarde
-*.bak
-*.swp
-
-# Fichiers de base de données
-*.mdf
-*.ldf
-
-# Fichiers de test
-TestResults/
-*.trx
-*.coverage
-
-# Fichiers de configuration de l'IDE
-.idea/
-*.iml
-
-# Fichiers de configuration de l'éditeur
-.vscode/
-*.code-workspace
-
-# Fichiers de configuration de l'outil de build
-*.csproj.user
-*.csproj.nuget.g.props
-*.csproj.nuget.g.targets
+# Autres
+*.cache
