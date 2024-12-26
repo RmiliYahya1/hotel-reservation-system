@@ -3,55 +3,98 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:UserControls="clr-namespace:hotel_reservation_desktop_app.View.UserControls"
         xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.gestionClient"
         mc:Ignorable="d"
-        Title="AjoutClient"  Height="400" Width="300">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        
-        <TextBlock Text="Ajouter un client" 
-                   FontWeight="Bold" 
-                   FontSize="18" 
-                   Margin="0 0 0 20" 
-                   HorizontalAlignment="Center"/>
-        <Grid Grid.Row="1" Background="White">
-            <TextBox
-                        x:Name="NomInput" 
-                        VerticalContentAlignment="Center"
-                        FontSize="16"
-                        FontWeight="Light"
-                        Background="Transparent"
-                        TextChanged="TxtInput_OnTextChanged"
+        Title="AjoutClient"  Height="600" Width="500"   WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent">
+  
+        <Grid VerticalAlignment="Center">
+            <Border CornerRadius="7" Background="#ffffff" BorderThickness="1" BorderBrush="#374655">
+                <Border.Effect>
+                    <DropShadowEffect  ShadowDepth="5" Direction="-130" Opacity="0.1"/>
+                </Border.Effect>
+            <Border CornerRadius="7" Background="#ffffff">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="5" Direction="-130" Opacity="0.1"/>
+                </Border.Effect>
+                <Grid Margin="20 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel 
+                        Orientation="Horizontal"
+                        Margin="20 20 0 0"
+                        >
+                        <TextBlock 
+                            Text="Ajouter un client" 
+                            Foreground="#374655"
+                            FontSize="18"
+                            VerticalAlignment="Center"
+                            />
+                    </StackPanel>
+                    
+                    <Separator
+                        Grid.Row="1" 
+                        Grid.ColumnSpan="2" 
+                        Height="0.7"
+                        Margin="-20 20"
+                        Background="#e1e6eb"
                         />
-                    <TextBlock
-                        x:Name="NomPlaceholder"
-                        Text="Nom"
-                        FontSize="16"
-                        FontWeight="Light"
-                        Foreground="DarkGray"
-                        VerticalAlignment="Center"
-                        Margin="5 0 0 0"
-                        Panel.ZIndex="-1"
+                    
+                    <UserControls:MyTextBox Grid.Column="0" Grid.Row="2"/>
+                    <UserControls:MyTextBox Grid.Column="0" Grid.Row="3" />
+                    <UserControls:MyTextBox Grid.Column="1" Grid.Row="2"/>
+                    <UserControls:MyTextBox Grid.Column="1" Grid.Row="3" />
+                    <UserControls:MyTextBox Grid.Column="1" Grid.Row="4" />
+                    
+                    <Border 
+                        Grid.Row="6" 
+                        Grid.ColumnSpan="2"
+                        Height="80"
+                        Background="#f6f6f6"
+                        CornerRadius="0 0 10 10"
+                        Margin="-20 40 -20 0"
                         />
                     <Button
-                        x:Name="NomClear"
-                        Width="30"
+                        Style="{StaticResource BoutonAjout}"
+                        Grid.Column="1"
+                        Grid.Row="6"
+                        Content="Ajouter"
+                        Margin="0 40 20 0"
                         HorizontalAlignment="Right"
-                        Content="X"
-                        Background="Transparent"
-                        Foreground="LightGray"
-                        BorderThickness="0"
-                        Click="BtnClear_OnClick"
-                        />
+                        >
+                        <Button.Effect>
+                            <DropShadowEffect 
+                                BlurRadius="10"
+                                ShadowDepth="5"
+                                Color="#4880ff"
+                                Opacity="0.3"
+                                Direction="-120"
+                                />
+                        </Button.Effect>
+                    </Button>
+                    <Button
+                        Style="{StaticResource BoutonAnnuler}"
+                        Grid.Row="6" 
+                        HorizontalAlignment="Left"
+                        Margin="20 40 0 0"
+                        Width="150"
+                        Content="annuler">
+                        
+                    </Button>
+                </Grid>
+            </Border>
+            </Border>
+                
         </Grid>
-        
-    </Grid>
 </Window>
