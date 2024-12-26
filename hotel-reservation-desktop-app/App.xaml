@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:hotel_reservation_desktop_app"
+             xmlns:themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         <Style x:Key="textboxSearch" TargetType="TextBox">
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="View/gestionClient/Styles/DataGrid.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
+        <Style x:Key="textboxSearch" TargetType="TextBox">
              <Setter Property="Background" Value="#ffffff"/>
              <Setter Property="Foreground" Value="#b0b9c6"/>
              <Setter Property="BorderThickness" Value="0"/>
@@ -43,7 +49,6 @@
                  </Setter.Value>
              </Setter>
          </Style>
-        
         <Style x:Key="addbouton" TargetType="Button">
             <Setter Property="Background" Value="#6741d9"/>
             <Setter Property="Foreground" Value="#ffffff"/>
@@ -53,7 +58,6 @@
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="Margin" Value="0 20 0 0"/>
             <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Grid.Row" Value="1"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -73,5 +77,79 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="paginationButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#6c7682"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Margin" Value="1 0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Background="{TemplateBinding Background}" 
+                            CornerRadius="5" 
+                            Padding="10 5">
+                            <ContentPresenter 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center" 
+                                Margin="0 0 0 1"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#7950f2"/>
+                    <Setter Property="Foreground" Value="#ffffff"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="paginationButtonIcon" TargetType="Icon:PackIconMaterial">
+            <Setter Property="Width" Value="10"/> 
+            <Setter Property="Height" Value="10"/> 
+            <Setter Property="VerticalAlignment" Value="Center"/> 
+        </Style>
+        <Style x:Key="gridEditButton" TargetType="Button">
+            <Setter Property="Background" Value="#512da8"/>
+            <Setter Property="BorderBrush" Value="#4a148c"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Background="{TemplateBinding Background}" 
+                            CornerRadius="5" 
+                            Padding="5"
+                            BorderThickness="1"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#673ab7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="gridRemoveButton" TargetType="Button" BasedOn="{StaticResource gridEditButton}">
+            <Setter Property="Background" Value="#d32f2f"/>
+            <Setter Property="BorderBrush" Value="#b71c1c"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#f44336"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="gridButtonIcon" TargetType="Icon:PackIconMaterial">
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="Height" Value="12"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

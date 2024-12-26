@@ -1,0 +1,57 @@
+﻿<Window x:Class="hotel_reservation_desktop_app.View.gestionClient.AjoutClient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.gestionClient"
+        mc:Ignorable="d"
+        Title="AjoutClient"  Height="400" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="Ajouter un client" 
+                   FontWeight="Bold" 
+                   FontSize="18" 
+                   Margin="0 0 0 20" 
+                   HorizontalAlignment="Center"/>
+        <Grid Grid.Row="1" Background="White">
+            <TextBox
+                        x:Name="NomInput" 
+                        VerticalContentAlignment="Center"
+                        FontSize="16"
+                        FontWeight="Light"
+                        Background="Transparent"
+                        TextChanged="TxtInput_OnTextChanged"
+                        />
+                    <TextBlock
+                        x:Name="NomPlaceholder"
+                        Text="Nom"
+                        FontSize="16"
+                        FontWeight="Light"
+                        Foreground="DarkGray"
+                        VerticalAlignment="Center"
+                        Margin="5 0 0 0"
+                        Panel.ZIndex="-1"
+                        />
+                    <Button
+                        x:Name="NomClear"
+                        Width="30"
+                        HorizontalAlignment="Right"
+                        Content="X"
+                        Background="Transparent"
+                        Foreground="LightGray"
+                        BorderThickness="0"
+                        Click="BtnClear_OnClick"
+                        />
+        </Grid>
+        
+    </Grid>
+</Window>
