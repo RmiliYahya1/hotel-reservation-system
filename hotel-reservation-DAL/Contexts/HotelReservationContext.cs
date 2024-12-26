@@ -43,6 +43,8 @@ namespace hotel_reservation_DAL.Contexts
                 entity.HasOne(e => e.Client).WithMany(e => e.Reservations).HasForeignKey(e => e.ClientId);
                 entity.HasOne(e => e.Room).WithMany(e => e.Reservations).HasForeignKey(e => e.RoomId);
                 entity.HasOne(e => e.Payment).WithOne(e => e.Reservation).HasForeignKey<Reservation>(e => e.PaymentId);
+                //current date
+                entity.Property(e => e.Date).HasDefaultValueSql("CURRENT_TIMESTAMP");
             });
             modelBuilder.Entity<RoomType>(entity =>
             {

@@ -101,6 +101,11 @@ namespace hotel_reservation_DAL.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Date")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
                     b.Property<int?>("PaymentId")
                         .HasColumnType("int");
 

@@ -12,8 +12,8 @@ using hotel_reservation_DAL.Contexts;
 namespace hotel_reservation_DAL.Migrations
 {
     [DbContext(typeof(HotelReservationContext))]
-    [Migration("20241222210959_DeleteReservationIdFromPayments")]
-    partial class DeleteReservationIdFromPayments
+    [Migration("20241225122944_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -103,6 +103,9 @@ namespace hotel_reservation_DAL.Migrations
 
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("PaymentId")
                         .HasColumnType("int");

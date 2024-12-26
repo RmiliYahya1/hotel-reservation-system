@@ -6,10 +6,7 @@ namespace hotel_reservation_DAL.Entities
     {
 
         public int ID { get; set; }
-
-        [Required]
         public string Number { get; set; }
-        [Required]
         public bool IsAvailable { get; set; }
         public int RoomTypeId { get; set; }
         public virtual RoomType RoomType { get; set; }
