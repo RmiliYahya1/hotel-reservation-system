@@ -67,10 +67,12 @@
                 IsHitTestVisible="False"
                 Panel.ZIndex="1"
                 Text="Chercher un client ..."
+                Name="TextBlock"
             />
             <TextBox
                 Name="clientSearch"
                 Style="{StaticResource textboxSearch}"
+                TextChanged="ClientSearch_OnTextChanged"
             />
             <Icon:PackIconMaterial
                 Kind="Magnify"

@@ -51,11 +51,11 @@
                         Background="#e1e6eb"
                         />
                     
-                    <UserControls:MyTextBox Grid.Column="0" Grid.Row="2"/>
-                    <UserControls:MyTextBox Grid.Column="0" Grid.Row="3" />
-                    <UserControls:MyTextBox Grid.Column="1" Grid.Row="2"/>
-                    <UserControls:MyTextBox Grid.Column="1" Grid.Row="3" />
-                    <UserControls:MyTextBox Grid.Column="1" Grid.Row="4" />
+                    <UserControls:MyTextBox Grid.Column="0" Grid.Row="2" Text="{Binding Nom}" Caption="Entrez le nom" Hint="Nom"/>
+                    <UserControls:MyTextBox Grid.Column="0" Grid.Row="3" Text="{Binding Prenom}" Caption="Entrez le prenom" Hint="Prenom"/>
+                    <UserControls:MyTextBox Grid.Column="1" Grid.Row="2" Text="{Binding Telephone}" Caption="Entrez le numéro de téléphone" Hint="Téléphone"/>
+                    <UserControls:MyTextBox Grid.Column="1" Grid.Row="3" Text="{Binding Email}" Caption="Entrez l'adresse email" Hint="Email"/>
+                    <UserControls:MyTextBox Grid.Column="1" Grid.Row="4" Text="{Binding Cin}" Caption="Entrez le CIN" Hint="CIN"/>
                     
                     <Border 
                         Grid.Row="6" 
@@ -89,7 +89,9 @@
                         HorizontalAlignment="Left"
                         Margin="20 40 0 0"
                         Width="150"
-                        Content="annuler">
+                        Content="Annuler"
+                        Click="ButtonBase_OnClick"
+                        >
                         
                     </Button>
                 </Grid>
