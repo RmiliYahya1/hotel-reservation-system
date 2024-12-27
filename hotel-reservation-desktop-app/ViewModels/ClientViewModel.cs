@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using System.Windows.Input;
 using hotel_reservation_DAL.Entities;
+using hotel_reservation_desktop_app.Services;
 using hotel_reservation_desktop_app.View.gestionClient;
 
 namespace hotel_reservation_desktop_app.ViewModels;
@@ -8,6 +10,17 @@ namespace hotel_reservation_desktop_app.ViewModels;
 public class ClientViewModel:INotifyPropertyChanged
 {
     private string _nom;
+    private string _prenom;
+    private string _telephone;
+    private string _email;
+    private string _cin;
+    private readonly ClientService _clientService;
+   
+
+    public ClientViewModel()
+    {
+        _clientService = new ClientService();
+    }
 
     public string Nom
     {
@@ -18,58 +31,49 @@ public class ClientViewModel:INotifyPropertyChanged
             OnPropertyChanged(nameof(Nom));
             
         }
-    } 
-    private string _prenom;
+    }
 
     public string Prenom
     {
-        get { return _prenom;}
+        get { return _prenom; }
         set
         {
-            _nom=value;
+            _prenom=value;
             OnPropertyChanged(nameof(Prenom));
-            
         }
-    } 
-    
-    private string _telephone;
+    }
 
     public string Telephone
     {
-        get { return _telephone;}
+        get { return _telephone; }
         set
         {
-            _nom=value;
+            _telephone=value;
             OnPropertyChanged(nameof(Telephone));
-            
         }
     }
-    
-    private string _email;
 
     public string Email
     {
-        get { return _email;}
+        get { return _email; }
         set
         {
-            _nom=value;
+            _email=value;
             OnPropertyChanged(nameof(Email));
-            
-        }
-    } 
-    
-    private string _cin;
-
-    public string Cin
-    {
-        get { return _cin;}
-        set
-        {
-            _nom=value;
-            OnPropertyChanged(nameof(Cin));
-            
         }
     }
+
+    
+    public string CIN
+    {
+        get { return _cin; }
+        set
+        {
+            _cin=value;
+            OnPropertyChanged(nameof(CIN));
+        }
+    }
+    
     
     public event PropertyChangedEventHandler PropertyChanged;
     protected virtual void OnPropertyChanged(string propertyName)

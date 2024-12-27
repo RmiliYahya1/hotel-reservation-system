@@ -1,14 +1,12 @@
-﻿<UserControl x:Class="hotel_reservation_desktop_app.view.gestionClient.MainClientSection"
+﻿<UserControl x:Class="hotel_reservation_desktop_app.View.gestionUtilisateurs.MainUserSection"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             xmlns:local="clr-namespace:hotel_reservation_desktop_app.view.gestionClient"
+             xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.gestionUtilisateurs"
              mc:Ignorable="d"
-            
              d:DesignHeight="750" d:DesignWidth="1018">
- 
     <Grid Column="1" Margin="30 20 20 20">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -23,7 +21,7 @@
         <!--Titre de Page-->
         <TextBlock
             Grid.Row="2"
-            Text="Gestion de clients"
+            Text="Gestion des utilisateurs"
             FontSize="32"
             FontWeight="SemiBold"
             Margin="0 20 0 0"
@@ -45,7 +43,7 @@
                     Height="11"
                     Margin="0 1 8 0">
                 </Icon:PackIconMaterial>
-                <TextBlock Text="Ajouter client" />
+                <TextBlock Text="Ajouter utilisateur" />
             </StackPanel>
         </Button>
         
@@ -66,11 +64,11 @@
                 Foreground="#b0b9c6"
                 IsHitTestVisible="False"
                 Panel.ZIndex="1"
-                Text="Chercher un client ..."
+                Text="Chercher un utilisateur ..."
                 Name="TextBlock"
             />
             <TextBox
-                Name="clientSearch"
+                Name="usercherche"
                 Style="{StaticResource textboxSearch}"
                 TextChanged="ClientSearch_OnTextChanged"
             />
@@ -87,12 +85,10 @@
         <!--Client DataGrid-->
         <DataGrid Grid.Row="5" Name="ClientDataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="id" IsReadOnly="True" CanUserResize="False" Width="auto"/>
-                <DataGridTextColumn Header="Nom" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="prenom" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Téléphone" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Cin" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Id" IsReadOnly="True" CanUserResize="False" Width="auto"/>
+                <DataGridTextColumn Header="Username" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Adresse mail" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Role" IsReadOnly="True" Width="*"/>
                 <DataGridTemplateColumn Header="Opérations" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

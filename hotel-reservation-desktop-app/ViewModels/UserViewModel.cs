@@ -11,7 +11,7 @@ namespace hotel_reservation_desktop_app.ViewModels
 {
     public class UserViewModel
     {
-        public ObservableCollection<User> Users { get; set; } = new();
+       /* public ObservableCollection<User> Users { get; set; } = new();
 
         public UserViewModel()
         {
@@ -39,6 +39,6 @@ namespace hotel_reservation_desktop_app.ViewModels
             context.SaveChanges();
             
             Users.Add(user);
-        }
+        }*/
     }
 }
