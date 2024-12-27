@@ -1,19 +1,18 @@
-﻿<Window x:Class="hotel_reservation_desktop_app.Views.Reservations"
+﻿<Window x:Class="hotel_reservation_desktop_app.Views.GestionReservation.Reservations"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:hotel_reservation_desktop_app.Views" xmlns:viewmodels="clr-namespace:hotel_reservation_desktop_app.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ReservationViewModel}"
+        xmlns:local="clr-namespace:hotel_reservation_desktop_app.Views.GestionReservation" xmlns:viewmodels="clr-namespace:hotel_reservation_desktop_app.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ReservationViewModel}"
         mc:Ignorable="d"
         Title="Reservations" Height="450" Width="700">
     <Grid Margin="10">
         <StackPanel Orientation="Vertical">
             <!-- Tableaux des réservations -->
-            <DataGrid x:Name="ReservationDataGrid"
+            <DataGrid
                       AutoGenerateColumns="False"
                       ItemsSource="{Binding Reservations}"
-                      Height="300"
-                      SelectedItem="{Binding SelectedReservation}">
+                      Height="300">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Date" Binding="{Binding Date}" />
                     <DataGridTextColumn Header="Check-In" Binding="{Binding CheckInDate}" />
@@ -24,7 +23,7 @@
                     <DataGridTemplateColumn Header="Paiement">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="View Payment" Command="{Binding ViewPaymentCommand}" CommandParameter="{Binding}" />
+                                <Button Content="View Payment" Command="{Binding}" CommandParameter="{Binding}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

@@ -6,11 +6,11 @@ namespace hotel_reservation_DAL.Entities
     {
 
         public int ID { get; set; }
-        public string Number { get; set; }
+        public required string Number { get; set; }
         public bool IsAvailable { get; set; }
         public int RoomTypeId { get; set; }
-        public virtual RoomType RoomType { get; set; }
-        public virtual ICollection<Reservation> Reservations { get; set; }
+        public virtual required RoomType RoomType { get; set; }
+        public virtual required ICollection<Reservation> Reservations { get; set; }
 
     }
 }

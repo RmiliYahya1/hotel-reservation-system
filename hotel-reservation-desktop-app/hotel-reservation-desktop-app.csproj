@@ -10,11 +10,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\hotel-reservation-DAL\hotel-reservation-DAL.csproj" />
+      <Compile Remove="Services\**" />
+      <EmbeddedResource Remove="Services\**" />
+      <None Remove="Services\**" />
+      <Page Remove="Services\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Services\" />
+      <ProjectReference Include="..\hotel-reservation-DAL\hotel-reservation-DAL.csproj" />
     </ItemGroup>
 
     <ItemGroup>
