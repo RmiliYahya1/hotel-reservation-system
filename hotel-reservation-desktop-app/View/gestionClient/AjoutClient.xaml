@@ -3,12 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:hotel_reservation_desktop_app.view.gestionClient"
         xmlns:UserControls="clr-namespace:hotel_reservation_desktop_app.View.UserControls"
-        xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.gestionClient"
+        xmlns:viewModels="clr-namespace:hotel_reservation_desktop_app.ViewModels"
         mc:Ignorable="d"
         Title="AjoutClient"  Height="600" Width="500"   WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent">
-  
-        <Grid VerticalAlignment="Center">
+    
+    <Grid VerticalAlignment="Center">
             <Border CornerRadius="7" Background="#ffffff" BorderThickness="1" BorderBrush="#374655">
                 <Border.Effect>
                     <DropShadowEffect  ShadowDepth="5" Direction="-130" Opacity="0.1"/>
@@ -72,6 +73,7 @@
                         Content="Ajouter"
                         Margin="0 40 20 0"
                         HorizontalAlignment="Right"
+                        Command="{Binding AjouterClientComand}"
                         >
                         <Button.Effect>
                             <DropShadowEffect 

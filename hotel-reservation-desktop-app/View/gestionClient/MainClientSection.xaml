@@ -5,9 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:hotel_reservation_desktop_app.view.gestionClient"
+             xmlns:viewModels="clr-namespace:hotel_reservation_desktop_app.ViewModels"
              mc:Ignorable="d"
             
              d:DesignHeight="750" d:DesignWidth="1018">
+  
  
     <Grid Column="1" Margin="30 20 20 20">
         <Grid.RowDefinitions>
@@ -85,23 +87,30 @@
             />
         </Grid>
         <!--Client DataGrid-->
-        <DataGrid Grid.Row="5" Name="ClientDataGrid" AutoGenerateColumns="False">
+        <DataGrid
+            Grid.Row="5" 
+            ItemsSource="{Binding Clients}"
+            Name="ClientDataGrid" 
+            AutoGenerateColumns="False"
+            IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="id" IsReadOnly="True" CanUserResize="False" Width="auto"/>
-                <DataGridTextColumn Header="Nom" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="prenom" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Téléphone" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Cin" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="id" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Nom" IsReadOnly="True" Width="*" Binding="{Binding FirstName}" />
+                <DataGridTextColumn Header="prenom" IsReadOnly="True" Width="*" Binding="{Binding LastName}" />
+                <DataGridTextColumn Header="Téléphone" IsReadOnly="True" Width="*" Binding="{Binding PhoneNumber}" />
+                <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding Email}" />
+                <DataGridTextColumn Header="Cin" IsReadOnly="True" Width="*" Binding="{Binding Cin}"/>
                 <DataGridTemplateColumn Header="Opérations" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource gridEditButton}">
+                                <Button  Style="{StaticResource gridEditButton}">
                                     <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button> 
-                                <Button Style="{StaticResource gridRemoveButton}" 
-                                        Margin="5 0 0 0" >
+                                <Button 
+                                    Style="{StaticResource gridRemoveButton}" 
+                                    Margin="5 0 0 0" 
+                                    Click="ButtonDelete_OnClick">
                                     <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
                             </StackPanel>
@@ -122,15 +131,16 @@
             Margin="0 10 10 10"
             >
             <StackPanel Orientation="Horizontal">
-                <Button Style="{StaticResource paginationButton}">
+                <Button Command="{Binding PreviousPageCommand}"  IsEnabled="{Binding CanGoToPreviousPage}" Style="{StaticResource paginationButton}">
                     <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource paginationButtonIcon}"/>
                 </Button>
                 <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
                 <Button 
+                    HorizontalContentAlignment="Center"
                     Style="{StaticResource paginationButton}"
-                    Content="1"
+                    Content="{Binding CurrentPage}"
                     />
-                <Button Style="{StaticResource paginationButton}">
+                <Button Command="{Binding NextPageCommand}" IsEnabled="{Binding CanGoToNextPage}"  Style="{StaticResource paginationButton}">
                     <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource paginationButtonIcon}"/>
                 </Button>
             </StackPanel>

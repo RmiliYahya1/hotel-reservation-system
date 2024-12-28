@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using hotel_reservation_DAL.Contexts;
+using hotel_reservation_DAL.Entities;
 using hotel_reservation_desktop_app.ViewModels;
 
 namespace hotel_reservation_desktop_app.View.gestionClient;
@@ -7,9 +9,9 @@ public partial class AjoutClient : Window
 {
     public AjoutClient()
     {
-        InitializeComponent();
-        ClientViewModel clientViewModel = new ClientViewModel();
+        ClientViewModel clientViewModel = new ClientViewModel(this);
         DataContext = clientViewModel;
+        InitializeComponent();
     }
 
 
@@ -17,4 +19,5 @@ public partial class AjoutClient : Window
     {
         Window.GetWindow(this)?.Close();
     }
+    
 }

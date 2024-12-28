@@ -18,5 +18,6 @@ namespace hotel_reservation_DAL.Entities
 
         public string Cin { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
+        
     }
 }

@@ -8,48 +8,21 @@ class Program
 {
     static void Main(string[] args)
     {
-        InsertData();
-        PrintData();
+        addClient();
     }
 
-    private static void InsertData()
+    public static void addClient()
     {
-        //ajouter un user
-        using var context = new HotelReservationContext();
-        var user = new User
-        {
-            Username = "admin",
-            Email = "red",
-            PasswordHash = "12345",
-            Role = "admin"
-        };
-        context.Users.Add(user);
+        HotelReservationContext context = new HotelReservationContext();
+        Client client = new Client();
+        client.FirstName = "John";
+        client.LastName = "Doe";
+        client.Email = "johndoe@gmail.com";
+        client.PhoneNumber = "0123456789";
+        client.Cin= "123456";
+        context.Clients.Add(client);
         context.SaveChanges();
-    }
-
-    private static void PrintData()
-    {
-        //afficher les reservations
-        using var context = new HotelReservationContext();
-        var reservations = context.Reservations
-            .Include(r => r.Client)
-            .Include(r => r.Room)
-            .Include(r => r.Payment)
-            .ToList();
-        foreach (var reservation in reservations)
-        {
-            Console.WriteLine($"Reservation ID: {reservation.ID}");
-            Console.WriteLine($"Check-in: {reservation.CheckInDate}");
-            Console.WriteLine($"Check-out: {reservation.CheckOutDate}");
-            Console.WriteLine($"Client: {reservation.Client.FirstName} {reservation.Client.LastName}");
-            Console.WriteLine($"Room: {reservation.Room.Number}");
-            Console.WriteLine($"Price: {reservation.Price}");
-            if (reservation.Payment != null)
-            {
-                Console.WriteLine($"Payment: {reservation.Payment.Amount} {reservation.Payment.PaymentMethod}");
-            }
-            Console.WriteLine();
-        }
+        Console.WriteLine("Client ajouté avec succès !");
     }
 
 }
