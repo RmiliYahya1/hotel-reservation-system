@@ -35,9 +35,10 @@
         
         <!--bouton d'ajout-->
         <Button 
-            Grid.Row="2" 
+            Grid.Row="3" 
             Style="{StaticResource addbouton}"
             Click="ButtonBase_OnClick"
+            HorizontalAlignment="Right"
             >
             <StackPanel Orientation="Horizontal">
                 <Icon:PackIconMaterial 
@@ -51,8 +52,19 @@
             </StackPanel>
         </Button>
         
-        <TextBlock
+        <Button 
             Grid.Row="3" 
+            Style="{StaticResource addbouton}"
+            HorizontalAlignment="Left"
+            Command="{Binding ExportClientsToExcelCommand}"
+            >
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Exporter" />
+            </StackPanel>
+        </Button>
+        
+        <TextBlock
+            Grid.Row="2" 
             Text="Filter by"
             FontSize="16"
             FontWeight="SemiBold"
@@ -61,7 +73,7 @@
             Margin="0 0 215 0"
             /> 
         <!--filter-->
-        <Grid Grid.Row="3" Width="200" HorizontalAlignment="Right">
+        <Grid Grid.Row="2" Width="200" HorizontalAlignment="Right">
             <TextBlock
                 Margin="15 0"
                 VerticalAlignment="Center"

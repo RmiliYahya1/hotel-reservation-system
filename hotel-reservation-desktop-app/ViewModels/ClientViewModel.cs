@@ -1,8 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using hotel_reservation_DAL.Contexts;
 using hotel_reservation_DAL.Entities;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using LicenseContext = System.ComponentModel.LicenseContext;
 
 
 namespace hotel_reservation_desktop_app.ViewModels;
@@ -17,6 +21,7 @@ public class ClientViewModel:INotifyPropertyChanged
     private readonly HotelReservationContext _context;
     private Window _window;
     public RelayCommand AjouterClientComand { get;}
+    public RelayCommand ExportClientsToExcelCommand { get; }
     public ClientViewModel()
     {
         _context = new HotelReservationContext();
@@ -24,6 +29,7 @@ public class ClientViewModel:INotifyPropertyChanged
         AjouterClientComand = new RelayCommand(AjouterClient, CanAjouterClient);
         NextPageCommand = new RelayCommand(NextPage, CanGoToNextPage);
         PreviousPageCommand = new RelayCommand(PreviousPage, CanGoToPreviousPage);
+        ExportClientsToExcelCommand = new RelayCommand(ExportClients, CanExportClients);
         LoadClients(1); 
        
     }
@@ -191,6 +197,91 @@ public class ClientViewModel:INotifyPropertyChanged
             _context.SaveChanges(); 
             LoadClients(CurrentPage); 
         }
+    }
+    
+    /*exporter*/
+    public void ExportClientsToExcel(string filePath)
+{
+    if (Clients == null || !Clients.Any())
+    {
+        MessageBox.Show("Aucun client à exporter.", "Exportation Excel", MessageBoxButton.OK, MessageBoxImage.Warning);
+        return;
+    }
+
+    try
+    {
+        // Activer le support de licence pour EPPlus
+        ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+        // Créer un nouveau fichier Excel
+        using (var package = new ExcelPackage())
+        {
+            var worksheet = package.Workbook.Worksheets.Add("Clients");
+
+            // Ajouter l'en-tête
+            worksheet.Cells[1, 1].Value = "ID";
+            worksheet.Cells[1, 2].Value = "Nom";
+            worksheet.Cells[1, 3].Value = "Prénom";
+            worksheet.Cells[1, 4].Value = "Téléphone";
+            worksheet.Cells[1, 5].Value = "Email";
+            worksheet.Cells[1, 6].Value = "CIN";
+
+            // Appliquer un style à l'en-tête
+            using (var range = worksheet.Cells[1, 1, 1, 6])
+            {
+                range.Style.Font.Bold = true;
+                range.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                range.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray);
+                range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            }
+
+            // Remplir les données des clients
+            int row = 2;
+            foreach (var client in _context.Clients.OrderBy(c => c.ID))
+            {
+                worksheet.Cells[row, 1].Value = client.ID;
+                worksheet.Cells[row, 2].Value = client.FirstName;
+                worksheet.Cells[row, 3].Value = client.LastName;
+                worksheet.Cells[row, 4].Value = client.PhoneNumber;
+                worksheet.Cells[row, 5].Value = client.Email;
+                worksheet.Cells[row, 6].Value = client.Cin;
+                row++;
+            }
+
+            // Ajuster les colonnes automatiquement
+            worksheet.Cells.AutoFitColumns();
+
+            // Sauvegarder le fichier Excel
+            File.WriteAllBytes(filePath, package.GetAsByteArray());
+        }
+
+        MessageBox.Show("Exportation terminée avec succès !", "Exportation Excel", MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show($"Erreur lors de l'exportation : {ex.Message}", "Exportation Excel", MessageBoxButton.OK, MessageBoxImage.Error);
+    }
+}
+    
+    private void ExportClients()
+    {
+        // Ouvrir un dialog pour sélectionner le chemin de sauvegarde
+        var saveFileDialog = new Microsoft.Win32.SaveFileDialog
+        {
+            FileName = "Clients",
+            DefaultExt = ".xlsx",
+            Filter = "Excel files (*.xlsx)|*.xlsx"
+        };
+
+        if (saveFileDialog.ShowDialog() == true)
+        {
+            ExportClientsToExcel(saveFileDialog.FileName);
+        }
+    }
+
+    private bool CanExportClients()
+    {
+        return Clients != null && Clients.Any();
     }
     /*Proprety change*/
     public event PropertyChangedEventHandler PropertyChanged;
