@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hotel_reservation_DAL.Contexts;
 
@@ -11,9 +12,11 @@ using hotel_reservation_DAL.Contexts;
 namespace hotel_reservation_DAL.Migrations
 {
     [DbContext(typeof(HotelReservationContext))]
-    partial class HotelReservationContextModelSnapshot : ModelSnapshot
+    [Migration("20241228001609_UpdateAmountType")]
+    partial class UpdateAmountType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,9 +76,7 @@ namespace hotel_reservation_DAL.Migrations
                         .HasColumnType("double");
 
                     b.Property<DateTime>("Date")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime(6)")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("PaymentMethod")
                         .IsRequired()
@@ -170,6 +171,9 @@ namespace hotel_reservation_DAL.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Images")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
