@@ -236,7 +236,7 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
-     
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

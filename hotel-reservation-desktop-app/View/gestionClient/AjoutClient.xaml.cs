@@ -7,12 +7,25 @@ namespace hotel_reservation_desktop_app.View.gestionClient;
 
 public partial class AjoutClient : Window
 {
-    public AjoutClient()
+    public AjoutClient(Client client = null)
     {
         ClientViewModel clientViewModel = new ClientViewModel(this);
         DataContext = clientViewModel;
         InitializeComponent();
+        if (client != null)
+        {
+            clientViewModel.Nom = client.FirstName;
+            clientViewModel.Prenom = client.LastName;
+            clientViewModel.Telephone = client.PhoneNumber;
+            clientViewModel.Email = client.Email;
+            clientViewModel.CIN = client.Cin;
+            clientViewModel.ClientToEdit = client; 
+            Button.Content = "Modifier"; 
+        }
     }
+    
+    
+    
 
 
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

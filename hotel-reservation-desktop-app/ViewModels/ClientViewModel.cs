@@ -6,12 +6,10 @@ using hotel_reservation_DAL.Contexts;
 using hotel_reservation_DAL.Entities;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
-using LicenseContext = System.ComponentModel.LicenseContext;
-
 
 namespace hotel_reservation_desktop_app.ViewModels;
 
-public class ClientViewModel:INotifyPropertyChanged
+public  class ClientViewModel:INotifyPropertyChanged
 {
     private string _nom;
     private string _prenom;
@@ -20,13 +18,24 @@ public class ClientViewModel:INotifyPropertyChanged
     private string _cin;
     private readonly HotelReservationContext _context;
     private Window _window;
-    public RelayCommand AjouterClientComand { get;}
-    public RelayCommand ExportClientsToExcelCommand { get; }
+    private ObservableCollection<Client> _clients;
+    private ObservableCollection<Client> _filteredClients;
+    private int _currentPage;
+    private int _totalPages;
+    private const int PageSize = 10;
+    private Client _clientToEdit;
+    private string _filterText;
+   
+    
+    
+    
     public ClientViewModel()
     {
         _context = new HotelReservationContext();
-       
+        _clients = new ObservableCollection<Client>();
+        _filteredClients = new ObservableCollection<Client>(_clients);
         AjouterClientComand = new RelayCommand(AjouterClient, CanAjouterClient);
+        ModifierClientCommand = new RelayCommand(ModiferClient, CanModifierClient);
         NextPageCommand = new RelayCommand(NextPage, CanGoToNextPage);
         PreviousPageCommand = new RelayCommand(PreviousPage, CanGoToPreviousPage);
         ExportClientsToExcelCommand = new RelayCommand(ExportClients, CanExportClients);
@@ -36,13 +45,19 @@ public class ClientViewModel:INotifyPropertyChanged
     public ClientViewModel(Window window)
     {
        _context = new HotelReservationContext();
+       _clients = new ObservableCollection<Client>();
+       _filteredClients = new ObservableCollection<Client>(_clients);
        _window = window;
         AjouterClientComand = new RelayCommand(AjouterClient, CanAjouterClient);
+        ModifierClientCommand = new RelayCommand(ModiferClient, CanModifierClient);
         NextPageCommand = new RelayCommand(NextPage, CanGoToNextPage);
         PreviousPageCommand = new RelayCommand(PreviousPage, CanGoToPreviousPage);
         LoadClients(1); 
        
     }
+    
+    
+    
     public string Nom
     {
         get { return _nom;}
@@ -89,7 +104,65 @@ public class ClientViewModel:INotifyPropertyChanged
             OnPropertyChanged(nameof(CIN));
         }
     }
+    public int CurrentPage
+    {
+        get => _currentPage;
+        set
+        {
+            _currentPage = value;
+            OnPropertyChanged(nameof(CurrentPage));
+        }
+    }
+    public int TotalPages
+    {
+        get => _totalPages;
+        set
+        {
+            _totalPages = value;
+            OnPropertyChanged(nameof(TotalPages));
+        }
+    }
+    public Client ClientToEdit
+    {
+        get => _clientToEdit;
+        set
+        {
+            _clientToEdit = value;
+            OnPropertyChanged(nameof(ClientToEdit));
+        }
+    }
 
+    public string FilterText
+    {
+        get => _filterText;
+        set
+        {
+            _filterText = value;
+            OnPropertyChanged(nameof(FilterText));
+            FilterClients(); // Appel de la méthode FilterClients lors du changement
+        }
+    }
+   
+    
+
+    public ObservableCollection<Client> Clients
+    {
+        get => _filteredClients; // Use the filtered list here
+        set
+        {
+            _filteredClients = value;
+            OnPropertyChanged(nameof(Clients));
+        }
+    }
+    public RelayCommand AjouterClientComand { get;}
+    public RelayCommand ModifierClientCommand { get; }
+    public RelayCommand ExportClientsToExcelCommand { get; }
+    public RelayCommand NextPageCommand { get; }
+    public RelayCommand PreviousPageCommand { get; }
+  
+    
+    
+    
    /*Ajout de client*/
     private void AjouterClient()
     {
@@ -109,41 +182,33 @@ public class ClientViewModel:INotifyPropertyChanged
     }
     
     
+    
+    
+    //Modification de client
+    private void ModiferClient()
+        {
+            if (ClientToEdit != null)
+            {
+                ClientToEdit.FirstName = Nom;
+                ClientToEdit.LastName = Prenom;
+                ClientToEdit.PhoneNumber = Telephone;
+                ClientToEdit.Email = Email;
+                ClientToEdit.Cin = CIN;
+
+                _context.Clients.Update(ClientToEdit);
+                _context.SaveChanges();
+
+                // Refresh de la DataGrid après la modification
+                LoadClients(CurrentPage);
+                _window.Close();
+            }
+        }
+
+        private bool CanModifierClient() => ClientToEdit != null;
+    
+    
     /*Pagination*/
-    private ObservableCollection<Client> _clients;
-    private int _currentPage;
-    private int _totalPages;
-    private const int PageSize = 10;
-    public ObservableCollection<Client> Clients
-    {
-        get => _clients;
-        set
-        {
-            _clients = value;
-            OnPropertyChanged(nameof(Clients));
-        }
-    }
-    public int CurrentPage
-    {
-        get => _currentPage;
-        set
-        {
-            _currentPage = value;
-            OnPropertyChanged(nameof(CurrentPage));
-        }
-    }
-    public int TotalPages
-    {
-        get => _totalPages;
-        set
-        {
-            _totalPages = value;
-            OnPropertyChanged(nameof(TotalPages));
-        }
-    }
-    public RelayCommand NextPageCommand { get; }
-    public RelayCommand PreviousPageCommand { get; }
-    private void LoadClients(int nombrePage)
+    public void LoadClients(int nombrePage)
     {
         if (nombrePage < 1)
             nombrePage = 1;
@@ -156,7 +221,7 @@ public class ClientViewModel:INotifyPropertyChanged
 
         Clients = new ObservableCollection<Client>(
             _context.Clients
-                .OrderBy(c => c.ID) 
+                .OrderBy(c => c.ID)
                 .Skip((nombrePage - 1) * PageSize)
                 .Take(PageSize)
                 .ToList()
@@ -164,6 +229,26 @@ public class ClientViewModel:INotifyPropertyChanged
 
         CurrentPage = nombrePage;
     }
+    private void FilterClients()
+    {
+        var filteredClients = _context.Clients.AsQueryable();
+
+        if (!string.IsNullOrEmpty(FilterText))
+        {
+            var searchTerms = FilterText.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var term in searchTerms)
+            {
+                filteredClients = filteredClients.Where(c => c.FirstName.Contains(term) || 
+                                                             c.Cin.Contains(term) ||
+                                                             c.PhoneNumber.Contains(term) ||
+                                                             c.Email.Contains(term));
+            }
+        }
+
+        Clients = new ObservableCollection<Client>(filteredClients.ToList());
+    }
+
     private void NextPage()
     {
         if (CurrentPage < TotalPages)
@@ -186,7 +271,9 @@ public class ClientViewModel:INotifyPropertyChanged
     {
         return true;
     }
-
+    
+    
+    
     /*Delete client*/
     public void RemoveClient(int clientId)
     {
@@ -199,15 +286,14 @@ public class ClientViewModel:INotifyPropertyChanged
         }
     }
     
+    
     /*exporter*/
-    public void ExportClientsToExcel(string filePath)
-{
+    public void ExportClientsToExcel(string filePath) {
     if (Clients == null || !Clients.Any())
     {
         MessageBox.Show("Aucun client à exporter.", "Exportation Excel", MessageBoxButton.OK, MessageBoxImage.Warning);
         return;
     }
-
     try
     {
         // Activer le support de licence pour EPPlus
@@ -250,11 +336,9 @@ public class ClientViewModel:INotifyPropertyChanged
 
             // Ajuster les colonnes automatiquement
             worksheet.Cells.AutoFitColumns();
-
             // Sauvegarder le fichier Excel
             File.WriteAllBytes(filePath, package.GetAsByteArray());
         }
-
         MessageBox.Show("Exportation terminée avec succès !", "Exportation Excel", MessageBoxButton.OK, MessageBoxImage.Information);
     }
     catch (Exception ex)
@@ -262,7 +346,6 @@ public class ClientViewModel:INotifyPropertyChanged
         MessageBox.Show($"Erreur lors de l'exportation : {ex.Message}", "Exportation Excel", MessageBoxButton.OK, MessageBoxImage.Error);
     }
 }
-    
     private void ExportClients()
     {
         // Ouvrir un dialog pour sélectionner le chemin de sauvegarde
@@ -278,15 +361,22 @@ public class ClientViewModel:INotifyPropertyChanged
             ExportClientsToExcel(saveFileDialog.FileName);
         }
     }
-
     private bool CanExportClients()
     {
         return Clients != null && Clients.Any();
     }
+    
+    
+    
     /*Proprety change*/
     public event PropertyChangedEventHandler PropertyChanged;
-    protected virtual void OnPropertyChanged(string propertyName)
+    private void OnPropertyChanged(string propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+    
+    public void ClientSearch_TextChanged(string text)
+    {
+        FilterText = text;
     }
 }
