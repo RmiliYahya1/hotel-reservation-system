@@ -12,8 +12,8 @@ using hotel_reservation_DAL.Contexts;
 namespace hotel_reservation_DAL.Migrations
 {
     [DbContext(typeof(HotelReservationContext))]
-    [Migration("20241222183640_AddPaymentIdIndexIntoReservations")]
-    partial class AddPaymentIdIndexIntoReservations
+    [Migration("20241229135047_create-db-init")]
+    partial class createdbinit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,13 +82,7 @@ namespace hotel_reservation_DAL.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("ReservationId")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("ReservationId")
-                        .IsUnique();
 
                     b.ToTable("Payments");
                 });
@@ -110,7 +104,7 @@ namespace hotel_reservation_DAL.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PaymentId")
+                    b.Property<int?>("PaymentId")
                         .HasColumnType("int");
 
                     b.Property<double>("Price")
@@ -122,6 +116,9 @@ namespace hotel_reservation_DAL.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("ClientId");
+
+                    b.HasIndex("PaymentId")
+                        .IsUnique();
 
                     b.HasIndex("RoomId");
 
@@ -141,12 +138,15 @@ namespace hotel_reservation_DAL.Migrations
 
                     b.Property<string>("Number")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("RoomTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("Number")
+                        .IsUnique();
 
                     b.HasIndex("RoomTypeId");
 
@@ -214,17 +214,6 @@ namespace hotel_reservation_DAL.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("hotel_reservation_DAL.Entities.Payment", b =>
-                {
-                    b.HasOne("hotel_reservation_DAL.Entities.Reservation", "Reservation")
-                        .WithOne("Payment")
-                        .HasForeignKey("hotel_reservation_DAL.Entities.Payment", "ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Reservation");
-                });
-
             modelBuilder.Entity("hotel_reservation_DAL.Entities.Reservation", b =>
                 {
                     b.HasOne("hotel_reservation_DAL.Entities.Client", "Client")
@@ -233,6 +222,10 @@ namespace hotel_reservation_DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("hotel_reservation_DAL.Entities.Payment", "Payment")
+                        .WithOne("Reservation")
+                        .HasForeignKey("hotel_reservation_DAL.Entities.Reservation", "PaymentId");
+
                     b.HasOne("hotel_reservation_DAL.Entities.Room", "Room")
                         .WithMany("Reservations")
                         .HasForeignKey("RoomId")
@@ -240,6 +233,8 @@ namespace hotel_reservation_DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Client");
+
+                    b.Navigation("Payment");
 
                     b.Navigation("Room");
                 });
@@ -260,9 +255,9 @@ namespace hotel_reservation_DAL.Migrations
                     b.Navigation("Reservations");
                 });
 
-            modelBuilder.Entity("hotel_reservation_DAL.Entities.Reservation", b =>
+            modelBuilder.Entity("hotel_reservation_DAL.Entities.Payment", b =>
                 {
-                    b.Navigation("Payment")
+                    b.Navigation("Reservation")
                         .IsRequired();
                 });
 

@@ -12,8 +12,8 @@ using hotel_reservation_DAL.Contexts;
 namespace hotel_reservation_DAL.Migrations
 {
     [DbContext(typeof(HotelReservationContext))]
-    [Migration("20241222210959_DeleteReservationIdFromPayments")]
-    partial class DeleteReservationIdFromPayments
+    [Migration("20241229141127_RemoveImagesColumnFromRoomTypes")]
+    partial class RemoveImagesColumnFromRoomTypes
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -166,9 +166,6 @@ namespace hotel_reservation_DAL.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Images")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
