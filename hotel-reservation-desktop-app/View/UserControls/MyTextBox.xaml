@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="hotel_reservation_desktop_app.View.UserControls.MyTextBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.UserControls"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel Margin="20 10">
+        <TextBlock
+            Text="{Binding Caption, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}" 
+            Foreground="#97a5b4"
+            FontSize="13"
+            Margin="0 0 0 8"
+            />
+        <Grid>
+            <TextBlock
+                Text="{Binding Hint, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}" 
+                Margin="13 0"
+                VerticalAlignment="Center"
+                Foreground="Black"
+                IsHitTestVisible="False"
+                Panel.ZIndex="1"
+                FontSize="14"
+                Name="TextBlock"
+                
+                />
+            <TextBox 
+                x:Name="TextBox" 
+                Style="{StaticResource FormTextBox}"
+                Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}" 
+                TextChanged="TextBox_OnTextChanged"
+                />
+        </Grid>
+    </StackPanel>
+</UserControl>
