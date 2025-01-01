@@ -1,28 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using hotel_reservation_DAL.Contexts;
 using hotel_reservation_DAL.Entities;
 
-namespace hotel_reservation_desktop_app.ViewModels.GesionRoomType
+namespace hotel_reservation_desktop_app.ViewModels;
+
+public class RoomTypeViewModel
 {
-    public class GestionRoomTypesViewModel
+    public ObservableCollection<RoomType> RoomTypes { get; set; } = new();
+    public RoomType RoomTypeSelectionnee { get; set; }
+
+    public RoomTypeViewModel()
     {
-        public ObservableCollection<RoomType> RoomTypes { get; set; } = new();
-        public RoomType RoomTypeSelectionnee { get; set; }
-
-
-        public GestionRoomTypesViewModel()
-        {
-            LoadRoomTypes();
-        }
-
-        // Charger les RoomTypes depuis la base de données
+        LoadRoomTypes();
+    }
+    
+     // Charger les RoomTypes depuis la base de données
         public void LoadRoomTypes()
         {
             using var context = new HotelReservationContext();
@@ -99,6 +92,5 @@ namespace hotel_reservation_desktop_app.ViewModels.GesionRoomType
 
         }
 
-       
-    }
+    
 }

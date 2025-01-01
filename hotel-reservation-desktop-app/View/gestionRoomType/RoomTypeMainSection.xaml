@@ -1,13 +1,12 @@
-﻿<UserControl x:Class="hotel_reservation_desktop_app.ViewModels.GesionRoomType.GestionRoomTypes"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:local="clr-namespace:hotel_reservation_desktop_app.ViewModels"
-        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        mc:Ignorable="d"
-        d:DesignHeight="750" d:DesignWidth="1018">
+﻿<UserControl x:Class="hotel_reservation_desktop_app.View.gestionRoomType.RoomTypeMainSection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.gestionRoomType"
+             mc:Ignorable="d"
+             d:DesignHeight="750" d:DesignWidth="1018">
     <Grid Column="1" Margin="30 20 20 20">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -35,13 +34,13 @@
                 HorizontalAlignment="Right"
                 >
                 <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconMaterial 
+                    <Icon:PackIconMaterial 
                         Kind="Plus"
                         VerticalAlignment="Center"
                         Width="11"
                         Height="11"
                         Margin="0 1 8 0">
-                    </iconPacks:PackIconMaterial>
+                    </Icon:PackIconMaterial>
                     <TextBlock Text="Ajouter catégorie" />
                 </StackPanel>
             </Button>
@@ -50,9 +49,10 @@
             Grid.Row="5" 
             Name="RoomTypeDataGrid" 
             AutoGenerateColumns="False" 
-            ItemsSource="{Binding RoomTypes}">
+            ItemsSource="{Binding RoomTypes}"
+            >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nom" Binding="{Binding Name}" Width="*" />
+                <DataGridTextColumn Header="Nom" Width="*" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" />
                 <DataGridTextColumn Header="Prix" Binding="{Binding Price}" Width="*" />
                 <DataGridTextColumn Header="Capacité" Binding="{Binding Capacity}" Width="*" />

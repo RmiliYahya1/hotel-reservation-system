@@ -156,6 +156,34 @@ namespace hotel_reservation_desktop_app.ViewModels
         }
 
 
+        
+        public void ModifierUser(User user)
+        {
+            using var context = new HotelReservationContext();
+
+            // Trouver le RoomType à modifier dans la base de données
+            var UserToUpdate = context.Users.FirstOrDefault(u => u.ID == user.ID);
+
+            if (UserToUpdate != null)
+            {
+                // Mettre à jour les propriétés
+                UserToUpdate.Username = user.Username;
+                UserToUpdate.Email = user.Email;
+                UserToUpdate.PasswordHash = user.PasswordHash;
+                UserToUpdate.Role = user.Role;
+
+                // Sauvegarder les modifications dans la base de données
+                context.SaveChanges();
+
+                // Mettre à jour l'élément dans la collection ObservableCollection
+                var index = Users.IndexOf(Users.FirstOrDefault(u => u.ID == user.ID));
+                if (index >= 0)
+                {
+                    Users[index] = UserToUpdate;
+                }
+            }
+        }
+
 
         public void LoadUsers(int nombrePage)
         {
