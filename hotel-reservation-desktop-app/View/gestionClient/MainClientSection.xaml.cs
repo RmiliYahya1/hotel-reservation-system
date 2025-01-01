@@ -18,7 +18,6 @@ public partial class MainClientSection
     }
     
     
-    
     private T FindAncestor<T>(DependencyObject current) where T : DependencyObject
     {
         while (current != null && !(current is T))
@@ -39,7 +38,7 @@ public partial class MainClientSection
             var row = FindAncestor<DataGridRow>(button);
             if (row != null)
             {
-                var client = row.DataContext as Client;
+                Client client = row.DataContext as Client;
                 if (client != null)
                 {
                     MessageBoxResult result = MessageBox.Show(
@@ -67,27 +66,4 @@ public partial class MainClientSection
     }
     
     
-    
-  
-    
-    
-    
-    //évenement de modification
-    private void Modifier(object sender, RoutedEventArgs e)
-    {
-        var button = sender as Button;
-        if (button != null)
-        {
-            var row = FindAncestor<DataGridRow>(button);
-            if (row != null)
-            {
-                var client = row.DataContext as Client;
-                if (client != null)
-                {
-                    var ajoutClientWindow = new AjoutClient(client); // Passer le client à modifier
-                    ajoutClientWindow.ShowDialog();
-                }
-            }
-        }
-    }
 }

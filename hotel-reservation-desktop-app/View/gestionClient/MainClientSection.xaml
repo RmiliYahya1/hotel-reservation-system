@@ -116,9 +116,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button  Style="{StaticResource gridEditButton}"
-                                         Click="Modifier"
-                                         >
+                                <Button  Style="{StaticResource gridEditButton}">
                                     <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button> 
                                 <Button 

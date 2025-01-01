@@ -7,9 +7,9 @@ public partial class AjoutUtilisateur : Window
 {
     public AjoutUtilisateur()
     {
-        InitializeComponent();
-        UserViewModel userViewModel = new UserViewModel();
+        UserViewModel userViewModel = new UserViewModel(this);
         DataContext = userViewModel;
+        InitializeComponent();
     }
 
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

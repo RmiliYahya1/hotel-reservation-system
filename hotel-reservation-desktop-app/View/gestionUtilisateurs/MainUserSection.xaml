@@ -5,8 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.gestionUtilisateurs"
+             xmlns:viewModels="clr-namespace:hotel_reservation_desktop_app.ViewModels"
+
              mc:Ignorable="d"
              d:DesignHeight="750" d:DesignWidth="1018">
+    
+    <UserControl.DataContext>
+        <viewModels:UserViewModel/>
+    </UserControl.DataContext>
     <Grid Column="1" Margin="30 20 20 20">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -31,9 +37,10 @@
         
         <!--bouton d'ajout-->
         <Button 
-            Grid.Row="2" 
+            Grid.Row="3" 
             Style="{StaticResource addbouton}"
-            Click="ButtonBase_OnClick"
+            Click="Ajouter"
+            HorizontalAlignment="Right"
             >
             <StackPanel Orientation="Horizontal">
                 <Icon:PackIconMaterial 
@@ -48,8 +55,8 @@
         </Button>
         
         <TextBlock
-            Grid.Row="3" 
-            Text="Filter by"
+            Grid.Row="2" 
+            Text="Rechercher utilisateur"
             FontSize="16"
             FontWeight="SemiBold"
             HorizontalAlignment="Right"
@@ -57,20 +64,19 @@
             Margin="0 0 215 0"
             /> 
         <!--filter-->
-        <Grid Grid.Row="3" Width="200" HorizontalAlignment="Right">
+        <Grid Grid.Row="2" Width="200" HorizontalAlignment="Right">
             <TextBlock
                 Margin="15 0"
                 VerticalAlignment="Center"
                 Foreground="#b0b9c6"
                 IsHitTestVisible="False"
                 Panel.ZIndex="1"
-                Text="Chercher un utilisateur ..."
                 Name="TextBlock"
             />
             <TextBox
                 Name="usercherche"
                 Style="{StaticResource textboxSearch}"
-                TextChanged="ClientSearch_OnTextChanged"
+                Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
             />
             <Icon:PackIconMaterial
                 Kind="Magnify"
@@ -83,12 +89,19 @@
             />
         </Grid>
         <!--Client DataGrid-->
-        <DataGrid Grid.Row="5" Name="ClientDataGrid" AutoGenerateColumns="False">
+        <DataGrid 
+            Grid.Row="5" 
+            Name="ClientDataGrid" 
+            ItemsSource="{Binding Users}"
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" IsReadOnly="True" CanUserResize="False" Width="auto"/>
-                <DataGridTextColumn Header="Username" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Adresse mail" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Role" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Id" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Username" IsReadOnly="True" Width="*" Binding="{Binding Username}"/>
+                <DataGridTextColumn Header="Password" IsReadOnly="True" Width="*" Binding="{Binding PasswordHash}"/>
+                <DataGridTextColumn Header="Adresse mail" IsReadOnly="True" Width="*" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Role" IsReadOnly="True" Width="*" Binding="{Binding Role}"/>
                 <DataGridTemplateColumn Header="Opérations" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -97,7 +110,9 @@
                                     <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button> 
                                 <Button Style="{StaticResource gridRemoveButton}" 
-                                        Margin="5 0 0 0" >
+                                        Margin="5 0 0 0"
+                                        Click="supprimer"
+                                        >
                                     <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
                             </StackPanel>
@@ -118,15 +133,15 @@
             Margin="0 10 10 10"
             >
             <StackPanel Orientation="Horizontal">
-                <Button Style="{StaticResource paginationButton}">
+                <Button  Command="{Binding PreviousPageCommand}"  IsEnabled="{Binding PreviousPageCommand}" Style="{StaticResource paginationButton}">
                     <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource paginationButtonIcon}"/>
                 </Button>
                 <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
                 <Button 
                     Style="{StaticResource paginationButton}"
-                    Content="1"
+                    Content="{Binding CurrentPage}"
                     />
-                <Button Style="{StaticResource paginationButton}">
+                <Button Command="{Binding NextPageCommand}" IsEnabled="{Binding NextPageCommand}" Style="{StaticResource paginationButton}">
                     <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource paginationButtonIcon}"/>
                 </Button>
             </StackPanel>

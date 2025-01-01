@@ -70,7 +70,9 @@
                         Grid.Row="6"
                         Content="Ajouter"
                         Margin="0 40 20 0"
+                        Name="Button"
                         HorizontalAlignment="Right"
+                        Command="{Binding AjouterUserComand}"
                         >
                         <Button.Effect>
                             <DropShadowEffect 

@@ -11,31 +11,31 @@ namespace hotel_reservation_desktop_app.ViewModels;
 
 public  class ClientViewModel:INotifyPropertyChanged
 {
+    private readonly HotelReservationContext _context;
+    private Window _window;
+    
+    
     private string _nom;
     private string _prenom;
     private string _telephone;
     private string _email;
     private string _cin;
-    private readonly HotelReservationContext _context;
-    private Window _window;
     private ObservableCollection<Client> _clients;
     private ObservableCollection<Client> _filteredClients;
     private int _currentPage;
     private int _totalPages;
     private const int PageSize = 10;
-    private Client _clientToEdit;
     private string _filterText;
    
     
     
     
     public ClientViewModel()
-    {
+    { 
         _context = new HotelReservationContext();
         _clients = new ObservableCollection<Client>();
         _filteredClients = new ObservableCollection<Client>(_clients);
         AjouterClientComand = new RelayCommand(AjouterClient, CanAjouterClient);
-        ModifierClientCommand = new RelayCommand(ModiferClient, CanModifierClient);
         NextPageCommand = new RelayCommand(NextPage, CanGoToNextPage);
         PreviousPageCommand = new RelayCommand(PreviousPage, CanGoToPreviousPage);
         ExportClientsToExcelCommand = new RelayCommand(ExportClients, CanExportClients);
@@ -49,7 +49,6 @@ public  class ClientViewModel:INotifyPropertyChanged
        _filteredClients = new ObservableCollection<Client>(_clients);
        _window = window;
         AjouterClientComand = new RelayCommand(AjouterClient, CanAjouterClient);
-        ModifierClientCommand = new RelayCommand(ModiferClient, CanModifierClient);
         NextPageCommand = new RelayCommand(NextPage, CanGoToNextPage);
         PreviousPageCommand = new RelayCommand(PreviousPage, CanGoToPreviousPage);
         LoadClients(1); 
@@ -122,16 +121,6 @@ public  class ClientViewModel:INotifyPropertyChanged
             OnPropertyChanged(nameof(TotalPages));
         }
     }
-    public Client ClientToEdit
-    {
-        get => _clientToEdit;
-        set
-        {
-            _clientToEdit = value;
-            OnPropertyChanged(nameof(ClientToEdit));
-        }
-    }
-
     public string FilterText
     {
         get => _filterText;
@@ -142,9 +131,6 @@ public  class ClientViewModel:INotifyPropertyChanged
             FilterClients(); // Appel de la méthode FilterClients lors du changement
         }
     }
-   
-    
-
     public ObservableCollection<Client> Clients
     {
         get => _filteredClients; // Use the filtered list here
@@ -155,7 +141,6 @@ public  class ClientViewModel:INotifyPropertyChanged
         }
     }
     public RelayCommand AjouterClientComand { get;}
-    public RelayCommand ModifierClientCommand { get; }
     public RelayCommand ExportClientsToExcelCommand { get; }
     public RelayCommand NextPageCommand { get; }
     public RelayCommand PreviousPageCommand { get; }
@@ -185,27 +170,7 @@ public  class ClientViewModel:INotifyPropertyChanged
     
     
     //Modification de client
-    private void ModiferClient()
-        {
-            if (ClientToEdit != null)
-            {
-                ClientToEdit.FirstName = Nom;
-                ClientToEdit.LastName = Prenom;
-                ClientToEdit.PhoneNumber = Telephone;
-                ClientToEdit.Email = Email;
-                ClientToEdit.Cin = CIN;
-
-                _context.Clients.Update(ClientToEdit);
-                _context.SaveChanges();
-
-                // Refresh de la DataGrid après la modification
-                LoadClients(CurrentPage);
-                _window.Close();
-            }
-        }
-
-        private bool CanModifierClient() => ClientToEdit != null;
-    
+   
     
     /*Pagination*/
     public void LoadClients(int nombrePage)
