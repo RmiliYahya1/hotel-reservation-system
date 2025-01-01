@@ -65,6 +65,21 @@ public partial class MainClientSection
         ajoutClient.ShowDialog();
         clientViewModel.LoadClients(clientViewModel.CurrentPage);
     }
-    
-    
+
+
+    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+    {
+        if ((sender as FrameworkElement)?.DataContext is Client clientTypeToEdit)
+        {
+            // Créer une instance de la fenêtre UpdateRoomType et passer le ViewModel et le RoomType à modifier
+            var updateWindow = new ModifierClient(DataContext as ClientViewModel, clientTypeToEdit);
+            var result = updateWindow.ShowDialog();
+
+            // Si la modification a réussi, recharger les données
+            if (result == true)
+            {
+                (DataContext as RoomTypeViewModel)?.LoadRoomTypes();
+            }
+        }
+    }
 }

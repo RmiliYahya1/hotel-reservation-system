@@ -1,0 +1,101 @@
+﻿<Window x:Class="hotel_reservation_desktop_app.View.gestionUtilisateurs.ModifierUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:UserControls="clr-namespace:hotel_reservation_desktop_app.View.UserControls"
+        xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.gestionUtilisateurs"
+        mc:Ignorable="d"
+        Title="ModifierUser"  Height="600" Width="500"   WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent">
+    <Grid VerticalAlignment="Center">
+            <Border CornerRadius="7" Background="#ffffff" BorderThickness="1" BorderBrush="#374655">
+                <Border.Effect>
+                    <DropShadowEffect  ShadowDepth="5" Direction="-130" Opacity="0.1"/>
+                </Border.Effect>
+            <Border CornerRadius="7" Background="#ffffff">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="5" Direction="-130" Opacity="0.1"/>
+                </Border.Effect>
+                <Grid Margin="20 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel 
+                        Orientation="Horizontal"
+                        Margin="20 20 0 0"
+                        >
+                        <TextBlock 
+                            Text="Modifier la catégorie" 
+                            Foreground="#374655"
+                            FontSize="18"
+                            VerticalAlignment="Center"
+                            />
+                    </StackPanel>
+                    
+                    <Separator
+                        Grid.Row="1" 
+                        Grid.ColumnSpan="2" 
+                        Height="0.7"
+                        Margin="-20 20"
+                        Background="#e1e6eb"
+                        />
+                   
+                    <UserControls:MyTextBox Grid.Column="0" Grid.Row="2" Text="{Binding Username}" Caption="Entrez le username" Hint="Username"/>
+                    <UserControls:MyTextBox Grid.Column="0" Grid.Row="3" Text="{Binding Email}" Caption="Entrez l'adresse e-mail" Hint="Email"/>
+                    <UserControls:MyTextBox Grid.Column="1" Grid.Row="2" Text="{Binding PasswordHash}" Caption="Entrez le mot de passe" Hint=" mot de passe"/>
+                    <UserControls:MyTextBox Grid.Column="1" Grid.Row="3" Text="{Binding Role}" Caption="Entrez le role" Hint="Role"/>
+                    <Border 
+                        Grid.Row="6" 
+                        Grid.ColumnSpan="2"
+                        Height="80"
+                        Background="#f6f6f6"
+                        CornerRadius="0 0 10 10"
+                        Margin="-20 40 -20 0"
+                        />
+                    <Button
+                        Style="{StaticResource BoutonAjout}"
+                        Grid.Column="1"
+                        Grid.Row="6"
+                        Content="Modifier"
+                        Margin="0 40 20 0"
+                        HorizontalAlignment="Right"
+                        Name="Button"
+                        Click="ModifierButton_Click"
+                        >
+                        <Button.Effect>
+                            <DropShadowEffect 
+                                BlurRadius="10"
+                                ShadowDepth="5"
+                                Color="#4880ff"
+                                Opacity="0.3"
+                                Direction="-120"
+                                />
+                        </Button.Effect>
+                    </Button>
+                    <Button
+                        Style="{StaticResource BoutonAnnuler}"
+                        Grid.Row="6" 
+                        HorizontalAlignment="Left"
+                        Margin="20 40 0 0"
+                        Width="150"
+                        Content="Annuler"
+                        Click="ButtonBase_OnClick"
+                        >
+                        
+                    </Button>
+                </Grid>
+            </Border>
+            </Border>
+                
+        </Grid>
+</Window>

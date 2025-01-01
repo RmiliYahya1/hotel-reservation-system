@@ -40,4 +40,8 @@
       </Page>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="ViewModels\GesionRoomType\" />
+    </ItemGroup>
+
 </Project>
