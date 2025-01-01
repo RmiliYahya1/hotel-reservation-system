@@ -9,7 +9,7 @@ using System.Windows;
 using hotel_reservation_DAL.Contexts;
 using hotel_reservation_DAL.Entities;
 
-namespace hotel_reservation_desktop_app.ViewModels.GesionRoomType
+namespace hotel_reservation_desktop_app.ViewModels
 {
     public class GestionRoomTypesViewModel
     {
@@ -99,6 +99,6 @@ namespace hotel_reservation_desktop_app.ViewModels.GesionRoomType
 
         }
 
-       
+
     }
 }

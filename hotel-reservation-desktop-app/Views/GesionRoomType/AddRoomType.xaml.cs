@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using hotel_reservation_DAL.Entities;
-using hotel_reservation_desktop_app.ViewModels.GesionRoomType;
 
 namespace hotel_reservation_desktop_app.ViewModels
 {
