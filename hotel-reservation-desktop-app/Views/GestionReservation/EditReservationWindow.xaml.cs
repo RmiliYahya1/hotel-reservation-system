@@ -1,18 +1,8 @@
 ﻿using hotel_reservation_DAL.Contexts;
 using hotel_reservation_DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using hotel_reservation_desktop_app.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace hotel_reservation_desktop_app.Views.GestionReservation
 {
@@ -25,18 +15,21 @@ namespace hotel_reservation_desktop_app.Views.GestionReservation
         public EditReservationWindow(Reservation reservation)
         {
             InitializeComponent();
-            using var context = new HotelReservationContext();
-            // Charger les listes de clients et chambres
-            ClientComboBox.ItemsSource = context.Clients.ToList();
-            RoomComboBox.ItemsSource = context.Rooms.ToList();
+             using var context = new HotelReservationContext();
+             // Charger les listes de clients et chambres
+             ClientComboBox.ItemsSource = context.Clients.ToList();
+             RoomComboBox.ItemsSource = context.Rooms.ToList();
+             RoomTypeComboBox.ItemsSource = context.RoomTypes.ToList();
 
-            // Pré-remplir les champs avec les données de la réservation
-            EditedReservation = reservation;
+             // Pré-remplir les champs avec les données de la réservation
+             EditedReservation = reservation;
 
-            ClientComboBox.SelectedValue = reservation.ClientId;
-            RoomComboBox.SelectedValue = reservation.RoomId;
-            CheckInDatePicker.SelectedDate = reservation.CheckInDate;
-            CheckOutDatePicker.SelectedDate = reservation.CheckOutDate;
+             ClientComboBox.SelectedValue = reservation.ClientId;
+             RoomComboBox.SelectedValue = reservation.RoomId;
+             RoomTypeComboBox.SelectedValue = reservation.Room.RoomTypeId;
+             CheckInDatePicker.SelectedDate = reservation.CheckInDate;
+             CheckOutDatePicker.SelectedDate = reservation.CheckOutDate;
+             DataContext = new ReservationViewModel();
         }
 
         private void DatePicker_SelectedDateChanged(object sender, RoutedEventArgs e)
@@ -46,24 +39,25 @@ namespace hotel_reservation_desktop_app.Views.GestionReservation
             {
                 var checkIn = CheckInDatePicker.SelectedDate.Value;
                 var checkOut = CheckOutDatePicker.SelectedDate.Value;
-
+                var roomTypeId = (int)RoomTypeComboBox.SelectedValue;
                 // Appeler la méthode pour charger les chambres disponibles
-                LoadAvailableRooms(checkIn, checkOut);
+                LoadAvailableRooms(checkIn, checkOut, roomTypeId);
             }
+
         }
 
-        private void LoadAvailableRooms(DateTime checkIn, DateTime checkOut)
+
+        private void LoadAvailableRooms(DateTime checkIn, DateTime checkOut, int roomTypeId)
         {
             using var context = new HotelReservationContext();
-
-            // Récupérer les chambres qui ne sont pas réservées dans l'intervalle de dates
+            // Récupérer les chambres qui ne sont pas réservées dans l'intervalle de dates et du type sélectionné
             var availableRooms = context.Rooms
                 .Where(room => !context.Reservations
                     .Any(reservation =>
                         reservation.RoomId == room.ID &&
                         ((reservation.CheckInDate <= checkOut && reservation.CheckOutDate >= checkIn))))
+                .Where(room => room.RoomTypeId == roomTypeId)
                 .ToList();
-
             // Mettre à jour le ComboBox avec les chambres disponibles
             RoomComboBox.ItemsSource = availableRooms;
             RoomComboBox.SelectedValue = EditedReservation.RoomId; // Pré-sélectionner la chambre existante si toujours disponible
@@ -93,5 +87,20 @@ namespace hotel_reservation_desktop_app.Views.GestionReservation
             this.Close(); // Fermer la fenêtre sans valider
         }
 
+        private void RoomTypeComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            // charger les chambres disponibles si le type de chambre est changé
+            if (CheckInDatePicker.SelectedDate != null && CheckOutDatePicker.SelectedDate != null)
+            {
+                var checkIn = CheckInDatePicker.SelectedDate.Value;
+                var checkOut = CheckOutDatePicker.SelectedDate.Value;
+                var roomTypeId = (int)RoomTypeComboBox.SelectedValue;
+                // Appeler la méthode pour charger les chambres disponibles
+                LoadAvailableRooms(checkIn, checkOut, roomTypeId);
+            }
+
+
+
+        }
     }
 }

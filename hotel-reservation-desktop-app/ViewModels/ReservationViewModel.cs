@@ -33,7 +33,9 @@ namespace hotel_reservation_desktop_app.ViewModels
                 _selectedRoomType = value;
                 OnPropertyChanged(nameof(SelectedRoomType));
                 UpdateFilteredRooms(); // Mettre à jour les chambres disponibles en fonction du type
-                UpdatePrice(); // Mettre à jour le prix
+                
+                //UpdatePrice();
+                
             }
         }
 
@@ -70,7 +72,7 @@ namespace hotel_reservation_desktop_app.ViewModels
             set { _selectedRoom = value; 
                 OnPropertyChanged(nameof(SelectedRoom)); 
                 UpdatePrice();
-                OnPropertyChanged(nameof(Price));
+               
 
                 ((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
             }
@@ -86,7 +88,7 @@ namespace hotel_reservation_desktop_app.ViewModels
                 OnPropertyChanged(nameof(CheckInDate));
                 UpdateFilteredRooms();
                 UpdatePrice();
-                OnPropertyChanged(nameof(Price));
+               
 
                 ((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
             }
@@ -102,7 +104,7 @@ namespace hotel_reservation_desktop_app.ViewModels
                 OnPropertyChanged(nameof(CheckOutDate));
                 UpdateFilteredRooms();
                 UpdatePrice();
-                OnPropertyChanged(nameof(Price));
+               
 
                 ((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
             }
@@ -112,7 +114,13 @@ namespace hotel_reservation_desktop_app.ViewModels
         public double Price
         {
             get => _price;
-            set { _price = value; OnPropertyChanged(nameof(Price)); }
+            set {
+               
+                    _price = value;
+                    OnPropertyChanged(nameof(Price));
+                
+
+            }
         }
 
         private string _status;
@@ -295,7 +303,9 @@ namespace hotel_reservation_desktop_app.ViewModels
 
         private void UpdatePrice()
         {
-            if (SelectedRoom != null && SelectedRoom.RoomType != null && CheckInDate.HasValue && CheckOutDate.HasValue)
+            //Console.WriteLine($"SelectedRoom: {SelectedRoom?.Number}, SelectedRoomType: {SelectedRoom?.RoomType.Name}, CheckInDate: {CheckInDate}, CheckOutDate: {CheckOutDate}");
+
+            if (SelectedRoom != null && CheckInDate.HasValue && CheckOutDate.HasValue)
             {
                 var days = (CheckOutDate.Value - CheckInDate.Value).Days;
                 if (days < 1) // Si les dates sont incorrectes (CheckOut avant CheckIn)
@@ -304,21 +314,28 @@ namespace hotel_reservation_desktop_app.ViewModels
                 }
                 else
                 {
-                    Price = days * SelectedRoom.RoomType.Price;
+                    Price = days * SelectedRoomType.Price;
                 }
             }
+          
+
             else
             {
                 Price = 0;
             }
+            
+
+            Console.WriteLine($"Price: {Price}");
         }
+
 
 
         public bool CanSaveReservation()
         {
             return SelectedClient != null && SelectedRoom != null &&
+                SelectedRoomType != null &&
                    CheckInDate.HasValue && CheckOutDate.HasValue &&
-                   CheckInDate < CheckOutDate;
+                   CheckInDate < CheckOutDate && Price > 0;
         }
 
         private void SaveReservation()
@@ -393,6 +410,7 @@ namespace hotel_reservation_desktop_app.ViewModels
                     reservationToUpdate.RoomId = reservation.RoomId;
                     reservationToUpdate.CheckInDate = reservation.CheckInDate;
                     reservationToUpdate.CheckOutDate = reservation.CheckOutDate;
+                    reservationToUpdate.Price =(reservation.CheckOutDate - reservation.CheckInDate).Days * reservation.Room.RoomType.Price;
 
                     context.SaveChanges();
 
