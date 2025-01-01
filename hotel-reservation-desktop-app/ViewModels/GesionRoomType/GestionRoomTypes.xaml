@@ -1,11 +1,11 @@
-﻿<Window x:Class="hotel_reservation_desktop_app.ViewModels.GestionRoomTypes"
+﻿<UserControl x:Class="hotel_reservation_desktop_app.ViewModels.GestionRoomTypes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel_reservation_desktop_app.ViewModels"
         mc:Ignorable="d"
-        Title="GestionRoomTypes" Height="450" Width="800">
+        Height="450" Width="800">
     <Grid Margin="10,10,10,5">
         <TextBlock
             Text="Gestion des catégories"
@@ -51,4 +51,4 @@
             <Button Content="Ajouter" Width="74" Click="AjouterButton_Click" Height="24" Margin="5,5,5,5"  />
         </StackPanel>
     </Grid>
-</Window>
+</UserControl>

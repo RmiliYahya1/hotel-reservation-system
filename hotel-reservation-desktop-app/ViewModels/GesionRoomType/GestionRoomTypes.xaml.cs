@@ -19,7 +19,7 @@ namespace hotel_reservation_desktop_app.ViewModels
     /// <summary>
     /// Logique d'interaction pour GestionRoomTypes.xaml
     /// </summary>
-    public partial class GestionRoomTypes : Window
+    public partial class GestionRoomTypes : UserControl
     {
         public GestionRoomTypes()
         {

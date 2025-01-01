@@ -59,5 +59,10 @@ namespace hotel_reservation_desktop_app.ViewModels
                 MessageBox.Show($"Erreur : {ex.Message}");
             }
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this)?.Close();
+        }
     }
 }
