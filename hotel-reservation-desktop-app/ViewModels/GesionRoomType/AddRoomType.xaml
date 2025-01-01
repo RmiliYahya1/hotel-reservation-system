@@ -6,7 +6,26 @@
         xmlns:local="clr-namespace:hotel_reservation_desktop_app.ViewModels"
         xmlns:userControls="clr-namespace:hotel_reservation_desktop_app.View.UserControls"
         mc:Ignorable="d"
-        Title="AddRoomType" Height="287" Width="527">
+        Title="AjoutCategorie" Height="600" Width="500"   WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent">
+   <!-- <Grid Margin="32,10,10,6">
+        <StackPanel Margin="10,10,10,0">
+            <TextBlock Text="Nom :" />
+            <TextBox Name="NomTxt" Height="20" Width="360" />
+
+            <TextBlock Text="Description :" Margin="0,10,0,0" />
+            <TextBox Name="DescriptionTxt" Height="20" Width="360" />
+
+            <TextBlock Text="Prix :" Margin="0,10,0,0" />
+            <TextBox Name="PrixTxt" Width="360" Height="20" />
+
+            <TextBlock Text="Capacité :" Margin="0,10,0,0" />
+            <TextBox Name="CapaciteTxt" Width="360" Height="20" />
+
+            <Button Content="Ajouter" Width="100" HorizontalAlignment="Center" Margin="0,20,0,0"
+                    Click="AjouterButton_Click" FontSize="14" />
+        </StackPanel>
+    </Grid>-->
+   
    <Grid VerticalAlignment="Center">
             <Border CornerRadius="7" Background="#ffffff" BorderThickness="1" BorderBrush="#374655">
                 <Border.Effect>
@@ -35,7 +54,7 @@
                         Margin="20 20 0 0"
                         >
                         <TextBlock 
-                            Text="Ajouter catégorie" 
+                            Text="Ajouter une catégorie" 
                             Foreground="#374655"
                             FontSize="18"
                             VerticalAlignment="Center"
@@ -54,8 +73,6 @@
                     <userControls:MyTextBox Grid.Column="0" Grid.Row="3"  Name="DescriptionTxt" Caption="Entrez la description" Hint="Description"/>
                     <userControls:MyTextBox Grid.Column="1" Grid.Row="2"  Name="PrixTxt" Caption="Entrez le prix" Hint="PrixT"/>
                     <userControls:MyTextBox Grid.Column="1" Grid.Row="3"  Name="CapaciteTxt" Caption="Entrez la capacité" Hint="Capacité"/>
-                  
-                    
                     <Border 
                         Grid.Row="6" 
                         Grid.ColumnSpan="2"
@@ -72,7 +89,7 @@
                         Margin="0 40 20 0"
                         HorizontalAlignment="Right"
                         Name="Button"
-                        Click="AjouterButton_Click"
+                        Command="{Binding AjouterClientComand}"
                         >
                         <Button.Effect>
                             <DropShadowEffect 
@@ -100,6 +117,4 @@
             </Border>
                 
         </Grid>
-   
-   
 </Window>

@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:gestionClient="clr-namespace:hotel_reservation_desktop_app.view.gestionClient"
-        xmlns:local="clr-namespace:hotel_reservation_desktop_app.ViewModels.GesionRoomType"
         xmlns:gestionUtilisateurs="clr-namespace:hotel_reservation_desktop_app.View.gestionUtilisateurs"
+        xmlns:local="clr-namespace:hotel_reservation_desktop_app.ViewModels.GesionRoomType"
 
         mc:Ignorable="d"
         Title="MainWindow" Height="750" Width="1018" >
@@ -15,6 +15,5 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-       
     </Grid>
 </Window>
