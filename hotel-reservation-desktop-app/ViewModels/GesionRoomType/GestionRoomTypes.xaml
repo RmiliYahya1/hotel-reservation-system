@@ -3,29 +3,54 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:hotel_reservation_desktop_app.ViewModels"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Height="450" Width="800">
-    <Grid Margin="10,10,10,5">
+    <Grid Column="1" Margin="30 20 20 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
         <TextBlock
+            Grid.Row="2"
             Text="Gestion des catégories"
-            FontSize="22"
+            FontSize="32"
             FontWeight="SemiBold"
-            Margin="0,7,0,369"
+            Margin="0 20 0 0"
             HorizontalAlignment="Left"
-            Foreground="#121518" Width="234"
+            Foreground="#121518"
             />
+            <Button
+                Grid.Row="3" 
+                Style="{StaticResource addbouton}"
+                Click="AjouterButton_Click"
+                HorizontalAlignment="Right"
+                >
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconMaterial 
+                        Kind="Plus"
+                        VerticalAlignment="Center"
+                        Width="11"
+                        Height="11"
+                        Margin="0 1 8 0">
+                    </iconPacks:PackIconMaterial>
+                    <TextBlock Text="Ajouter catégorie" />
+                </StackPanel>
+            </Button>
         <!-- DataGrid pour afficher la liste des roomtypes -->
-        <DataGrid Name="RoomTypeDataGrid" AutoGenerateColumns="False" Margin="10,61,10,0" 
-               ScrollViewer.HorizontalScrollBarVisibility="Visible" ItemsSource="{Binding RoomTypes}" RenderTransformOrigin="0.5,0.5" Height="353" VerticalAlignment="Top">
-            <DataGrid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="-0.301"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-0.795"/>
-                </TransformGroup>
-            </DataGrid.RenderTransform>
+        <DataGrid
+            Grid.Row="5" 
+            Name="RoomTypeDataGrid" 
+            AutoGenerateColumns="False" 
+            ItemsSource="{Binding RoomTypes}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Name}" Width="*" />
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" />
@@ -35,20 +60,18 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Modifier" Width="74" Click="ModifierButton_Click" Height="24" Margin="5,5,5,5" 
-                                          CommandParameter="{Binding}"/>
-                                <Button Content="Supprimer" Width="74" Click="SupprimerButton_Click" Height="24" Margin="5,5,5,5" 
-                                          CommandParameter="{Binding}"/>
+                                <Button Style="{StaticResource gridEditButton}" Click="ModifierButton_Click" CommandParameter="{Binding}">
+                                    <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                                <Button   Style="{StaticResource gridRemoveButton}" Click="SupprimerButton_Click" Height="24" Margin="5,5,5,5" 
+                                           CommandParameter="{Binding}">
+                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-
-        <!-- Boutons pour les actions -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,3,44,0" Height="38" Width="90">
-            <Button Content="Ajouter" Width="74" Click="AjouterButton_Click" Height="24" Margin="5,5,5,5"  />
-        </StackPanel>
     </Grid>
 </UserControl>
