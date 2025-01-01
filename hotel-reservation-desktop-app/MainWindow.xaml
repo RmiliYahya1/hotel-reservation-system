@@ -8,13 +8,10 @@
         xmlns:gestionUtilisateurs="clr-namespace:hotel_reservation_desktop_app.View.gestionUtilisateurs"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="750" Width="1018" >
- 
-    <Grid Background="#eff2f7">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        
+
        
     </Grid>
 </Window>

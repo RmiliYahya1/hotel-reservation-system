@@ -14,6 +14,5 @@ namespace hotel_reservation_DAL.Entities
         [Range(1, 4)]
         public int Capacity { get; set; }
         public virtual List<Room> Rooms { get; set; }
-        
     }
 }

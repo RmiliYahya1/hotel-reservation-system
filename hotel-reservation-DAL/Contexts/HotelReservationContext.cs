@@ -15,8 +15,9 @@ namespace hotel_reservation_DAL.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;database=HotelReservation;user=root;password=;",
+            optionsBuilder.UseMySql("server=localhost;database=HotelReservation;user=root;password=;AllowZeroDateTime=True",
                 new MySqlServerVersion(new Version(8, 0, 21)));
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -39,12 +40,15 @@ namespace hotel_reservation_DAL.Contexts
                 entity.HasOne(e => e.Client).WithMany(e => e.Reservations).HasForeignKey(e => e.ClientId);
                 entity.HasOne(e => e.Room).WithMany(e => e.Reservations).HasForeignKey(e => e.RoomId);
                 entity.HasOne(e => e.Payment).WithOne(e => e.Reservation).HasForeignKey<Reservation>(e => e.PaymentId);
+                //current date
+                entity.Property(e => e.Date).HasDefaultValueSql("CURRENT_TIMESTAMP");
+              
+
             });
             modelBuilder.Entity<RoomType>(entity =>
             {
                 entity.HasKey(e => e.ID);
                 entity.HasMany(e => e.Rooms).WithOne(e => e.RoomType).HasForeignKey(e => e.RoomTypeId);
-                //make Images of RoomType nullable
                
 
             });
@@ -58,7 +62,11 @@ namespace hotel_reservation_DAL.Contexts
             modelBuilder.Entity<Payment>(entity =>
             {
                 entity.HasKey(e => e.ID);
-                entity.HasOne(e => e.Reservation).WithOne(e => e.Payment).HasForeignKey<Reservation>(e => e.PaymentId);
+                entity.Property(e => e.Date).HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+
+
+
             });
         }
     }
