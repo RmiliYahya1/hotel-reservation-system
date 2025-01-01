@@ -15,6 +15,6 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <gestionUtilisateurs:MainUserSection Grid.Column="1"/>
+        <gestionRoomType:RoomTypeMainSection Grid.Column="1"/>
     </Grid>
 </Window>
