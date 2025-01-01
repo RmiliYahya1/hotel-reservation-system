@@ -12,13 +12,8 @@ using hotel_reservation_DAL.Contexts;
 namespace hotel_reservation_DAL.Migrations
 {
     [DbContext(typeof(HotelReservationContext))]
-<<<<<<<< HEAD:hotel-reservation-DAL/Migrations/20241225203125_AddDefaultValueToReservationDate.Designer.cs
-    [Migration("20241225203125_AddDefaultValueToReservationDate")]
-    partial class AddDefaultValueToReservationDate
-========
-    [Migration("20241229141127_RemoveImagesColumnFromRoomTypes")]
-    partial class RemoveImagesColumnFromRoomTypes
->>>>>>>> main:hotel-reservation-DAL/Migrations/20241229141127_RemoveImagesColumnFromRoomTypes.Designer.cs
+    [Migration("20241230122905_Datetime")]
+    partial class Datetime
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,11 +72,13 @@ namespace hotel_reservation_DAL.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<double>("Amount")
+                        .HasColumnType("double");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime(6)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("PaymentMethod")
                         .IsRequired()
@@ -109,14 +106,11 @@ namespace hotel_reservation_DAL.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-<<<<<<<< HEAD:hotel-reservation-DAL/Migrations/20241225203125_AddDefaultValueToReservationDate.Designer.cs
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-========
->>>>>>>> main:hotel-reservation-DAL/Migrations/20241229141127_RemoveImagesColumnFromRoomTypes.Designer.cs
                     b.Property<int?>("PaymentId")
                         .HasColumnType("int");
 

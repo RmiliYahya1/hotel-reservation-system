@@ -10,6 +10,9 @@ namespace hotel_reservation_DAL.Entities
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
+
+        public string FullName => $"{FirstName} {LastName}";
+
         public string PhoneNumber { get; set; }
         [EmailAddress]
         [Required]
