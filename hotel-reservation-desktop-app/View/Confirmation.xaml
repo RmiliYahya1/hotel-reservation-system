@@ -1,13 +1,12 @@
-﻿<Window x:Class="hotel_reservation_desktop_app.ViewModels.AddRoomType"
+﻿<Window x:Class="hotel_reservation_desktop_app.View.Confirmation"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:hotel_reservation_desktop_app.ViewModels"
-        xmlns:userControls="clr-namespace:hotel_reservation_desktop_app.View.UserControls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:hotel_reservation_desktop_app.View"
         mc:Ignorable="d"
-        Title="AddRoomType" Height="287" Width="527">
-   <Grid VerticalAlignment="Center">
+        Title="Confirmation" Height="200" Width="400" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent">
+    <Grid VerticalAlignment="Center">
             <Border CornerRadius="7" Background="#ffffff" BorderThickness="1" BorderBrush="#374655">
                 <Border.Effect>
                     <DropShadowEffect  ShadowDepth="5" Direction="-130" Opacity="0.1"/>
@@ -20,10 +19,6 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -33,46 +28,35 @@
                     <StackPanel 
                         Orientation="Horizontal"
                         Margin="20 20 0 0"
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Center"
                         >
                         <TextBlock 
-                            Text="Ajouter catégorie" 
+                            Text="Voulez-vous supprimer le client?" 
                             Foreground="#374655"
                             FontSize="18"
                             VerticalAlignment="Center"
                             />
                     </StackPanel>
                     
-                    <Separator
-                        Grid.Row="1" 
-                        Grid.ColumnSpan="2" 
-                        Height="0.7"
-                        Margin="-20 20"
-                        Background="#e1e6eb"
-                        />
-                    
-                    <userControls:MyTextBox Grid.Column="0" Grid.Row="2" Name="NomTxt" Caption="Entrez le nom" Hint="Nom"/>
-                    <userControls:MyTextBox Grid.Column="0" Grid.Row="3"  Name="DescriptionTxt" Caption="Entrez la description" Hint="Description"/>
-                    <userControls:MyTextBox Grid.Column="1" Grid.Row="2"  Name="PrixTxt" Caption="Entrez le prix" Hint="PrixT"/>
-                    <userControls:MyTextBox Grid.Column="1" Grid.Row="3"  Name="CapaciteTxt" Caption="Entrez la capacité" Hint="Capacité"/>
-                  
-                    
                     <Border 
-                        Grid.Row="6" 
+                        Grid.Row="2" 
                         Grid.ColumnSpan="2"
                         Height="80"
-                        Background="#f6f6f6"
+                        
                         CornerRadius="0 0 10 10"
                         Margin="-20 40 -20 0"
                         />
                     <Button
                         Style="{StaticResource BoutonAjout}"
                         Grid.Column="1"
-                        Grid.Row="6"
-                        Content="Ajouter"
+                        Grid.Row="2"
+                        Content="oui"
                         Margin="0 40 20 0"
                         HorizontalAlignment="Right"
+                        Width="100"
                         Name="Button"
-                        Click="AjouterButton_Click"
+                        Command="{Binding AjouterClient}"
                         >
                         <Button.Effect>
                             <DropShadowEffect 
@@ -85,13 +69,12 @@
                         </Button.Effect>
                     </Button>
                     <Button
-                        Style="{StaticResource BoutonAnnuler}"
-                        Grid.Row="6" 
+                        Style="{StaticResource BoutonAjout}"
                         HorizontalAlignment="Left"
                         Margin="20 40 0 0"
-                        Width="150"
-                        Content="Annuler"
-                        Click="ButtonBase_OnClick"
+                        Width="100"
+                        Content="non"
+                        Grid.Row="2"
                         >
                         
                     </Button>
@@ -100,6 +83,4 @@
             </Border>
                 
         </Grid>
-   
-   
 </Window>

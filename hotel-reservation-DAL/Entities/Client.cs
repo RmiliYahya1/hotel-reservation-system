@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+
 
 namespace hotel_reservation_DAL.Entities
 {
@@ -22,5 +18,6 @@ namespace hotel_reservation_DAL.Entities
 
         public string Cin { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
+        
     }
 }
