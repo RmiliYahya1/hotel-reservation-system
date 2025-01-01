@@ -5,9 +5,9 @@ namespace hotel_reservation_desktop_app.View.gestionUtilisateurs;
 
 public partial class AjoutUtilisateur : Window
 {
-    public AjoutUtilisateur()
+    public AjoutUtilisateur(UserViewModel userViewModel)
     {
-        UserViewModel userViewModel = new UserViewModel(this);
+        userViewModel = new UserViewModel(this);
         DataContext = userViewModel;
         InitializeComponent();
     }

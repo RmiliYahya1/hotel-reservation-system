@@ -61,8 +61,9 @@ public partial class MainClientSection
     //évenement d'ajout
     private void Ajouter(object sender, RoutedEventArgs e)
     {
-        AjoutClient ajoutClient = new AjoutClient();
+        AjoutClient ajoutClient = new AjoutClient(clientViewModel);
         ajoutClient.ShowDialog();
+        clientViewModel.LoadClients(clientViewModel.CurrentPage);
     }
     
     

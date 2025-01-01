@@ -21,7 +21,7 @@ namespace hotel_reservation_desktop_app.ViewModels
         private ObservableCollection<User> _filteredUsers;
         private int _currentPage;
         private int _totalPages;
-        private const int PageSize = 5;
+        private const int PageSize = 10;
         private string _filterText;
 
 
@@ -47,6 +47,8 @@ namespace hotel_reservation_desktop_app.ViewModels
             PreviousPageCommand = new RelayCommand(PreviousPage, CanGoToPreviousPage);
             LoadUsers(1);
         }
+        
+        
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
         {
@@ -146,6 +148,7 @@ namespace hotel_reservation_desktop_app.ViewModels
             _context.Users.Add(user);
             _context.SaveChanges();
             _window.Close();
+            LoadUsers(CurrentPage); 
         }
         private bool CanAjouterUser()
         {

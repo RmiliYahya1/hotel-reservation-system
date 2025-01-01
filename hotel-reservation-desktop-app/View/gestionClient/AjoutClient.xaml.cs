@@ -5,9 +5,9 @@ namespace hotel_reservation_desktop_app.View.gestionClient;
 
 public partial class AjoutClient : Window
 {
-    public AjoutClient()
+    public AjoutClient(ClientViewModel clientViewModel)
     {
-        ClientViewModel clientViewModel = new ClientViewModel(this);
+        clientViewModel = new ClientViewModel(this);
         DataContext = clientViewModel;
         InitializeComponent();
         

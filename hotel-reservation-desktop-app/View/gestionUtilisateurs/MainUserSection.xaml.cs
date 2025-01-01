@@ -15,13 +15,7 @@ public partial class MainUserSection : UserControl
         userViewModel = new UserViewModel();
         DataContext = userViewModel;
     }
-
-    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-    {
-        AjoutUtilisateur ajoutUtilisateur = new AjoutUtilisateur();
-        ajoutUtilisateur.ShowDialog();
-    }
-
+    
     private T FindAncestor<T>(DependencyObject current) where T : DependencyObject
     {
         while (current != null && !(current is T))
@@ -60,7 +54,8 @@ public partial class MainUserSection : UserControl
 
     private void Ajouter(object sender, RoutedEventArgs e)
     {
-        AjoutUtilisateur ajoutUtilisateur = new AjoutUtilisateur();
+        var ajoutUtilisateur = new AjoutUtilisateur(userViewModel);
         ajoutUtilisateur.ShowDialog();
+        userViewModel.LoadUsers(userViewModel.CurrentPage);
     }
 }

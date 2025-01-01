@@ -160,6 +160,7 @@ public  class ClientViewModel:INotifyPropertyChanged
         _context.Clients.Add(newClient);
         _context.SaveChanges();
         _window.Close();
+        LoadClients(CurrentPage); 
     }
     private bool CanAjouterClient()
     {
