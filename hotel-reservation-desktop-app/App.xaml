@@ -248,6 +248,18 @@
                 </Style.Triggers>
             </Style>
             
+            <Style x:Key="mainBorder" TargetType="Border">
+                <Setter Property="Background" Value="#1e2e44"/>
+                <Setter Property="Padding" Value="20"/>
+                <Setter Property="CornerRadius" Value="20"/>
+            </Style>
+            
+            <Style x:Key="titreText" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+           
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

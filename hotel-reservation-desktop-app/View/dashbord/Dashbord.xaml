@@ -3,10 +3,127 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.dashbord"
+             xmlns:UserControls="clr-namespace:hotel_reservation_desktop_app.View.UserControls"
+             xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        
-    </Grid>
+             d:DesignHeight="760" d:DesignWidth="1260">
+    <Border  Background="#151f2d">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1"  Margin="20 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+               <!--info cards left-->
+               <StackPanel Margin="10 0">
+                 <UserControls:InfoCard Number="18" Titre="Nombre de clients" IsTechnical="True"/>
+                 <UserControls:InfoCard Number="54" Titre="Nombre de chambre" IsTechnical="True" />
+                 <UserControls:InfoCard Number="98" Titre="Réservation payée" IsTechnical="True"/>
+               </StackPanel>
+               <!--info cards right-->
+               <StackPanel Grid.Column="1" Margin="10 0">
+                   <UserControls:InfoCard Number="23" Titre="Nombre de clients" IsTechnical="False"/>
+                   <UserControls:InfoCard Number="27" Titre="Nombre de chambre" IsTechnical="False" />
+                   <UserControls:InfoCard Number="100" Titre="Réservation payée" IsTechnical="False" />
+               </StackPanel>
+               
+               <!--graph section-->
+               <Border Grid.Column="2" Style="{StaticResource mainBorder}" Margin="10 0 10 21.5">
+                   <Grid>
+                       <TextBlock Text="Reservation par mois" Style="{StaticResource titreText}"/>
+                       <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 45 0 0">
+                           <Border Width="12" Height="12" Background="#7166f9" CornerRadius="3"/>
+                           <TextBlock Text="test" VerticalAlignment="Center" Margin="7 0 20 0" Foreground="#d4d6d9"/>
+                           
+                           <Border Width="12" Height="12" Background="#101a28" CornerRadius="3"/>
+                           <TextBlock Text="test" VerticalAlignment="Center" Margin="7 0 20 0" Foreground="#d4d6d9"/>
+                       </StackPanel>
+                       
+                       <!--chart-->
+                       <wpf:CartesianChart LegendLocation="None" Margin="0 40 0 0">
+                           <wpf:CartesianChart.DataTooltip>
+                               <wpf:DefaultTooltip Background="#24336a" Foreground="#d5e2ff"/>
+                           </wpf:CartesianChart.DataTooltip>
+
+                           <wpf:CartesianChart.AxisX>
+                               <wpf:Axis Foreground="#bcc0c6" ShowLabels="True" Labels="Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sept,Oct,Nov,Dec">
+                                   <wpf:Axis.Separator>
+                                       <wpf:Separator StrokeThickness="0" Step="1"/>
+                                   </wpf:Axis.Separator>
+                               </wpf:Axis>
+                           </wpf:CartesianChart.AxisX>
+
+                           <wpf:CartesianChart.AxisY>
+                               <wpf:Axis Foreground="#bcc0c6" ShowLabels="True" MinValue="0" MaxValue="50">
+                                   <wpf:Axis.Separator>
+                                       <wpf:Separator StrokeThickness="0"/>
+                                   </wpf:Axis.Separator>
+                               </wpf:Axis>
+                           </wpf:CartesianChart.AxisY>
+
+                           <wpf:CartesianChart.Series>
+                               <wpf:StackedColumnSeries Fill="#7166f9" MaxColumnWidth="15" Values="11,13,17,20,17,15,16,13"/>
+                               <wpf:StackedColumnSeries Fill="#101a28" MaxColumnWidth="15" Values="6,5,6,4,6,6,7,6"/>
+                           </wpf:CartesianChart.Series>
+                       </wpf:CartesianChart>
+                   </Grid>
+               </Border>
+            </Grid>
+            <Grid Grid.Row="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="450"/>
+                </Grid.ColumnDefinitions>
+                <Border Style="{StaticResource mainBorder}" Margin="30 0 20 30">
+                    <Grid>
+                        <TextBlock Text="Reservation par mois" Style="{StaticResource titreText}"/>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 8 40 0">
+                            <Border Width="12" Height="12" Background="#7166f9" CornerRadius="3"/>
+                            <TextBlock Text="test" VerticalAlignment="Center" Margin="7 0 20 0" Foreground="#d4d6d9"/>
+                        </StackPanel>
+                        
+                        <wpf:CartesianChart LegendLocation="None" Margin="0 40 0 0">
+                            <wpf:CartesianChart.DataTooltip>
+                                <wpf:DefaultTooltip Background="#101a28" Foreground="#d5e2ff"/>
+                            </wpf:CartesianChart.DataTooltip>
+
+                            <wpf:CartesianChart.AxisX>
+                                <wpf:Axis Foreground="#bcc0c6" ShowLabels="True" Labels="Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sept,Oct,Nov,Dec">
+                                    <wpf:Axis.Separator>
+                                        <wpf:Separator StrokeThickness="0" Step="1"/>
+                                    </wpf:Axis.Separator>
+                                </wpf:Axis>
+                            </wpf:CartesianChart.AxisX>
+
+                            <wpf:CartesianChart.AxisY>
+                                <wpf:Axis Foreground="#bcc0c6" ShowLabels="True" MinValue="0" MaxValue="10000">
+                                    <wpf:Axis.Separator>
+                                        <wpf:Separator StrokeThickness="1" Stroke="#2c3a54"/>
+                                    </wpf:Axis.Separator>
+                                </wpf:Axis>
+                            </wpf:CartesianChart.AxisY>
+
+                            <wpf:CartesianChart.Series>
+                                <wpf:LineSeries StrokeThickness="2" Stroke="#6860e6" PointGeometrySize="0" Values="600,500,540,1000,1020,1200,1300,1500,1600">
+                                    <wpf:LineSeries.Fill>
+                                        <LinearGradientBrush>
+                                            <GradientStop Color="#2e3966" Offset="0.4"/>
+                                            <GradientStop Color="#21304a" Offset="1.2"/>
+                                        </LinearGradientBrush>
+                                    </wpf:LineSeries.Fill>
+                                </wpf:LineSeries>
+                            </wpf:CartesianChart.Series>
+                        </wpf:CartesianChart>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid> 
+    </Border>
 </UserControl>
