@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:gestionClient="clr-namespace:hotel_reservation_desktop_app.view.gestionClient"
         xmlns:gestionUtilisateurs="clr-namespace:hotel_reservation_desktop_app.View.gestionUtilisateurs"
-        xmlns:dashbord="clr-namespace:hotel_reservation_desktop_app.View.dashbord"
+        xmlns:GestionReservation="clr-namespace:hotel_reservation_desktop_app.Views.GestionReservation" 
         xmlns:gestionRoomType="clr-namespace:hotel_reservation_desktop_app.View.gestionRoomType"
+        xmlns:dashbord="clr-namespace:hotel_reservation_desktop_app.View.dashbord"
 
         mc:Ignorable="d"
         Title="MainWindow" Height="750" Width="1018" >
@@ -17,5 +18,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
        <dashbord:Dashbord Grid.Column="1"/>
+
     </Grid>
 </Window>
