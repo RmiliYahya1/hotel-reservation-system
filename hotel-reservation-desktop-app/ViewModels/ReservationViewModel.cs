@@ -1,12 +1,19 @@
 ﻿using GalaSoft.MvvmLight.Command;
+<<<<<<< HEAD
 using hotel_reservation_DAL.Contexts;
 using hotel_reservation_DAL.Entities;
 using hotel_reservation_desktop_app.View.GestionReservation;
+=======
+
+using hotel_reservation_desktop_app.Views.GestionReservation;
+>>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using hotel_reservation_DAL.Contexts;
+using hotel_reservation_DAL.Entities;
 
 namespace hotel_reservation_desktop_app.ViewModels
 {

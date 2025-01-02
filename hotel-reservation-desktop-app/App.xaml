@@ -3,13 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:hotel_reservation_desktop_app"
+<<<<<<< HEAD
              xmlns:themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
              StartupUri="View/GestionReservation/Reservations.xaml">
     <Application.Resources>
+=======
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        
+
+>>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="View/gestionClient/Styles/DataGrid.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+<<<<<<< HEAD
 
             <Style x:Key="textboxSearch" TargetType="TextBox">
                 <Setter Property="Background" Value="#ffffff"/>
@@ -23,6 +31,31 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="TextBoxBase">
                             <Border 
+=======
+            
+            <Style TargetType="Control" x:Key="ErrorStyle">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="True">
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                        <Setter Property="BorderBrush" Value="Red" />
+                        <Setter Property="BorderThickness" Value="2" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            
+        <Style x:Key="textboxSearch" TargetType="TextBox">
+             <Setter Property="Background" Value="#ffffff"/>
+             <Setter Property="Foreground" Value="#b0b9c6"/>
+             <Setter Property="BorderThickness" Value="0"/>
+             <Setter Property="FontSize" Value="12"/> 
+             <Setter Property="Padding" Value="15 10"/>
+             <Setter Property="VerticalAlignment" Value="Center"/>
+             <Setter Property="Margin" Value="0 10"/>
+             <Setter Property="Template">
+                 <Setter.Value>
+                     <ControlTemplate TargetType="TextBoxBase">
+                         <Border 
+>>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757
                              x:Name="border" 
                              CornerRadius="20" 
                              Background="{TemplateBinding Background}"

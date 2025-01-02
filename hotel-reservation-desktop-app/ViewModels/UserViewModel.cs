@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 ﻿using System.Collections.ObjectModel;
+=======
+﻿
+
+using System.Collections.ObjectModel;
+>>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757
 using System.ComponentModel;
 using System.Windows;
 using hotel_reservation_DAL.Contexts;
@@ -6,11 +12,19 @@ using hotel_reservation_DAL.Entities;
 
 namespace hotel_reservation_desktop_app.ViewModels
 {
+<<<<<<< HEAD
     public class UserViewModel : INotifyPropertyChanged
     {
         private readonly HotelReservationContext _context;
         private Window _window;
 
+=======
+    public class UserViewModel:INotifyPropertyChanged
+    {
+        private readonly HotelReservationContext _context;
+        private Window _window;
+        
+>>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757
         private string _username;
         private string _password;
         private string _email;
@@ -45,17 +59,29 @@ namespace hotel_reservation_desktop_app.ViewModels
             PreviousPageCommand = new RelayCommand(PreviousPage, CanGoToPreviousPage);
             LoadUsers(1);
         }
+<<<<<<< HEAD
 
 
+=======
+        
+        
+>>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+<<<<<<< HEAD
 
 
 
 
+=======
+        
+        
+        
+        
+>>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757
 
         public string Username
         {
@@ -130,7 +156,11 @@ namespace hotel_reservation_desktop_app.ViewModels
                 OnPropertyChanged(nameof(Users));
             }
         }
+<<<<<<< HEAD
         public RelayCommand AjouterUserComand { get; }
+=======
+        public RelayCommand AjouterUserComand { get;}
+>>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757
         public RelayCommand NextPageCommand { get; }
         public RelayCommand PreviousPageCommand { get; }
 
@@ -146,7 +176,11 @@ namespace hotel_reservation_desktop_app.ViewModels
             _context.Users.Add(user);
             _context.SaveChanges();
             _window.Close();
+<<<<<<< HEAD
             LoadUsers(CurrentPage);
+=======
+            LoadUsers(CurrentPage); 
+>>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757
         }
         private bool CanAjouterUser()
         {
@@ -154,6 +188,37 @@ namespace hotel_reservation_desktop_app.ViewModels
         }
 
 
+<<<<<<< HEAD
+=======
+        
+        public void ModifierUser(User user)
+        {
+            using var context = new HotelReservationContext();
+
+            // Trouver le RoomType à modifier dans la base de données
+            var UserToUpdate = context.Users.FirstOrDefault(u => u.ID == user.ID);
+
+            if (UserToUpdate != null)
+            {
+                // Mettre à jour les propriétés
+                UserToUpdate.Username = user.Username;
+                UserToUpdate.Email = user.Email;
+                UserToUpdate.PasswordHash = user.PasswordHash;
+                UserToUpdate.Role = user.Role;
+
+                // Sauvegarder les modifications dans la base de données
+                context.SaveChanges();
+
+                // Mettre à jour l'élément dans la collection ObservableCollection
+                var index = Users.IndexOf(Users.FirstOrDefault(u => u.ID == user.ID));
+                if (index >= 0)
+                {
+                    Users[index] = UserToUpdate;
+                }
+            }
+        }
+
+>>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757
 
         public void LoadUsers(int nombrePage)
         {
@@ -174,7 +239,11 @@ namespace hotel_reservation_desktop_app.ViewModels
 
                 foreach (var term in searchTerms)
                 {
+<<<<<<< HEAD
                     filteredUsers = filteredUsers.Where(u => u.Username.Contains(term) ||
+=======
+                    filteredUsers = filteredUsers.Where(u => u.Username.Contains(term) || 
+>>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757
                                                                  u.PasswordHash.Contains(term) ||
                                                                  u.Email.Contains(term) ||
                                                                  u.Role.Contains(term));
@@ -204,23 +273,42 @@ namespace hotel_reservation_desktop_app.ViewModels
         {
             return true;
         }
+<<<<<<< HEAD
 
 
+=======
+        
+        
+>>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757
         public void RemoveUser(int userId)
         {
             var userToRemove = _context.Users.FirstOrDefault(u => u.ID == userId);
             if (userToRemove != null)
             {
                 _context.Users.Remove(userToRemove);
+<<<<<<< HEAD
                 _context.SaveChanges();
                 LoadUsers(CurrentPage);
             }
         }
 
+=======
+                _context.SaveChanges(); 
+                LoadUsers(CurrentPage); 
+            }
+        }
+        
+>>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757
         public void ClientSearch_TextChanged(string text)
         {
             FilterText = text;
         }
+<<<<<<< HEAD
 
     }
 }
+=======
+        
+    }
+}
+>>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757

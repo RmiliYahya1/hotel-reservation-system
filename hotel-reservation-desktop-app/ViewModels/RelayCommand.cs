@@ -33,4 +33,9 @@ public class RelayCommand : ICommand
         add { CommandManager.RequerySuggested += value; }
         remove { CommandManager.RequerySuggested -= value; }
     }
+
+    public void RaiseCanExecuteChanged()
+    {
+        throw new NotImplementedException();
+    }
 }

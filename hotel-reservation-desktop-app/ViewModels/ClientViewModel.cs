@@ -171,7 +171,27 @@ public  class ClientViewModel:INotifyPropertyChanged
     
     
     //Modification de client
-   
+    public void ModifierClient( Client client )
+    {
+        var clientM = _context.Clients.FirstOrDefault(c => c.ID == client.ID);
+        if (clientM != null)
+        {
+            clientM.FirstName = client.FirstName;
+            clientM.LastName = client.LastName;
+            clientM.Email = client.Email;
+            clientM.Cin = client.Cin;
+            clientM.PhoneNumber = client.PhoneNumber;
+            _context.SaveChanges();
+            var index=Clients.IndexOf(Clients.FirstOrDefault(c => c.ID == client.ID));
+            if (index >= 0)
+            {
+                Clients[index] = clientM;
+            }
+        }
+        {
+            
+        }
+    }
     
     /*Pagination*/
     public void LoadClients(int nombrePage)
