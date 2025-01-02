@@ -23,15 +23,15 @@
                 
                <!--info cards left-->
                <StackPanel Margin="10 0">
-                 <UserControls:InfoCard Number="18" Titre="Nombre de clients" IsTechnical="True"/>
-                 <UserControls:InfoCard Number="54" Titre="Nombre de chambre" IsTechnical="True" />
-                 <UserControls:InfoCard Number="98" Titre="Réservation payée" IsTechnical="True"/>
+                 <UserControls:InfoCard Number="{Binding TotalClients}" Titre="Nombre de clients" IsTechnical="True"/>
+                 <UserControls:InfoCard Number="{Binding TotalRooms}" Titre="Nombre de chambres" IsTechnical="True" />
+                 <UserControls:InfoCard  Number="{Binding TotalPaidReservations}" Titre="Réservations payées" IsTechnical="True"/>
                </StackPanel>
                <!--info cards right-->
                <StackPanel Grid.Column="1" Margin="10 0">
-                   <UserControls:InfoCard Number="23" Titre="Nombre de clients" IsTechnical="False"/>
-                   <UserControls:InfoCard Number="27" Titre="Nombre de chambre" IsTechnical="False" />
-                   <UserControls:InfoCard Number="100" Titre="Réservation payée" IsTechnical="False" />
+                   <UserControls:InfoCard  Number="{Binding AvailableRooms}" Titre="Chambres disponibles" IsTechnical="False"/>
+                   <UserControls:InfoCard Number="{Binding ReservationsThisMonth}" Titre="Réservations ce mois" IsTechnical="False" />
+                   <UserControls:InfoCard Number="{Binding TotalReservations}" Titre="Nombre de réservations" IsTechnical="False" />
                </StackPanel>
                
                <!--graph section-->
@@ -47,7 +47,7 @@
                        </StackPanel>
                        
                        <!--chart-->
-                       <wpf:CartesianChart LegendLocation="None" Margin="0 40 0 0">
+                       <wpf:CartesianChart  LegendLocation="None" Margin="0 40 0 0" >
                            <wpf:CartesianChart.DataTooltip>
                                <wpf:DefaultTooltip Background="#24336a" Foreground="#d5e2ff"/>
                            </wpf:CartesianChart.DataTooltip>
@@ -69,8 +69,7 @@
                            </wpf:CartesianChart.AxisY>
 
                            <wpf:CartesianChart.Series>
-                               <wpf:StackedColumnSeries Fill="#7166f9" MaxColumnWidth="15" Values="11,13,17,20,17,15,16,13"/>
-                               <wpf:StackedColumnSeries Fill="#101a28" MaxColumnWidth="15" Values="6,5,6,4,6,6,7,6"/>
+                               <wpf:StackedColumnSeries Fill="#7166f9" MaxColumnWidth="15" Values="{Binding MonthlyReservations}"/>
                            </wpf:CartesianChart.Series>
                        </wpf:CartesianChart>
                    </Grid>
@@ -83,7 +82,7 @@
                 </Grid.ColumnDefinitions>
                 <Border Style="{StaticResource mainBorder}" Margin="30 0 20 30">
                     <Grid>
-                        <TextBlock Text="Reservation par mois" Style="{StaticResource titreText}"/>
+                        <TextBlock Text=" Profit de Reservations par mois" Style="{StaticResource titreText}"/>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 8 40 0">
                             <Border Width="12" Height="12" Background="#7166f9" CornerRadius="3"/>
                             <TextBlock Text="test" VerticalAlignment="Center" Margin="7 0 20 0" Foreground="#d4d6d9"/>
@@ -103,7 +102,7 @@
                             </wpf:CartesianChart.AxisX>
 
                             <wpf:CartesianChart.AxisY>
-                                <wpf:Axis Foreground="#bcc0c6" ShowLabels="True" MinValue="0" MaxValue="10000">
+                                <wpf:Axis Foreground="#bcc0c6" ShowLabels="True" MinValue="0" >
                                     <wpf:Axis.Separator>
                                         <wpf:Separator StrokeThickness="1" Stroke="#2c3a54"/>
                                     </wpf:Axis.Separator>
@@ -111,7 +110,7 @@
                             </wpf:CartesianChart.AxisY>
 
                             <wpf:CartesianChart.Series>
-                                <wpf:LineSeries StrokeThickness="2" Stroke="#6860e6" PointGeometrySize="0" Values="600,500,540,1000,1020,1200,1300,1500,1600">
+                                <wpf:LineSeries StrokeThickness="2" Stroke="#6860e6" PointGeometrySize="0"  Values="{Binding MonthlyProfits}">
                                     <wpf:LineSeries.Fill>
                                         <LinearGradientBrush>
                                             <GradientStop Color="#2e3966" Offset="0.4"/>

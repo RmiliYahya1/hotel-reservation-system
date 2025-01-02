@@ -1,11 +1,12 @@
-﻿using System.Windows.Controls;
+﻿using hotel_reservation_desktop_app.ViewModels;
 
 namespace hotel_reservation_desktop_app.View.dashbord;
 
-public partial class Dashbord : UserControl
+public partial class Dashbord 
 {
     public Dashbord()
     {
         InitializeComponent();
+        DataContext = new DashbordViewModel();
     }
 }
