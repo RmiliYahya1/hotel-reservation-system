@@ -8,7 +8,7 @@ using System.Windows.Media;
 namespace hotel_reservation_desktop_app.Views.GestionReservation
 {
   
-    public partial class Reservations : Window
+    public partial class Reservations 
     {
         public Reservations()
         {

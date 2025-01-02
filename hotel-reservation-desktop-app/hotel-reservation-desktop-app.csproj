@@ -41,7 +41,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="ViewModels\GesionRoomType\" />
+      <ProjectReference Include="..\hotel-reservation-DAL\hotel-reservation-DAL.csproj" />
     </ItemGroup>
 
 </Project>
