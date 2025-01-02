@@ -4,7 +4,7 @@ using hotel_reservation_desktop_app.ViewModels;
 using System.Windows;
 
 
-namespace hotel_reservation_desktop_app.Views.GestionReservation
+namespace hotel_reservation_desktop_app.View.GestionReservation
 {
     public partial class FormulaireReservation : Window
     {

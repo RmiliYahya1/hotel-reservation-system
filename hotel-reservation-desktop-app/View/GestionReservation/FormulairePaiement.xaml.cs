@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace hotel_reservation_desktop_app.Views.GestionReservation
+namespace hotel_reservation_desktop_app.View.GestionReservation
 {
     /// <summary>
     /// Logique d'interaction pour FormulairePaiement.xaml

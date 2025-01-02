@@ -22,7 +22,6 @@
 
     <ItemGroup>
       <Folder Include="Contexts\" />
-      <Folder Include="Migrations\" />
     </ItemGroup>
 
 </Project>
