@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:gestionClient="clr-namespace:hotel_reservation_desktop_app.view.gestionClient"
         xmlns:gestionUtilisateurs="clr-namespace:hotel_reservation_desktop_app.View.gestionUtilisateurs"
-        xmlns:GestionReservation="clr-namespace:hotel_reservation_desktop_app.Views.GestionReservation" 
+        xmlns:GestionReservation="clr-namespace:hotel_reservation_desktop_app.View.GestionReservation" 
 
         xmlns:gestionRoomType="clr-namespace:hotel_reservation_desktop_app.View.gestionRoomType"
 

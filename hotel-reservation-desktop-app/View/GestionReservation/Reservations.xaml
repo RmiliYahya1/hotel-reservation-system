@@ -1,18 +1,10 @@
-<<<<<<< HEAD:hotel-reservation-desktop-app/View/GestionReservation/Reservations.xaml
-﻿<Window x:Class="hotel_reservation_desktop_app.View.GestionReservation.Reservations"
-=======
-﻿<UserControl x:Class="hotel_reservation_desktop_app.Views.GestionReservation.Reservations"
->>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757:hotel-reservation-desktop-app/Views/GestionReservation/Reservations.xaml
+﻿<UserControl x:Class="hotel_reservation_desktop_app.View.GestionReservation.Reservations"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-<<<<<<< HEAD:hotel-reservation-desktop-app/View/GestionReservation/Reservations.xaml
-        xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.GestionReservation" 
-=======
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:local="clr-namespace:hotel_reservation_desktop_app.Views.GestionReservation" 
->>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757:hotel-reservation-desktop-app/Views/GestionReservation/Reservations.xaml
+        xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.GestionReservation" 
         xmlns:viewmodels="clr-namespace:hotel_reservation_desktop_app.ViewModels"   
         xmlns:converters="clr-namespace:hotel_reservation_desktop_app.Converters"
         d:DataContext="{d:DesignInstance Type=viewmodels:ReservationViewModel}"
@@ -62,13 +54,13 @@
                 <TextBlock Text="Ajouter Reservation" />
             </StackPanel>
         </Button>
-        
+
         <Button 
             Grid.Row="3" 
             Style="{StaticResource addbouton}"
             HorizontalAlignment="Left"
-            Command="{Binding ExportClientsToExcelCommand}"
-        >
+                Command="{Binding ExportClientsToExcelCommand}">
+
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Exporter" />
             </StackPanel>
@@ -96,8 +88,9 @@
             <TextBox
                 Name="ClientSearch"
                 Style="{StaticResource textboxSearch}"
-                Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
-            />
+            
+           Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" />          
+            
             <Icon:PackIconMaterial
                 Kind="Magnify"
                 Width="15"
@@ -136,14 +129,13 @@
                                     <StackPanel Orientation="Horizontal">
                                         <!-- Bouton "View Payment" -->
                                         <Button Content="View Payment"
-                        Command="{Binding DataContext.ViewPaymentCommand, RelativeSource={RelativeSource AncestorType=Window}}" 
-                        CommandParameter="{Binding}"
+                        Click="Button_Click_showPayment"
                         Visibility="{Binding Status, Converter={StaticResource StatusToVisibilityConverter}, ConverterParameter=Paid}" />
 
                                         <!-- Bouton "Pay" -->
                                         <Button Content="Pay"
-                        Command="{Binding DataContext.AddPaymentCommand, RelativeSource={RelativeSource AncestorType=Window}}" 
-                        CommandParameter="{Binding}"
+                                                  Click="Button_Click_addPayment"
+                       
                         Visibility="{Binding Status, Converter={StaticResource StatusToVisibilityConverter}, ConverterParameter= Not Paid}" />
                                     </StackPanel>
                                 </DataTemplate>
@@ -156,8 +148,7 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <Button Style="{StaticResource gridEditButton}"
-                                                Command="{Binding DataContext.EditReservationCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                                CommandParameter="{Binding}" >
+                                                 Click="Button_Click_edit" >
                                             <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                         </Button>
                                         <Button  Style="{StaticResource gridRemoveButton}"  Click="Supprimer_Button_Click">

@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace hotel_reservation_desktop_app.ViewModels
+namespace hotel_reservation_desktop_app.View.GestionReservation
 {
     /// <summary>
     /// Logique d'interaction pour PaymentModal.xaml
@@ -27,7 +27,7 @@ namespace hotel_reservation_desktop_app.ViewModels
             
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        public void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

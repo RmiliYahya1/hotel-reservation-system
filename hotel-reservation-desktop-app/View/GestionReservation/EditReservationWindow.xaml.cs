@@ -77,6 +77,7 @@ namespace hotel_reservation_desktop_app.View.GestionReservation
             EditedReservation.RoomId = (int)RoomComboBox.SelectedValue;
             EditedReservation.CheckInDate = CheckInDatePicker.SelectedDate.Value;
             EditedReservation.CheckOutDate = CheckOutDatePicker.SelectedDate.Value;
+            EditedReservation.Price = (EditedReservation.CheckOutDate - EditedReservation.CheckInDate).Days * EditedReservation.Room.RoomType.Price;
 
             DialogResult = true; // Indiquer que l'édition a été validée
             this.Close();

@@ -64,14 +64,6 @@
                       Width="100" />
         </StackPanel>
 
-<<<<<<< HEAD:hotel-reservation-desktop-app/View/GestionReservation/FormulaireReservation.xaml
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,10">
-            <Label Content="Check-In:" Width="100" VerticalAlignment="Center" />
-            <DatePicker SelectedDate="{Binding CheckInDate, ValidatesOnDataErrors=True}"/>
-
-            <Label Content="Check-Out:" Width="100" VerticalAlignment="Center" Margin="20,0,0,0" />
-            <DatePicker SelectedDate="{Binding CheckOutDate, ValidatesOnDataErrors=True}"/>
-=======
         <StackPanel Grid.Column="0" 
                     Grid.ColumnSpan="2"
                     Orientation="Horizontal" 
@@ -82,7 +74,6 @@
 
             <Label Content="Check-Out:"  Width="Auto" VerticalAlignment="Center" Margin="20,0,0,0" />
             <DatePicker SelectedDate="{Binding CheckOutDate, ValidatesOnDataErrors=True}" Style="{StaticResource ErrorStyle}" />
->>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757:hotel-reservation-desktop-app/Views/GestionReservation/FormulaireReservation.xaml
         </StackPanel>
 
         <StackPanel Grid.Column="1"  
@@ -138,7 +129,8 @@
                         Margin="0 40 20 0"
                         HorizontalAlignment="Right"
                         Name="Button"
-                        Command="{Binding SaveReservationCommand}"
+                        Click="Button_Click_add"
+                        
                     >
                         <Button.Effect>
                             <DropShadowEffect 
@@ -157,7 +149,7 @@
                         Margin="20 40 0 0"
                         Width="150"
                         Content="Annuler"
-                        Command="{Binding CancelCommand}" 
+                        Click="ButtonBase_OnClick"                      
                     >
                     </Button>
         

@@ -23,9 +23,9 @@ public class RelayCommand : ICommand
         _execute.Invoke();
     }
 
-    internal void RaiseCanExecuteChanged()
+    public void RaiseCanExecuteChanged()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     public event EventHandler CanExecuteChanged
@@ -34,8 +34,4 @@ public class RelayCommand : ICommand
         remove { CommandManager.RequerySuggested -= value; }
     }
 
-    public void RaiseCanExecuteChanged()
-    {
-        throw new NotImplementedException();
-    }
 }

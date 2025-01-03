@@ -1,19 +1,12 @@
 ﻿using GalaSoft.MvvmLight.Command;
-<<<<<<< HEAD
 using hotel_reservation_DAL.Contexts;
 using hotel_reservation_DAL.Entities;
 using hotel_reservation_desktop_app.View.GestionReservation;
-=======
-
-using hotel_reservation_desktop_app.Views.GestionReservation;
->>>>>>> c2ea86ac0e0b61b08133a6a5978a31b48cb3d757
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
-using hotel_reservation_DAL.Contexts;
-using hotel_reservation_DAL.Entities;
 
 namespace hotel_reservation_desktop_app.ViewModels
 {
@@ -22,12 +15,12 @@ namespace hotel_reservation_desktop_app.ViewModels
 
         public HotelReservationContext _context;
         public event PropertyChangedEventHandler? PropertyChanged;
-      
+
 
 
         public ObservableCollection<Client> Clients { get; private set; }
         public ObservableCollection<Room> Rooms { get; private set; }
-       
+
         public ObservableCollection<Room> FilteredRooms { get; set; } = [];
         public ObservableCollection<Reservation> Reservations { get; private set; }
         public ObservableCollection<RoomType> RoomTypes { get; set; }
@@ -40,9 +33,9 @@ namespace hotel_reservation_desktop_app.ViewModels
                 _selectedRoomType = value;
                 OnPropertyChanged(nameof(SelectedRoomType));
                 UpdateFilteredRooms(); // Mettre à jour les chambres disponibles en fonction du type
-                
+
                 //UpdatePrice();
-                
+
             }
         }
 
@@ -54,7 +47,7 @@ namespace hotel_reservation_desktop_app.ViewModels
             {
                 _selectedReservation = value;
                 OnPropertyChanged(nameof(SelectedReservation));
-                
+
             }
 
 
@@ -65,23 +58,27 @@ namespace hotel_reservation_desktop_app.ViewModels
         public Client SelectedClient
         {
             get => _selectedClient;
-            set { _selectedClient = value; 
+            set
+            {
+                _selectedClient = value;
                 OnPropertyChanged(nameof(SelectedClient));
-                ((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
+                //((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
             }
         }
 
         private Room _selectedRoom;
-        
+
         public Room SelectedRoom
         {
             get => _selectedRoom;
-            set { _selectedRoom = value; 
-                OnPropertyChanged(nameof(SelectedRoom)); 
+            set
+            {
+                _selectedRoom = value;
+                OnPropertyChanged(nameof(SelectedRoom));
                 UpdatePrice();
-               
 
-                ((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
+
+                //((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -95,9 +92,9 @@ namespace hotel_reservation_desktop_app.ViewModels
                 OnPropertyChanged(nameof(CheckInDate));
                 UpdateFilteredRooms();
                 UpdatePrice();
-               
 
-                ((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
+
+                //((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -111,9 +108,9 @@ namespace hotel_reservation_desktop_app.ViewModels
                 OnPropertyChanged(nameof(CheckOutDate));
                 UpdateFilteredRooms();
                 UpdatePrice();
-               
 
-                ((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
+
+                //((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -121,11 +118,12 @@ namespace hotel_reservation_desktop_app.ViewModels
         public double Price
         {
             get => _price;
-            set {
-               
-                    _price = value;
-                    OnPropertyChanged(nameof(Price));
-                
+            set
+            {
+
+                _price = value;
+                OnPropertyChanged(nameof(Price));
+
 
             }
         }
@@ -137,13 +135,8 @@ namespace hotel_reservation_desktop_app.ViewModels
             set { _status = value; OnPropertyChanged(nameof(Status)); }
 
         }
-
-        public ICommand SaveReservationCommand { get; }
         public ICommand CancelCommand { get; }
         public ICommand DeleteReservationCommande { get; }
-        public ICommand ViewPaymentCommand { get; }
-        public RelayCommand<Reservation> AddPaymentCommand { get; set; }
-        public RelayCommand<Reservation> EditReservationCommand { get; set; }
 
 
         public ReservationViewModel()
@@ -153,14 +146,7 @@ namespace hotel_reservation_desktop_app.ViewModels
             Rooms = [];
             FilteredRooms = [];
             Reservations = [];
-
-            SaveReservationCommand = new RelayCommand(SaveReservation, CanSaveReservation);
-            CancelCommand = new RelayCommand(Cancel);
             LoadData();
-            ViewPaymentCommand = new RelayCommand<Reservation>(ViewPayment);
-            AddPaymentCommand = new RelayCommand<Reservation>(AddPayment);
-
-            EditReservationCommand = new RelayCommand<Reservation>(OpenEditReservationWindow);
             LoadRoomTypes();
 
 
@@ -173,7 +159,7 @@ namespace hotel_reservation_desktop_app.ViewModels
             RoomTypes = new ObservableCollection<RoomType>([.. context.RoomTypes]);
         }
 
-        public static void ViewPayment(Reservation reservation)
+        public void ViewPayment(Reservation reservation)
         {
             using var context = new HotelReservationContext();
             var res = context.Reservations
@@ -192,7 +178,7 @@ namespace hotel_reservation_desktop_app.ViewModels
                     {
                         DataContext = res // Lier l'objet réservation (incluant le paiement) à la fenêtre
                     };
-                    paymentWindow.Show(); // Afficher en modal
+                    paymentWindow.ShowDialog(); // Afficher en modal
                 }
                 else
                 {
@@ -210,7 +196,7 @@ namespace hotel_reservation_desktop_app.ViewModels
 
 
 
-        private void AddPayment(Reservation reservation)
+        public void AddPayment(Reservation reservation)
         {
             if (reservation == null)
             {
@@ -324,13 +310,13 @@ namespace hotel_reservation_desktop_app.ViewModels
                     Price = days * SelectedRoomType.Price;
                 }
             }
-          
+
 
             else
             {
                 Price = 0;
             }
-            
+
 
             Console.WriteLine($"Price: {Price}");
         }
@@ -345,46 +331,42 @@ namespace hotel_reservation_desktop_app.ViewModels
                    CheckInDate < CheckOutDate && Price > 0;
         }
 
-        private void SaveReservation()
+        public void SaveReservation()
         {
+            if (!CanSaveReservation())
+            {
+                return;
+            }
+
+
             var result = MessageBox.Show("Voulez-vous vraiment enregistrer cette réservation ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
                 using var context = new HotelReservationContext();
-      
-                    Reservation reservation = new()
-                    {
-                        ClientId = SelectedClient.ID,
-                        RoomId = SelectedRoom.ID,
-                        CheckInDate = CheckInDate ?? DateTime.Now,
-                        CheckOutDate = CheckOutDate ?? DateTime.Now,
-                        Date = DateTime.Now,
-                        Price = Price
-                    };
 
-                    context.Reservations.Add(reservation);
-                    context.SaveChanges();
-                    LoadData();
-                    OnPropertyChanged(nameof(Reservations));
-                    MessageBox.Show("Réservation enregistrée avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
-                    
-            }
-        }
-  
-        private void Cancel()
-        {
-            var result = MessageBox.Show("Voulez-vous vraiment annuler cette opération ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.Yes)
-            {
-                SelectedClient = null;
-                SelectedRoom = null;
-                CheckInDate = null;
-                CheckOutDate = null;
-                Price = 0;
+                Reservation reservation = new()
+                {
+                    ClientId = SelectedClient.ID,
+                    RoomId = SelectedRoom.ID,
+                    CheckInDate = CheckInDate ?? DateTime.Now,
+                    CheckOutDate = CheckOutDate ?? DateTime.Now,
+                    Date = DateTime.Now,
+                    Price = Price
+                };
 
-                MessageBox.Show("Opération annulée.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                context.Reservations.Add(reservation);
+                context.SaveChanges();
+                MessageBox.Show("Réservation enregistrée avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                LoadData();
+                OnPropertyChanged(nameof(Reservations));
+
+
             }
+
         }
+
+
 
 
         protected void OnPropertyChanged(string propertyName)
@@ -392,7 +374,7 @@ namespace hotel_reservation_desktop_app.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void OpenEditReservationWindow(Reservation reservation)
+        public void OpenEditReservationWindow(Reservation reservation)
         {
             if (reservation == null)
             {
@@ -417,7 +399,7 @@ namespace hotel_reservation_desktop_app.ViewModels
                     reservationToUpdate.RoomId = reservation.RoomId;
                     reservationToUpdate.CheckInDate = reservation.CheckInDate;
                     reservationToUpdate.CheckOutDate = reservation.CheckOutDate;
-                    reservationToUpdate.Price =(reservation.CheckOutDate - reservation.CheckInDate).Days * reservation.Room.RoomType.Price;
+                    reservationToUpdate.Price = (reservation.CheckOutDate - reservation.CheckInDate).Days * reservation.Room.RoomType.Price;
 
                     context.SaveChanges();
 

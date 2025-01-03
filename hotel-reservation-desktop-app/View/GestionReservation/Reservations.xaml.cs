@@ -10,10 +10,13 @@ namespace hotel_reservation_desktop_app.View.GestionReservation
   
     public partial class Reservations 
     {
+        private ReservationViewModel _viewModel;
         public Reservations()
         {
             InitializeComponent();
-            DataContext = new ReservationViewModel();       
+            _viewModel = new ReservationViewModel();
+            DataContext = _viewModel;
+
         }
         // ouvrir le formulaire pour ajouter une réservation
         private void Ajouter_Button_Click(object sender, RoutedEventArgs e)
@@ -55,6 +58,22 @@ namespace hotel_reservation_desktop_app.View.GestionReservation
             return current as T;
         }
 
-       
+        private void Button_Click_showPayment(object sender, RoutedEventArgs e)
+        {
+            _viewModel.ViewPayment(_viewModel.SelectedReservation);
+
+        }
+
+        private void Button_Click_addPayment(object sender, RoutedEventArgs e)
+        {
+            _viewModel.AddPayment(_viewModel.SelectedReservation);
+
+        }
+
+        private void Button_Click_edit(object sender, RoutedEventArgs e)
+        {
+            _viewModel.OpenEditReservationWindow(_viewModel.SelectedReservation);
+
+        }
     }
 }
