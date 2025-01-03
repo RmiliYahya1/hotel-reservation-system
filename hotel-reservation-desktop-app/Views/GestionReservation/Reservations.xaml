@@ -55,54 +55,6 @@
             </StackPanel>
         </Button>
         
-        <Button 
-            Grid.Row="3" 
-            Style="{StaticResource addbouton}"
-            HorizontalAlignment="Left"
-            Command="{Binding ExportClientsToExcelCommand}"
-        >
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Exporter" />
-            </StackPanel>
-        </Button>
-        
-        <TextBlock
-            Grid.Row="2" 
-            Text="Rechercher client"
-            FontSize="16"
-            FontWeight="SemiBold"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            Margin="0 0 215 0"
-        /> 
-        
-        <Grid Grid.Row="2" Width="200" HorizontalAlignment="Right">
-            <TextBlock
-                Margin="15 0"
-                VerticalAlignment="Center"
-                Foreground="#b0b9c6"
-                IsHitTestVisible="False"
-                Panel.ZIndex="1"
-                Name="TextBlock"
-            />
-            <TextBox
-                Name="ClientSearch"
-                Style="{StaticResource textboxSearch}"
-                Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
-            />
-            <Icon:PackIconMaterial
-                Kind="Magnify"
-                Width="15"
-                Height="15"
-                VerticalAlignment="Center"
-                Margin="0 0 15 0"
-                Foreground="#b0b9c6"
-                HorizontalAlignment="Right"
-            />
-        </Grid>
-
-        
-       
             <!-- Tableaux des réservations -->
 
            
@@ -122,18 +74,21 @@
                         <DataGridTextColumn IsReadOnly="True" Header="Room" Width="Auto" Binding="{Binding Room.Number}" />
                         <DataGridTextColumn IsReadOnly="True" Header="Price" Width="Auto" Binding="{Binding Price}" />
                         <DataGridTextColumn IsReadOnly="True" Header="Status" Width="*" Binding="{Binding Status}"/>
-                        <DataGridTemplateColumn Header="Paiement" Width="*">
+                        <DataGridTemplateColumn Header="Paiement" Width="Auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <!-- Bouton "View Payment" -->
-                                        <Button Content="View Payment"
+                                        <Button 
+                                            Content="View Payment"
+                                            Style="{StaticResource gridEditButton}"
                         Command="{Binding DataContext.ViewPaymentCommand, RelativeSource={RelativeSource AncestorType=Window}}" 
                         CommandParameter="{Binding}"
                         Visibility="{Binding Status, Converter={StaticResource StatusToVisibilityConverter}, ConverterParameter=Paid}" />
 
                                         <!-- Bouton "Pay" -->
                                         <Button Content="Pay"
+                                                Style="{StaticResource gridEditButton}"
                         Command="{Binding DataContext.AddPaymentCommand, RelativeSource={RelativeSource AncestorType=Window}}" 
                         CommandParameter="{Binding}"
                         Visibility="{Binding Status, Converter={StaticResource StatusToVisibilityConverter}, ConverterParameter= Not Paid}" />
@@ -152,7 +107,9 @@
                                                 CommandParameter="{Binding}" >
                                             <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                         </Button>
-                                        <Button  Style="{StaticResource gridRemoveButton}"  Click="Supprimer_Button_Click">
+                                        <Button
+                                            Margin="5 0 0 0" 
+                                            Style="{StaticResource gridRemoveButton}"  Click="Supprimer_Button_Click">
                                             <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                         </Button>
                                     </StackPanel>

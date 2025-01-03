@@ -31,7 +31,7 @@
             <TextBlock Text="Téléphone :" FontWeight="Bold"/>
             <TextBlock Text="{Binding Client.PhoneNumber}" Margin="0,0,0,10"/>
             <Grid/>
-            <Button Content="Fermer" Width="80" Click="CloseButton_Click" Height="20" Margin="0,30,0,10"/>
+            <Button  Style="{StaticResource gridEditButton}" Content="Fermer"  Click="CloseButton_Click" Width="100" />
         </StackPanel>
     </Grid>
 </Window>

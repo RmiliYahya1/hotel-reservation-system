@@ -5,24 +5,93 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel_reservation_desktop_app.Views.GestionReservation"
         mc:Ignorable="d"
-        Title="FormulairePaiement" Height="450" Width="800">
-    <Grid Margin="10">
-        <StackPanel>
-            <Label Content="Montant :" />
-            <TextBlock x:Name="AmountTextBlock" Width="200" Margin="0,5,0,15" 
-                       Text="{Binding}" HorizontalAlignment="Left" FontWeight="Bold"/>
-
-            <Label Content="Méthode de Paiement :" />
-            <ComboBox x:Name="PaymentMethodComboBox" Width="200" Margin="0,5,0,15">
-                <ComboBoxItem Content="Carte de Crédit" />
-                <ComboBoxItem Content="Espèces" />
-                <ComboBoxItem Content="Virement Bancaire" />
-            </ComboBox>
-
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <Button Content="Ajouter" Width="100" Margin="10" Click="AddPaymentButton_Click" />
-                <Button Content="Annuler" Width="100" Margin="10" Click="CancelButton_Click" />
-            </StackPanel>
-        </StackPanel>
+        Title="FormulairePaiement"  Height="400" Width="500"  WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent">
+    <Grid VerticalAlignment="Center">
+        <Border CornerRadius="7" Background="#ffffff" BorderThickness="1" BorderBrush="#374655">
+            <Border.Effect>
+                <DropShadowEffect  ShadowDepth="5" Direction="-130" Opacity="0.1"/>
+            </Border.Effect>
+            <Border CornerRadius="7" Background="#ffffff">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="5" Direction="-130" Opacity="0.1"/>
+                </Border.Effect>
+                <Grid Margin="20 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel 
+                        Orientation="Horizontal"
+                        Margin="20 20 0 0"
+                    >
+                        <TextBlock 
+                            Text="Montant :" 
+                            Foreground="#374655"
+                            FontSize="18"
+                            VerticalAlignment="Center"
+                        />
+                    </StackPanel>
+                    
+                    <Separator
+                        Grid.Row="1" 
+                        Grid.ColumnSpan="2" 
+                        Height="0.7"
+                        Margin="-20 20"
+                        Background="#e1e6eb"
+                    />
+                     <StackPanel Grid.Column="0"
+                                 Orientation="Horizontal" 
+                                 Margin="0,10" 
+                                Grid.Row="2">
+                        <Label Content="Méthode de Paiement :"  Width="Auto" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="PaymentMethodComboBox" Width="100" >
+                            <ComboBoxItem Content="Carte de Crédit" />
+                            <ComboBoxItem Content="Espèces" />
+                         <ComboBoxItem Content="Virement Bancaire" />
+                         </ComboBox>
+                    </StackPanel>
+                    
+                    <Border 
+                        Grid.Row="6" 
+                        Grid.ColumnSpan="2"
+                        Height="80"
+                        Background="#f6f6f6"
+                        CornerRadius="0 0 10 10"
+                        Margin="-20 40 -20 0"
+                    />
+                        <Button 
+                            Style="{StaticResource gridEditButton}" 
+                            Grid.Column="1"
+                            Grid.Row="6"
+                            Margin="0 40 20 0"
+                            HorizontalAlignment="Right"
+                            Content="Ajouter" Width="100" 
+                            Click="AddPaymentButton_Click" >
+                            <Button.Effect>
+                                <DropShadowEffect 
+                                    BlurRadius="10"
+                                    ShadowDepth="5"
+                                    Color="#4880ff"
+                                    Opacity="0.3"
+                                    Direction="-120"
+                                />
+                            </Button.Effect>
+                        </Button>
+                    
+                        <Button Style="{StaticResource gridEditButton}" Content="Annuler" Width="100" Margin="10" Click="CancelButton_Click" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Border>
+                
     </Grid>
 </Window>
