@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 
-using hotel_reservation_desktop_app.Views.GestionReservation;
+using hotel_reservation_desktop_app.View.GestionReservation;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.ComponentModel;

@@ -3,13 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:hotel_reservation_desktop_app"
-             StartupUri="MainWindow.xaml">
+             Startup="ApplicationStart">
+
+
     <Application.Resources>
         
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="View/gestionClient/Styles/DataGrid.xaml"/>
+                <ResourceDictionary Source="Templates.xaml" />
             </ResourceDictionary.MergedDictionaries>
             
             <Style TargetType="Control" x:Key="ErrorStyle">

@@ -17,6 +17,23 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Assets\chambre.png" />
+      <None Remove="Assets\client3.png" />
+      <None Remove="Assets\hotel.png" />
+      <None Remove="Assets\key1.png" />
+      <None Remove="Assets\max_def.png" />
+      <None Remove="Assets\max_mo.png" />
+      <None Remove="Assets\paiement.png" />
+      <None Remove="Assets\reservation1.png" />
+      <None Remove="Assets\shutdown_def.png" />
+      <None Remove="Assets\shutdown_mo.png" />
+      <None Remove="Assets\suite.png" />
+      <None Remove="Assets\typeRoom.png" />
+      <None Remove="Assets\user.png" />
+      <None Remove="Assets\utilisateur.png" />
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="EPPlus" Version="7.5.2" />
       <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
       <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="5.1.0" />
@@ -43,6 +60,51 @@
 
     <ItemGroup>
       <ProjectReference Include="..\hotel-reservation-DAL\hotel-reservation-DAL.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Assets\chambre.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\client3.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\hotel.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\key1.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\max_def.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\max_mo.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\paiement.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\reservation1.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\shutdown_def.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\shutdown_mo.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\suite.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\typeRoom.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\user.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\utilisateur.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
 </Project>
