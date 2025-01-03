@@ -55,6 +55,52 @@
             </StackPanel>
         </Button>
         
+        <Button 
+            Grid.Row="3" 
+            Style="{StaticResource addbouton}"
+            HorizontalAlignment="Left"
+            Command="{Binding ExportClientsToExcelCommand}"
+        >
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Exporter" />
+            </StackPanel>
+        </Button>
+        
+        <TextBlock
+            Grid.Row="2" 
+            Text="Rechercher client"
+            FontSize="16"
+            FontWeight="SemiBold"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Margin="0 0 215 0"
+        /> 
+
+        <Grid Grid.Row="2" Width="200" HorizontalAlignment="Right">
+            <TextBlock
+                Margin="15 0"
+                VerticalAlignment="Center"
+                Foreground="#b0b9c6"
+                IsHitTestVisible="False"
+                Panel.ZIndex="1"
+                Name="TextBlock"
+            />
+            <TextBox
+                Name="ClientSearch"
+                Style="{StaticResource textboxSearch}"
+                Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
+            />
+            <Icon:PackIconMaterial
+                Kind="Magnify"
+                Width="15"
+                Height="15"
+                VerticalAlignment="Center"
+                Margin="0 0 15 0"
+                Foreground="#b0b9c6"
+                HorizontalAlignment="Right"
+            />
+        </Grid>
+        
             <!-- Tableaux des réservations -->
 
            

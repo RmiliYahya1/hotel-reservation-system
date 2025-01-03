@@ -30,7 +30,8 @@
                         Margin="20 20 0 0"
                     >
                         <TextBlock 
-                            Text="Montant :" 
+                            x:Name="AmountTextBlock"
+                            Text="Montant"
                             Foreground="#374655"
                             FontSize="18"
                             VerticalAlignment="Center"
@@ -67,7 +68,7 @@
                         Margin="-20 40 -20 0"
                     />
                         <Button 
-                            Style="{StaticResource gridEditButton}" 
+                            Style="{StaticResource BoutonAjout}"
                             Grid.Row="6"
                             Margin="0 40 20 0"
                             HorizontalAlignment="Right"
@@ -86,7 +87,7 @@
                         <Button
                             HorizontalAlignment="Left"
                             Grid.Row="6"
-                            Style="{StaticResource gridEditButton}" 
+                            Style="{StaticResource BoutonAnnuler}"
                             Content="Annuler"
                             Margin="20 40 0 0"
                             Width="100"

@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel_reservation_desktop_app.ViewModels"
         mc:Ignorable="d"
-        Title="PaymentModal" Height="500" Width="530">
-    <Grid Margin="10">
+        Title="PaymentModal" Height="600" Width="500"   WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent">
+    <Grid  VerticalAlignment="Center">
+        <Border CornerRadius="7" Background="#ffffff" BorderThickness="1" BorderBrush="#374655">
+            <Border.Effect>
+                <DropShadowEffect  ShadowDepth="5" Direction="-130" Opacity="0.1"/>
+            </Border.Effect>
+            <Border CornerRadius="7" Background="#ffffff">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="5" Direction="-130" Opacity="0.1"/>
+                </Border.Effect>
         <StackPanel>
             <TextBlock Text="Détails du Paiement" FontSize="18" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
 
@@ -31,7 +39,10 @@
             <TextBlock Text="Téléphone :" FontWeight="Bold"/>
             <TextBlock Text="{Binding Client.PhoneNumber}" Margin="0,0,0,10"/>
             <Grid/>
-            <Button  Style="{StaticResource gridEditButton}" Content="Fermer"  Click="CloseButton_Click" Width="100" />
+            <Button   Style="{StaticResource BoutonAnnuler}" Content="Fermer"  Click="CloseButton_Click" Width="100" Margin="0 20"/>
         </StackPanel>
+            </Border>
+        </Border>
+                
     </Grid>
 </Window>
