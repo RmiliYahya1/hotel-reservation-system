@@ -1,6 +1,10 @@
 ﻿using GalaSoft.MvvmLight.Command;
+<<<<<<< HEAD
 using hotel_reservation_DAL.Contexts;
 using hotel_reservation_DAL.Entities;
+=======
+
+>>>>>>> main
 using hotel_reservation_desktop_app.View.GestionReservation;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml.Style;

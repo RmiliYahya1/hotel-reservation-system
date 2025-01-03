@@ -10,13 +10,102 @@
         xmlns:gestionRoomType="clr-namespace:hotel_reservation_desktop_app.View.gestionRoomType"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="750" Width="1018" >
- 
+                Title="MainWindow" Height="700" Width="900" WindowStyle="None" 
+        AllowsTransparency="True" WindowStartupLocation="CenterScreen">
+    <!--background Grid-->
     <Grid Background="#eff2f7">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <GestionReservation:Reservations Grid.Column="1"/>
-    </Grid>
+        
+        <!-- Meni panel -->
+        <StackPanel Background="#2E333A" Width="200" Orientation="Vertical" HorizontalAlignment="Left">
+
+            <!--  le nom de Barre menu -->
+            <Grid Height="50" VerticalAlignment="Top" Margin="0,30,0,0">
+                <Border Background="DarkViolet" Height="25" CornerRadius="3,0,0,3" 
+                        Width="7" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <TextBlock Text="Hotel Paradise" Foreground="White" 
+                           FontWeight="Bold"
+                           FontSize="23" 
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+
+            </Grid>
+
+            <!-- Main Menu -->
+            <Menu Height="450" Background="Transparent" Margin="0,40,0,0">
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+                <!-- dashboard -->
+                <MenuItem Header="Dashboard" FontSize="20" Template="{StaticResource Menu_Template}" VerticalAlignment="Center" Click="ShowDashboard">
+                </MenuItem>
+                <!-- Menu client -->
+                <MenuItem Header="Client" FontSize="20" Template="{StaticResource Menu_Template}" VerticalAlignment="Bottom" Click="ShowUserControl">
+                    <MenuItem.Icon>
+                        <Image Source="Assets/client3.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <!-- Menu réservation -->
+                <MenuItem Header="Reservation" FontSize="20" Template="{StaticResource Menu_Template}" VerticalAlignment="Center" Click="ShowReservation">
+                    <MenuItem.Icon>
+                        <Image Source="Assets/reservation1.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+           
+
+                <!-- Menu room -->
+                <MenuItem Header="Suite" Template="{StaticResource Menu_SubMenu_Template}" >
+                    <MenuItem.Icon>
+                        <Image Source="Assets/suite.png"  />
+                    </MenuItem.Icon>
+                    <!--submenu de room -->
+                    <MenuItem Header="Room" Template="{StaticResource Item_Template}" Click="ShowRoomControl">
+                        <MenuItem.Icon>
+                            <Image Source="Assets/chambre.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <!--submenu de type de room -->
+                    <MenuItem Header="Room Type" Template="{StaticResource Item_Template}" Click="ShowRoomType">
+                        <MenuItem.Icon>
+                            <Image Source="Assets/typeRoom.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+
+                <!-- Menu user -->
+                <MenuItem Header="Utilisateur" FontSize="20" Template="{StaticResource Menu_Template}" VerticalAlignment="Center" Click="ShowUser">
+                    <MenuItem.Icon>
+                        <Image Source="Assets/user.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                
+
+            </Menu>
+
+        </StackPanel>
+
+        <!-- Zone centrale pour UserControl -->
+        <Grid Margin="200,0,0,0">
+            <ContentControl x:Name="ContentControlMain"  Content="{Binding InitialContent}"/>
+        </Grid>
+
+        <!-- Grid pour les boutons en haut à droite -->
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,10,10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Maximise Button -->
+            <Button x:Name="MaxBtn" Style="{StaticResource MaxBtnStyle}" Click="MaxBtn_Click" Grid.Column="0"  Margin="20,0,5,10" VerticalAlignment="Center" />
+
+            <!-- Close Button -->
+            <Button x:Name="CloseBtn" Style="{StaticResource CloseBtnStyle}" Click="CloseBtn_Click" Grid.Column="1" Margin="0,0,0,10" VerticalAlignment="Center" />
+        </Grid>
+       </Grid>
+  
 </Window>

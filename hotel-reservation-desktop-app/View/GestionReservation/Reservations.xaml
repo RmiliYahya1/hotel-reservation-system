@@ -75,7 +75,7 @@
             VerticalAlignment="Center"
             Margin="0 0 215 0"
         /> 
-        
+
         <Grid Grid.Row="2" Width="200" HorizontalAlignment="Right">
             <TextBlock
                 Margin="15 0"
@@ -100,12 +100,10 @@
                 HorizontalAlignment="Right"
             />
         </Grid>
-
         
-       
             <!-- Tableaux des réservations -->
-
-           
+        
+        
                 <!-- Boutons pour les actions -->
                 <!-- Tableaux des réservations -->
                 <DataGrid
@@ -116,25 +114,47 @@
                       SelectionMode="Single">
                     <DataGrid.Columns>
                         <DataGridTextColumn IsReadOnly="True" Width="auto" Header="Date" Binding="{Binding Date}" />
+<<<<<<< HEAD
                 <DataGridTextColumn IsReadOnly="True" Header="Check-In" Width="Auto" Binding="{Binding CheckInDate,  StringFormat=d}" />
                 <DataGridTextColumn IsReadOnly="True" Header="Check-Out" Width="Auto" Binding="{Binding CheckOutDate,  StringFormat=d}" />
                         <DataGridTextColumn IsReadOnly="True" Header="Client" Width="*" Binding="{Binding Client.FullName}" />
                         <DataGridTextColumn IsReadOnly="True" Header="Room" Width="*" Binding="{Binding Room.Number}" />
                         <DataGridTextColumn IsReadOnly="True" Header="Price" Width="*" Binding="{Binding Price}" />
+=======
+                        <DataGridTextColumn IsReadOnly="True" Header="Check-In" Width="Auto" Binding="{Binding CheckInDate}" />
+                        <DataGridTextColumn IsReadOnly="True" Header="Check-Out" Width="Auto" Binding="{Binding CheckOutDate}" />
+                        <DataGridTextColumn IsReadOnly="True" Header="Client" Width="Auto" Binding="{Binding Client.FullName}" />
+                        <DataGridTextColumn IsReadOnly="True" Header="Room" Width="Auto" Binding="{Binding Room.Number}" />
+                        <DataGridTextColumn IsReadOnly="True" Header="Price" Width="Auto" Binding="{Binding Price}" />
+>>>>>>> main
                         <DataGridTextColumn IsReadOnly="True" Header="Status" Width="*" Binding="{Binding Status}"/>
-                        <DataGridTemplateColumn Header="Paiement" Width="*">
+                        <DataGridTemplateColumn Header="Paiement" Width="Auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <!-- Bouton "View Payment" -->
+<<<<<<< HEAD
                                         <Button Content="View Payment"
                         Click="Button_Click_showPayment"
+=======
+                                        <Button 
+                                            Content="View Payment"
+                                            Style="{StaticResource gridEditButton}"
+                        Command="{Binding DataContext.ViewPaymentCommand, RelativeSource={RelativeSource AncestorType=Window}}" 
+                        CommandParameter="{Binding}"
+>>>>>>> main
                         Visibility="{Binding Status, Converter={StaticResource StatusToVisibilityConverter}, ConverterParameter=Paid}" />
 
                                         <!-- Bouton "Pay" -->
                                         <Button Content="Pay"
+<<<<<<< HEAD
                                                   Click="Button_Click_addPayment"
                        
+=======
+                                                Style="{StaticResource gridEditButton}"
+                        Command="{Binding DataContext.AddPaymentCommand, RelativeSource={RelativeSource AncestorType=Window}}" 
+                        CommandParameter="{Binding}"
+>>>>>>> main
                         Visibility="{Binding Status, Converter={StaticResource StatusToVisibilityConverter}, ConverterParameter= Not Paid}" />
                                     </StackPanel>
                                 </DataTemplate>
@@ -150,7 +170,9 @@
                                                  Click="Button_Click_edit" >
                                             <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                         </Button>
-                                        <Button  Style="{StaticResource gridRemoveButton}"  Click="Supprimer_Button_Click">
+                                        <Button
+                                            Margin="5 0 0 0" 
+                                            Style="{StaticResource gridRemoveButton}"  Click="Supprimer_Button_Click">
                                             <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                         </Button>
                                     </StackPanel>
