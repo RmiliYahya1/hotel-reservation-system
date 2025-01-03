@@ -59,7 +59,7 @@
             Grid.Row="3" 
             Style="{StaticResource addbouton}"
             HorizontalAlignment="Left"
-                Command="{Binding ExportClientsToExcelCommand}">
+                Command="{Binding ExportReservationsToExcelCommand}">
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Exporter" />
@@ -68,7 +68,7 @@
         
         <TextBlock
             Grid.Row="2" 
-            Text="Rechercher client"
+            Text="Rechercher reservation"
             FontSize="16"
             FontWeight="SemiBold"
             HorizontalAlignment="Right"
@@ -86,11 +86,10 @@
                 Name="TextBlock"
             />
             <TextBox
-                Name="ClientSearch"
+                Name="ReservationSearch"
                 Style="{StaticResource textboxSearch}"
-            
-           Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" />          
-            
+                Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" />
+
             <Icon:PackIconMaterial
                 Kind="Magnify"
                 Width="15"
@@ -112,13 +111,13 @@
                 <DataGrid
                     Grid.Row="5" 
                       AutoGenerateColumns="False"
-                      ItemsSource="{Binding Reservations}"
+                      ItemsSource="{Binding FilteredReservations}"
                       SelectedItem="{Binding SelectedReservation}"
                       SelectionMode="Single">
                     <DataGrid.Columns>
                         <DataGridTextColumn IsReadOnly="True" Width="auto" Header="Date" Binding="{Binding Date}" />
-                        <DataGridTextColumn IsReadOnly="True" Header="Check-In" Width="Auto" Binding="{Binding CheckInDate}" />
-                        <DataGridTextColumn IsReadOnly="True" Header="Check-Out" Width="Auto" Binding="{Binding CheckOutDate}" />
+                <DataGridTextColumn IsReadOnly="True" Header="Check-In" Width="Auto" Binding="{Binding CheckInDate,  StringFormat=d}" />
+                <DataGridTextColumn IsReadOnly="True" Header="Check-Out" Width="Auto" Binding="{Binding CheckOutDate,  StringFormat=d}" />
                         <DataGridTextColumn IsReadOnly="True" Header="Client" Width="*" Binding="{Binding Client.FullName}" />
                         <DataGridTextColumn IsReadOnly="True" Header="Room" Width="*" Binding="{Binding Room.Number}" />
                         <DataGridTextColumn IsReadOnly="True" Header="Price" Width="*" Binding="{Binding Price}" />

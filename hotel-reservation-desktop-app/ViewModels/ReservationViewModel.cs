@@ -3,15 +3,42 @@ using hotel_reservation_DAL.Contexts;
 using hotel_reservation_DAL.Entities;
 using hotel_reservation_desktop_app.View.GestionReservation;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml.Style;
+using OfficeOpenXml;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using System.IO;
+using System.Net.Mail;
 
 namespace hotel_reservation_desktop_app.ViewModels
 {
     public class ReservationViewModel : INotifyPropertyChanged
     {
+
+        private string _filterText;
+        public string FilterText
+        {
+            get => _filterText;
+            set
+            {
+                _filterText = value;
+                OnPropertyChanged(nameof(FilterText));
+                FilterReservations();
+            }
+        }
+
+        private ObservableCollection<Reservation> _filteredReservations;
+        public ObservableCollection<Reservation> FilteredReservations
+        {
+            get => _filteredReservations;
+            set
+            {
+                _filteredReservations = value;
+                OnPropertyChanged(nameof(FilteredReservations));
+            }
+        }
 
         public HotelReservationContext _context;
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -137,6 +164,7 @@ namespace hotel_reservation_desktop_app.ViewModels
         }
         public ICommand CancelCommand { get; }
         public ICommand DeleteReservationCommande { get; }
+        public RelayCommand ExportReservationsToExcelCommand { get; }
 
 
         public ReservationViewModel()
@@ -148,8 +176,22 @@ namespace hotel_reservation_desktop_app.ViewModels
             Reservations = [];
             LoadData();
             LoadRoomTypes();
+            ExportReservationsToExcelCommand = new RelayCommand(ExportReservations, CanExportReservations);
+            FilteredReservations = new ObservableCollection<Reservation>(Reservations);
 
+        }
 
+        private void FilterReservations()
+        {
+            if (string.IsNullOrWhiteSpace(FilterText))
+            {
+                FilteredReservations = new ObservableCollection<Reservation>(Reservations);
+            }
+            else
+            {
+                FilteredReservations = new ObservableCollection<Reservation>(
+                    Reservations.Where(r => r.Client.FullName.IndexOf(FilterText, StringComparison.OrdinalIgnoreCase) >= 0));
+            }
         }
 
         // Méthode pour charger les types de chambres
@@ -212,7 +254,12 @@ namespace hotel_reservation_desktop_app.ViewModels
             {
                 // Ajouter le paiement à la réservation
                 using var context = new HotelReservationContext();
-                var res = context.Reservations.Include(r => r.Payment).FirstOrDefault(r => r.ID == reservation.ID);
+                var res = context.Reservations
+                    .Include(r => r.Payment)
+                    .Include(r => r.Client)
+                    .Include(r => r.Room)
+                   .FirstOrDefault(r => r.ID == reservation.ID);
+
 
                 if (res != null)
                 {
@@ -221,6 +268,9 @@ namespace hotel_reservation_desktop_app.ViewModels
 
                     MessageBox.Show("Le paiement a été ajouté avec succès.",
                                     "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    // Envoyer l'email de confirmation
+                    SendConfirmationEmail(res.Client, res);
                 }
                 else
                 {
@@ -260,6 +310,7 @@ namespace hotel_reservation_desktop_app.ViewModels
             Rooms = new ObservableCollection<Room>(rooms);
             FilteredRooms = new ObservableCollection<Room>(rooms); // Filtrée dynamiquement
             Reservations = new ObservableCollection<Reservation>(reservations);
+            FilterReservations();
         }
 
         private void UpdateFilteredRooms()
@@ -418,9 +469,166 @@ namespace hotel_reservation_desktop_app.ViewModels
             }
         }
 
+        /*exporter*/
+        public void ExportReservationsToExcel(string filePath)
+        {
+            if (Reservations == null || !Reservations.Any())
+            {
+                MessageBox.Show("Aucun reservation à exporter.", "Exportation Excel", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            try
+            {
+                // Activer le support de licence pour EPPlus
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+                // Créer un nouveau fichier Excel
+                using (var package = new ExcelPackage())
+                {
+                    var worksheet = package.Workbook.Worksheets.Add("Reservations");
+
+                    // Ajouter l'en-tête
+                    worksheet.Cells[1, 1].Value = "ID";
+                    worksheet.Cells[1, 2].Value = "Date";
+                    worksheet.Cells[1, 3].Value = "CheckInDate";
+                    worksheet.Cells[1, 4].Value = "CheckOutDate";
+                    //worksheet.Cells[1, 5].Value = "FullName";
+                    //worksheet.Cells[1, 6].Value = "RoomNumber";
+                    worksheet.Cells[1, 5].Value = "Price";
+                    worksheet.Cells[1, 6].Value = "Status";
+
+                    // Appliquer un style à l'en-tête
+                    using (var range = worksheet.Cells[1, 1, 1, 6])
+                    {
+                        range.Style.Font.Bold = true;
+                        range.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        range.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray);
+                        range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    }
+
+                    // Remplir les données des reservations
+                    int row = 2;
+                    foreach (var reservation in _context.Reservations.OrderBy(r => r.ID))
+                    {
+                        worksheet.Cells[row, 1].Value = reservation.ID;
+                        worksheet.Cells[row, 2].Value = reservation.Date;
+                        worksheet.Cells[row, 3].Value = reservation.CheckInDate;
+                        worksheet.Cells[row, 4].Value = reservation.CheckOutDate;
+                        //worksheet.Cells[row, 6].Value = reservation.Client.FullName;
+                        //worksheet.Cells[row, 7].Value = reservation.Room.Number;
+                        worksheet.Cells[row, 5].Value = reservation.Price;
+                        worksheet.Cells[row, 6].Value = reservation.Status;
+
+
+                        // Appliquer le format de date aux cellules de date
+                        worksheet.Cells[row, 2].Style.Numberformat.Format = "dd/MM/yyyy";
+                        worksheet.Cells[row, 3].Style.Numberformat.Format = "dd/MM/yyyy";
+                        worksheet.Cells[row, 4].Style.Numberformat.Format = "dd/MM/yyyy";
+                        row++;
+                    }
+
+                    // Ajuster les colonnes automatiquement
+                    worksheet.Cells.AutoFitColumns();
+                    // Sauvegarder le fichier Excel
+                    File.WriteAllBytes(filePath, package.GetAsByteArray());
+                }
+                MessageBox.Show("Exportation terminée avec succès !", "Exportation Excel", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de l'exportation : {ex.Message}", "Exportation Excel", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void ExportReservations()
+        {
+            // Ouvrir un dialog pour sélectionner le chemin de sauvegarde
+            var saveFileDialog = new Microsoft.Win32.SaveFileDialog
+            {
+                FileName = "Reservations",
+                DefaultExt = ".xlsx",
+                Filter = "Excel files (*.xlsx)|*.xlsx"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                ExportReservationsToExcel(saveFileDialog.FileName);
+            }
+        }
+        private bool CanExportReservations()
+        {
+            return Reservations != null && Reservations.Any();
+        }
+
+       
+
+
+      
+
+        private void SendConfirmationEmail(Client client, Reservation reservation)
+        {
+
+            if (client == null)
+            {
+                MessageBox.Show("Client information is missing.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (reservation == null)
+            {
+                MessageBox.Show("Reservation information is missing.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            try
+            {
+               
+                var fromAddress = new MailAddress("radouane.aitsaid01@gmail.com", "Hotel Menara");
+                var toAddress = new MailAddress(client.Email, client.FullName);
+                const string fromPassword = "ckkl jybd lxyc qrry";
+                const string subject = "Confirmation de paiement";
+                string body = $"Bonjour {client.FullName},\n\n" +
+                              $"Nous vous confirmons la réception de votre paiement pour la réservation suivante :\n" +
+                              $"Réservation ID : {reservation.ID}\n" +
+                              $"Chambre : {reservation.Room.Number}\n" +
+                              $"Date d'arrivée : {reservation.CheckInDate:dd/MM/yyyy}\n" +
+                              $"Date de départ : {reservation.CheckOutDate:dd/MM/yyyy}\n" +
+                              $"Montant payé : {reservation.Price} €\n\n" +
+                              "Merci pour votre confiance.\n" +
+                              "Cordialement,\n" +
+                              "Menara Hotel";
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new System.Net.NetworkCredential(fromAddress.Address, fromPassword)
+                };
+
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de l'envoi de l'email : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        
+    
 
 
 
-    }
+
+
+
+}
 }
 
