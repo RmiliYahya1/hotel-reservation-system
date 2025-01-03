@@ -56,7 +56,7 @@
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" />
                 <DataGridTextColumn Header="Prix" Binding="{Binding Price}" Width="*" />
                 <DataGridTextColumn Header="Capacité" Binding="{Binding Capacity}" Width="*" />
-                <DataGridTemplateColumn Header="Opérations" Width="*">
+                <DataGridTemplateColumn Header="Opérations" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

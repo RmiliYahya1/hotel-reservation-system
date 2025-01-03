@@ -17,6 +17,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        ContentControlMain.Content = new View.dashbord.Dashbord();
 
     }
     private void CloseBtn_Click(object sender, RoutedEventArgs e)
