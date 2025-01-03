@@ -1,4 +1,9 @@
 ﻿using System.Windows;
+using hotel_reservation_desktop_app.view.gestionClient;
+using hotel_reservation_desktop_app.View.dashbord;
+using hotel_reservation_desktop_app.View.GestionReservation;
+using hotel_reservation_desktop_app.View.gestionRoomType;
+using hotel_reservation_desktop_app.View.gestionUtilisateurs;
 using hotel_reservation_desktop_app.View.Login;
 
 
@@ -37,8 +42,16 @@ public partial class MainWindow : Window
 
     private void ShowUserControl(object sender, RoutedEventArgs e)
     {
-        UserControl1 userControl1 = new UserControl1();
-        ContentControlMain.Content = userControl1;
+        
+        MainClientSection mainClientSection = new MainClientSection();
+        ContentControlMain.Content = mainClientSection;
+    }
+
+
+    private void ShowReservation(object sender, RoutedEventArgs e)
+    {
+        Reservations reservations = new Reservations();
+        ContentControlMain.Content = reservations;
     }
 
     private void ShowRoomControl(object sender, RoutedEventArgs e)
@@ -47,4 +60,21 @@ public partial class MainWindow : Window
         ContentControlMain.Content = userControl2;
     }
 
+    private void ShowRoomType(object sender, RoutedEventArgs e)
+    {
+        RoomTypeMainSection roomType = new RoomTypeMainSection();
+        ContentControlMain.Content = roomType;
+    }
+
+    private void ShowUser(object sender, RoutedEventArgs e)
+    {
+        MainUserSection userControl = new MainUserSection();
+        ContentControlMain.Content = userControl;
+    }
+
+    private void ShowDashboard(object sender, RoutedEventArgs e)
+    {
+        Dashbord dashbord = new Dashbord();
+        ContentControlMain.Content = dashbord;
+    }
 }
