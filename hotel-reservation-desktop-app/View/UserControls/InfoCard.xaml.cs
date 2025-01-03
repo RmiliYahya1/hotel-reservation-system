@@ -1,6 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using hotel_reservation_desktop_app.view.gestionClient;
 
 namespace hotel_reservation_desktop_app.View.UserControls;
 
@@ -48,6 +50,6 @@ public partial class InfoCard : UserControl
     
     public static readonly DependencyProperty IsTechnicalProprety = 
         DependencyProperty.Register("IsTechnical", typeof(string), typeof(InfoCard));
-    
+
     
 }

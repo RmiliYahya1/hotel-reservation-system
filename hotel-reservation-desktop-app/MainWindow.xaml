@@ -8,6 +8,7 @@
         xmlns:GestionReservation="clr-namespace:hotel_reservation_desktop_app.Views.GestionReservation" 
         xmlns:gestionRoomType="clr-namespace:hotel_reservation_desktop_app.View.gestionRoomType"
         xmlns:dashbord="clr-namespace:hotel_reservation_desktop_app.View.dashbord"
+        xmlns:gestionChambre="clr-namespace:hotel_reservation_desktop_app.View.gestionChambre"
 
         mc:Ignorable="d"
         Title="MainWindow" Height="750" Width="1018" >
@@ -17,7 +18,8 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-       <dashbord:Dashbord Grid.Column="1"/>
+        
+        <ContentControl Grid.Column="1" x:Name="MainContentControl" Content="{Binding InitialContent}" />
 
     </Grid>
 </Window>

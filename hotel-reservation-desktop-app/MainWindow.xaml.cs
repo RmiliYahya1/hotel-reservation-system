@@ -11,7 +11,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-       
+        MainContentControl.Content = new View.dashbord.Dashbord();
     }
 
 }

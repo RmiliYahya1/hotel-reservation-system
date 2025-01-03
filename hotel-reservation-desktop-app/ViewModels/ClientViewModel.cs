@@ -133,7 +133,7 @@ public  class ClientViewModel:INotifyPropertyChanged
     }
     public ObservableCollection<Client> Clients
     {
-        get => _filteredClients; // Use the filtered list here
+        get => _filteredClients; 
         set
         {
             _filteredClients = value;
@@ -282,15 +282,15 @@ public  class ClientViewModel:INotifyPropertyChanged
     }
     try
     {
-        // Activer le support de licence pour EPPlus
+      
         ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
-        // Créer un nouveau fichier Excel
+      
         using (var package = new ExcelPackage())
         {
             var worksheet = package.Workbook.Worksheets.Add("Clients");
 
-            // Ajouter l'en-tête
+           
             worksheet.Cells[1, 1].Value = "ID";
             worksheet.Cells[1, 2].Value = "Nom";
             worksheet.Cells[1, 3].Value = "Prénom";
@@ -298,7 +298,7 @@ public  class ClientViewModel:INotifyPropertyChanged
             worksheet.Cells[1, 5].Value = "Email";
             worksheet.Cells[1, 6].Value = "CIN";
 
-            // Appliquer un style à l'en-tête
+           
             using (var range = worksheet.Cells[1, 1, 1, 6])
             {
                 range.Style.Font.Bold = true;
@@ -307,7 +307,7 @@ public  class ClientViewModel:INotifyPropertyChanged
                 range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
             }
 
-            // Remplir les données des clients
+      
             int row = 2;
             foreach (var client in _context.Clients.OrderBy(c => c.ID))
             {
@@ -320,9 +320,9 @@ public  class ClientViewModel:INotifyPropertyChanged
                 row++;
             }
 
-            // Ajuster les colonnes automatiquement
+          
             worksheet.Cells.AutoFitColumns();
-            // Sauvegarder le fichier Excel
+           
             File.WriteAllBytes(filePath, package.GetAsByteArray());
         }
         MessageBox.Show("Exportation terminée avec succès !", "Exportation Excel", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -334,7 +334,7 @@ public  class ClientViewModel:INotifyPropertyChanged
 }
     private void ExportClients()
     {
-        // Ouvrir un dialog pour sélectionner le chemin de sauvegarde
+       
         var saveFileDialog = new Microsoft.Win32.SaveFileDialog
         {
             FileName = "Clients",

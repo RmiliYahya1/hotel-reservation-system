@@ -113,6 +113,18 @@ public class DashbordViewModel: INotifyPropertyChanged
             TotalRooms = context.Rooms.Count();
             AvailableRooms = context.Rooms.Count(r => r.IsAvailable); // Exemple
             ReservationsThisMonth = context.Reservations.Count(r => r.Date.Month == DateTime.Now.Month);
+
+            // Calcul des réservations par mois
+            var monthlyReservations = new ChartValues<int>();
+            for (int i = 1; i <= 12; i++)
+            {
+                int count = context.Reservations
+                    .Count(r => r.Date.Month == i && r.Date.Year == DateTime.Now.Year);
+                monthlyReservations.Add(count);
+            }
+            MonthlyReservations = monthlyReservations;
+
+            // Calcul des profits par mois (si nécessaire)
             var monthlyProfits = new ChartValues<double>();
             for (int i = 1; i <= 12; i++)
             {
@@ -124,7 +136,6 @@ public class DashbordViewModel: INotifyPropertyChanged
             MonthlyProfits = monthlyProfits;
         }
     }
-
 
     public event PropertyChangedEventHandler PropertyChanged;
 

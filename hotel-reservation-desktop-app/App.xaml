@@ -249,14 +249,20 @@
             </Style>
             
             <Style x:Key="mainBorder" TargetType="Border">
-                <Setter Property="Background" Value="#1e2e44"/>
+                <Setter Property="Background" Value="White"/>
                 <Setter Property="Padding" Value="20"/>
                 <Setter Property="CornerRadius" Value="20"/>
             </Style>
             
             <Style x:Key="titreText" TargetType="TextBlock">
-                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Foreground" Value="Black"/>
                 <Setter Property="FontSize" Value="20"/>
+            </Style>
+            
+            <Style x:Key="whiteBorder" TargetType="Border">
+                <Setter Property="Background" Value="#ffffff"/>
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="Padding" Value="20"/>
             </Style>
            
             

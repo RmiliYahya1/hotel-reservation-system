@@ -118,9 +118,9 @@
                         <DataGridTextColumn IsReadOnly="True" Width="auto" Header="Date" Binding="{Binding Date}" />
                         <DataGridTextColumn IsReadOnly="True" Header="Check-In" Width="Auto" Binding="{Binding CheckInDate}" />
                         <DataGridTextColumn IsReadOnly="True" Header="Check-Out" Width="Auto" Binding="{Binding CheckOutDate}" />
-                        <DataGridTextColumn IsReadOnly="True" Header="Client" Width="*" Binding="{Binding Client.FullName}" />
-                        <DataGridTextColumn IsReadOnly="True" Header="Room" Width="*" Binding="{Binding Room.Number}" />
-                        <DataGridTextColumn IsReadOnly="True" Header="Price" Width="*" Binding="{Binding Price}" />
+                        <DataGridTextColumn IsReadOnly="True" Header="Client" Width="Auto" Binding="{Binding Client.FullName}" />
+                        <DataGridTextColumn IsReadOnly="True" Header="Room" Width="Auto" Binding="{Binding Room.Number}" />
+                        <DataGridTextColumn IsReadOnly="True" Header="Price" Width="Auto" Binding="{Binding Price}" />
                         <DataGridTextColumn IsReadOnly="True" Header="Status" Width="*" Binding="{Binding Status}"/>
                         <DataGridTemplateColumn Header="Paiement" Width="*">
                             <DataGridTemplateColumn.CellTemplate>

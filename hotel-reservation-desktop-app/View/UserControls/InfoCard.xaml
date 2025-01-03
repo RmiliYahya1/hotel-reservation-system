@@ -7,14 +7,14 @@
              xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.UserControls"
              Name="infoCard"
             >
-    <Border Margin="0 0 0 20">
+    <Border Margin="0 0 0 20" >
         <Border.Style>
             <Style TargetType="Border" BasedOn="{StaticResource mainBorder}">
                 <Setter Property="BorderThickness" Value="1.5"/>
                 <Setter Property="BorderBrush" Value="Transparent"/>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="BorderBrush" Value="#7166f9"/>
+                        <Setter Property="BorderBrush" Value="#ffffff"/>
                     </Trigger>
                     <DataTrigger Binding="{Binding ElementName=infoCard,Path=IsActive}" Value="True">
                         <Setter Property="BorderBrush" Value="#7166f9"/>
@@ -32,7 +32,7 @@
             
             <TextBlock
                 Text="{Binding ElementName=infoCard,Path=Number}" 
-                Foreground="#f3f3f3"
+                Foreground="Black"
                 FontSize="26"
                 FontWeight="Bold"
                 VerticalAlignment="Center"
@@ -59,7 +59,7 @@
                     </TextBlock.Style>
                 </TextBlock>
                 
-                <TextBlock Text="{Binding ElementName=infoCard, Path=Titre}" Foreground="#dfe1e3" FontSize="16" Margin="0 5 0 0" FontWeight="SemiBold"></TextBlock>
+                <TextBlock Text="{Binding ElementName=infoCard, Path=Titre}" Foreground="Black" FontSize="16" Margin="0 5 0 0" FontWeight="SemiBold"></TextBlock>
             </StackPanel>
             <Icon:PackIconMaterial Kind="ArrowRight" Grid.Column="2" Foreground="#dfe1e3" Height="17" Width="17" VerticalAlignment="Center" Margin="0 0 10 0"/>
 
