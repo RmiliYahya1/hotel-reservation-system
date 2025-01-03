@@ -89,7 +89,7 @@ namespace hotel_reservation_desktop_app.ViewModels
             {
                 _selectedClient = value;
                 OnPropertyChanged(nameof(SelectedClient));
-                //((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
+                
             }
         }
 
@@ -105,7 +105,7 @@ namespace hotel_reservation_desktop_app.ViewModels
                 UpdatePrice();
 
 
-                //((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
+                
             }
         }
 
@@ -121,7 +121,6 @@ namespace hotel_reservation_desktop_app.ViewModels
                 UpdatePrice();
 
 
-                //((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -137,7 +136,6 @@ namespace hotel_reservation_desktop_app.ViewModels
                 UpdatePrice();
 
 
-                //((RelayCommand)SaveReservationCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -310,6 +308,7 @@ namespace hotel_reservation_desktop_app.ViewModels
             Rooms = new ObservableCollection<Room>(rooms);
             FilteredRooms = new ObservableCollection<Room>(rooms); // Filtrée dynamiquement
             Reservations = new ObservableCollection<Reservation>(reservations);
+            OnPropertyChanged(nameof(Reservations));
             FilterReservations();
         }
 
@@ -410,6 +409,7 @@ namespace hotel_reservation_desktop_app.ViewModels
                 MessageBox.Show("Réservation enregistrée avec succès.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 LoadData();
+                FilteredReservations.Add(reservation);
                 OnPropertyChanged(nameof(Reservations));
 
 

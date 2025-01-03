@@ -15,6 +15,7 @@ namespace hotel_reservation_desktop_app.View.GestionReservation
             InitializeComponent();
             _viewModel = new ReservationViewModel();
             DataContext = _viewModel;
+            
 
 
         }
@@ -32,6 +33,7 @@ namespace hotel_reservation_desktop_app.View.GestionReservation
         {
             _viewModel.SaveReservation();
             CloseWindow();
+           
 
         }
     }
