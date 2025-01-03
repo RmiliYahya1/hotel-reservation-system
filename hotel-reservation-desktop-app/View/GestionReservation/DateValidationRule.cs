@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace hotel_reservation_desktop_app.Views.GestionReservation
+namespace hotel_reservation_desktop_app.View.GestionReservation
 {
     public class DateValidationRule : ValidationRule
     {

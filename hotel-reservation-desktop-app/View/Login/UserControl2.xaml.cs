@@ -1,5 +1,4 @@
-﻿using hotel_reservation_DAL.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,25 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace hotel_reservation_desktop_app.ViewModels
+namespace hotel_reservation_desktop_app.View.Login
 {
     /// <summary>
-    /// Logique d'interaction pour PaymentModal.xaml
+    /// Logique d'interaction pour UserControl2.xaml
     /// </summary>
-    public partial class PaymentModal : Window
+    public partial class UserControl2 : UserControl
     {
-        public Payment Payment { get; }
-        public PaymentModal()
+        public UserControl2()
         {
             InitializeComponent();
-            
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }
