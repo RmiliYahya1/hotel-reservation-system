@@ -15,7 +15,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <Border Grid.Row="0" Grid.ColumnSpan="2" Margin="20 0 20 20" Style="{StaticResource whiteBorder}">
+            <Border Grid.Row="0" Grid.ColumnSpan="2" Margin="20 15 20 20" Style="{StaticResource whiteBorder}">
                <Grid>
                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                        <Border Width="50" Height="50" CornerRadius="10" Margin="5 0 20 0">

@@ -13,17 +13,20 @@
                 Title="MainWindow" Height="700" Width="900" WindowStyle="None" 
         AllowsTransparency="True" WindowStartupLocation="CenterScreen">
     <!--background Grid-->
-    <Grid Background="#232628">
-
+    <Grid Background="#eff2f7">
+        
         <!-- Meni panel -->
-        <StackPanel Background="#2E333A" Width="230" Orientation="Vertical" HorizontalAlignment="Left">
+        <StackPanel Background="#2E333A" Width="200" Orientation="Vertical" HorizontalAlignment="Left">
 
             <!--  le nom de Barre menu -->
             <Grid Height="50" VerticalAlignment="Top" Margin="0,30,0,0">
                 <Border Background="DarkViolet" Height="25" CornerRadius="3,0,0,3" 
                         Width="7" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                <TextBlock Text="R é s e r v a t i o n" Foreground="White" FontFamily="Fonts/#Orbitron Medium" 
-                           FontSize="17" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="Hotel Paradise" Foreground="White" 
+                           FontWeight="Bold"
+                           FontSize="23" 
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
 
             </Grid>
 
@@ -86,8 +89,8 @@
         </StackPanel>
 
         <!-- Zone centrale pour UserControl -->
-        <Grid Margin="230,0,0,0">
-            <ContentControl x:Name="ContentControlMain"/>
+        <Grid Margin="200,0,0,0">
+            <ContentControl x:Name="ContentControlMain"  Content="{Binding InitialContent}"/>
         </Grid>
 
         <!-- Grid pour les boutons en haut à droite -->
@@ -103,5 +106,6 @@
             <!-- Close Button -->
             <Button x:Name="CloseBtn" Style="{StaticResource CloseBtnStyle}" Click="CloseBtn_Click" Grid.Column="1" Margin="0,0,0,10" VerticalAlignment="Center" />
         </Grid>
-    </Grid>
+       </Grid>
+  
 </Window>

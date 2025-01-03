@@ -3,7 +3,7 @@ using System.Windows.Input;
 using hotel_reservation_desktop_app.View.gestionChambre;
 using hotel_reservation_desktop_app.view.gestionClient;
 using hotel_reservation_desktop_app.ViewModels;
-using hotel_reservation_desktop_app.Views.GestionReservation;
+using hotel_reservation_desktop_app.View.GestionReservation;
 
 namespace hotel_reservation_desktop_app.View.dashbord;
 
@@ -22,7 +22,7 @@ public partial class Dashbord
         {
          
             var gestionClientView = new MainClientSection();
-            mainWindow.MainContentControl.Content = gestionClientView;
+            mainWindow.ContentControlMain.Content = gestionClientView;
         }
     }
 
@@ -34,7 +34,7 @@ public partial class Dashbord
         {
          
             var gestionChambreView = new ChambreMainSection();
-            mainWindow.MainContentControl.Content = gestionChambreView;
+            mainWindow.ContentControlMain.Content = gestionChambreView;
         }
     }
 
@@ -46,7 +46,7 @@ public partial class Dashbord
         {
          
             var gestionReservationView = new Reservations();
-            mainWindow.MainContentControl.Content = gestionReservationView;
+            mainWindow.ContentControlMain.Content = gestionReservationView;
         }
     }
 }

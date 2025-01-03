@@ -38,32 +38,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="5"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock  Text="L O G   I N" Foreground="DarkGray"
-                            FontSize="20" FontFamily="Fonts/#Orbitron Medium"
-                            Grid.Column="0" VerticalAlignment="Center" Margin="60,10,0,0"/>
-
-                <Button x:Name="btnMinimise" Background="Transparent" BorderThickness="0"
-                        Content="-" Foreground="White" FontSize="20" FontFamily="Montserrat" Margin="0,0,10,0"
-                        Cursor="Hand" Grid.Column="1" Click="btnMinimise_Click"  VerticalAlignment="Center" HorizontalAlignment="Center"
->
-                    
-                </Button>
-
-                <Button x:Name="btnClose" Background="Transparent" BorderThickness="0"
-                       Content="X" Foreground="White" FontSize="16" FontFamily="Montserrat" Margin="0,0,15,0"
-                       Cursor="Hand" Grid.Column="2" Click="btnClose_Click" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    
-                </Button>
-
-            </Grid>
+           
 
             <StackPanel Width="250" Grid.Row="2" Orientation="Vertical" Margin="0,35,0,0">
                 <Image Source="/Assets/hotel.png" Width="100" Height="100"/>
@@ -79,7 +54,7 @@
                          BorderBrush="DarkGray" BorderThickness="0,0,0,2" Height="28"
                          VerticalContentAlignment="Center" Margin="0,5,0,0" Padding="30,0,0,0" >
                     <TextBox.Background>
-                        <ImageBrush ImageSource="/Assets/utilisateur.png" Stretch="None" AlignmentX="Left"/>
+                        <ImageBrush ImageSource="/Assets/utilisateur.png" Stretch="None" AlignmentX="Left" />
                     </TextBox.Background>
                 </TextBox>
 
