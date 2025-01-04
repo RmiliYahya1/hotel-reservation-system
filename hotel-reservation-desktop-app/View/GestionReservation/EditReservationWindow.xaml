@@ -5,57 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.GestionReservation"
         mc:Ignorable="d"
-<<<<<<< HEAD
-        Title="EditReservationWindow" Height="450" Width="800">
-    <Grid Margin="10">
-        <StackPanel>
-            <Grid>
-                <Label Content="Client :" Width="320" Margin="10,8,450,-8" />
-            </Grid>
-            <Grid>
-                <ComboBox x:Name="ClientComboBox" Width="200" Margin="289,-16,291,36" 
-                      DisplayMemberPath="FullName" SelectedValuePath="ID" />
-            </Grid>
-            <Grid>
-                <Label Content="RoomType :" Width="344" Margin="10,-9,426,10" />
-            </Grid>
-            <Grid>
-            <ComboBox x:Name="RoomTypeComboBox" Width="200" 
-DisplayMemberPath="Name" SelectedValuePath="ID" DataContextChanged="RoomTypeComboBox_DataContextChanged" Margin="291,-31,289,31" />
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="405*"/>
-                    <ColumnDefinition Width="31*"/>
-                    <ColumnDefinition Width="344*"/>
-                </Grid.ColumnDefinitions>
-               
-            </Grid>
-            <Grid>
-            <Label Content="Date de Check-In :" Margin="0,8,0,-8" />
-            </Grid>
-            <Grid>
-            <DatePicker x:Name="CheckInDatePicker" Width="200" Margin="290,-16,290,36" SelectedDateChanged="DatePicker_SelectedDateChanged" />
-            </Grid>
-            <Label Content="Date de Check-Out :" />
-            <Grid>
-            <DatePicker x:Name="CheckOutDatePicker" Width="200" Margin="290,-22,290,42" SelectedDateChanged="DatePicker_SelectedDateChanged" />
-            </Grid>
-            <Grid>
-                <Label Content="Chambre :" Width="216" Margin="10,8,554,-8" />
-            </Grid>
-            <Grid>
-            <ComboBox x:Name="RoomComboBox" Width="200" Margin="290,-16,290,36" 
-          DisplayMemberPath="Number" SelectedValuePath="ID" />
-            </Grid>
-            <Grid>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,35,0,-15">
-                    <Button Content="Enregistrer" Width="100" Margin="10" Click="SaveButton_Click" />
-                    <Button Content="Annuler" Width="100" Margin="10" Click="CancelButton_Click" />
-                </StackPanel>
-            </Grid>
-        </StackPanel>
-=======
+
+      
         Title="EditReservationWindow" Height="600" Width="500"   WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent"  >
     <Grid VerticalAlignment="Center">
         <Border CornerRadius="7" Background="#ffffff" BorderThickness="1" BorderBrush="#374655">
@@ -144,28 +95,30 @@ DisplayMemberPath="Name" SelectedValuePath="ID" DataContextChanged="RoomTypeComb
                 </ComboBox>
             </Grid>
         </StackPanel>
-        
-        <StackPanel Grid.Column="0" Grid.Row="3" Margin="20 10">
-            <TextBlock
-                Text="Date de Check-In" 
-                Foreground="#97a5b4"
-                FontSize="13"
-                Margin="0 0 0 8"
-            />
-            <DatePicker x:Name="CheckInDatePicker" Width="200" Margin="290,-16,290,36" SelectedDateChanged="DatePicker_SelectedDateChanged" />
-        </StackPanel>
-        
-        <StackPanel Grid.Column="1" Grid.Row="3" Margin="20 10">
-            <TextBlock
-                Text="Date de Check-Out" 
-                Foreground="#97a5b4"
-                FontSize="13"
-                Margin="0 0 0 8"
-            />
-            <DatePicker x:Name="CheckOutDatePicker" Width="200" Margin="290,-22,290,42" SelectedDateChanged="DatePicker_SelectedDateChanged" />
-        </StackPanel>
-        
-        <StackPanel  Grid.Column="0" Grid.Row="4" Margin="20 10">
+
+
+                    <StackPanel Grid.Column="0" Grid.Row="3" Margin="20 10">
+                        <TextBlock
+        Text="Date de Check-In" 
+        Foreground="#97a5b4"
+        FontSize="13"
+        Margin="0 0 0 8"
+    />
+                        <DatePicker x:Name="CheckInDatePicker" Width="200" Margin="0,0,0,0" SelectedDateChanged="DatePicker_SelectedDateChanged" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Grid.Row="3" Margin="20 10">
+                        <TextBlock
+        Text="Date de Check-Out" 
+        Foreground="#97a5b4"
+        FontSize="13"
+        Margin="0 0 0 8"
+    />
+                        <DatePicker x:Name="CheckOutDatePicker" Width="200" Margin="0,0,0,0" SelectedDateChanged="DatePicker_SelectedDateChanged" />
+                    </StackPanel>
+
+
+                    <StackPanel  Grid.Column="0" Grid.Row="4" Margin="20 10">
             <TextBlock
                 Text="Chambre" 
                 Foreground="#97a5b4"
@@ -230,6 +183,6 @@ DisplayMemberPath="Name" SelectedValuePath="ID" DataContextChanged="RoomTypeComb
     </Grid>
             </Border>
         </Border>
->>>>>>> main
+
     </Grid>
 </Window>

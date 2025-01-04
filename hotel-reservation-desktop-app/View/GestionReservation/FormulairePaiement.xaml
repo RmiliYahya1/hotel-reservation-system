@@ -5,28 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.GestionReservation"
         mc:Ignorable="d"
-<<<<<<< HEAD
-        Title="FormulairePaiement" Height="450" Width="800">
-    <Grid Margin="10">
-        <StackPanel>
-            <Label Content="Montant :" />
-            <TextBlock x:Name="AmountTextBlock" Width="200" Margin="0,5,0,15" 
-                       Text="{Binding}" HorizontalAlignment="Left" FontWeight="Bold"/>
+          Title="FormulairePaiement"  Height="400" Width="400"  WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent">
 
-            <Label Content="Méthode de Paiement :" />
-            <ComboBox x:Name="PaymentMethodComboBox" Width="200" Margin="0,5,0,15">
-                <ComboBoxItem Content="Carte de Crédit" />
-                <ComboBoxItem Content="Espèces" />
-                <ComboBoxItem Content="Virement Bancaire" />
-            </ComboBox>
-
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <Button Content="Ajouter" Width="100" Margin="10" Click="AddPaymentButton_Click" />
-                <Button Content="Annuler" Width="100" Margin="10" Click="CancelButton_Click" />
-            </StackPanel>
-        </StackPanel>
-=======
-        Title="FormulairePaiement"  Height="400" Width="400"  WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent">
     <Grid VerticalAlignment="Center">
         <Border CornerRadius="7" Background="#ffffff" BorderThickness="1" BorderBrush="#374655">
             <Border.Effect>
@@ -117,6 +97,5 @@
             </Border>
         </Border>
                 
->>>>>>> main
     </Grid>
 </Window>

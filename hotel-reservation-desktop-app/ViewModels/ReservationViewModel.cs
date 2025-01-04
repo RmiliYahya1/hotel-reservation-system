@@ -1,10 +1,7 @@
-﻿using GalaSoft.MvvmLight.Command;
-<<<<<<< HEAD
+﻿
 using hotel_reservation_DAL.Contexts;
 using hotel_reservation_DAL.Entities;
-=======
 
->>>>>>> main
 using hotel_reservation_desktop_app.View.GestionReservation;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml.Style;
@@ -585,7 +582,7 @@ namespace hotel_reservation_desktop_app.ViewModels
             try
             {
                
-                var fromAddress = new MailAddress("radouane.aitsaid01@gmail.com", "Hotel Menara");
+                var fromAddress = new MailAddress("radouane.aitsaid01@gmail.com", "Hotel Paradise");
                 var toAddress = new MailAddress(client.Email, client.FullName);
                 const string fromPassword = "ckkl jybd lxyc qrry";
                 const string subject = "Confirmation de paiement";
@@ -598,7 +595,7 @@ namespace hotel_reservation_desktop_app.ViewModels
                               $"Montant payé : {reservation.Price} €\n\n" +
                               "Merci pour votre confiance.\n" +
                               "Cordialement,\n" +
-                              "Menara Hotel";
+                              "Hotel Paradise";
 
                 var smtp = new SmtpClient
                 {

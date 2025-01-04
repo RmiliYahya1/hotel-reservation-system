@@ -5,6 +5,7 @@ using System.Net;
 using System.Windows;
 using hotel_reservation_DAL.Contexts;
 using hotel_reservation_DAL.Entities;
+using hotel_reservation_desktop_app.View.GestionReservation;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
@@ -13,6 +14,39 @@ namespace hotel_reservation_desktop_app.ViewModels;
 
 public class ChambreViewModel: INotifyPropertyChanged
 {
+    private string _filterText;
+    public string FilterText
+    {
+        get => _filterText;
+        set
+        {
+            _filterText = value;
+            OnPropertyChanged(nameof(FilterText));
+            FilterChambres();
+        }
+    }
+    private ObservableCollection<Room> _filteredRooms;
+    public ObservableCollection<Room> FilteredRooms
+    {
+        get => _filteredRooms;
+        set
+        {
+            _filteredRooms = value;
+            OnPropertyChanged(nameof(FilteredRooms));
+        }
+    }
+    private void FilterChambres()
+    {
+        if (string.IsNullOrWhiteSpace(FilterText))
+        {
+            FilteredRooms = new ObservableCollection<Room>(Rooms);
+        }
+        else
+        {
+            FilteredRooms = new ObservableCollection<Room>(
+                Rooms.Where(r => r.RoomType.Name.Contains(FilterText, StringComparison.OrdinalIgnoreCase)));
+        }
+    }
     public ObservableCollection<Room> Rooms { get; set; } = new();
     private readonly HotelReservationContext _context;
  
@@ -55,8 +89,9 @@ public class ChambreViewModel: INotifyPropertyChanged
             LoadRoomTypes();
             LoadRooms(); 
             ExportChambresToExcelCommand = new RelayCommand(ExportChambres, CanExportChambres);
-           
-        }
+        FilteredRooms = new ObservableCollection<Room>(Rooms);
+
+    }
         public RelayCommand ExportChambresToExcelCommand { get; }
         
 
@@ -100,7 +135,8 @@ public class ChambreViewModel: INotifyPropertyChanged
             {
                 Rooms.Add(room);  // Ajouter chaque chambre avec son RoomType (catégorie)
             }
-        }
+        FilterChambres();
+    }
 
 
 

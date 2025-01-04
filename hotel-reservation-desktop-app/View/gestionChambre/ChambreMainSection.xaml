@@ -47,7 +47,7 @@
                      Height="11"
                      Margin="0 1 8 0">
                  </Icon:PackIconMaterial>
-                 <TextBlock Text="Ajouter client" />
+                 <TextBlock Text="Ajouter chambre" />
              </StackPanel>
          </Button>
          
@@ -82,7 +82,7 @@
                  Name="TextBlock"
              />
              <TextBox
-                 Name="ClientSearch"
+                 Name="RoomSearch"
                  Style="{StaticResource textboxSearch}"
                  Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" 
              />
@@ -101,7 +101,7 @@
         <DataGrid
             Grid.Row="5" 
             AutoGenerateColumns="False" 
-            ItemsSource="{Binding Rooms}" 
+            ItemsSource="{Binding FilteredRooms}" 
             IsReadOnly="True"
             >
             <DataGrid.Columns>

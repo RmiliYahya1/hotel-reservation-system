@@ -9,7 +9,7 @@ namespace hotel_reservation_desktop_app.View.GestionReservation
     public partial class FormulaireReservation : Window
     {
         public Reservation Reservation { get; private set; }
-<<<<<<< HEAD
+
         private ReservationViewModel _viewModel;
         public FormulaireReservation()
         {
@@ -37,16 +37,7 @@ namespace hotel_reservation_desktop_app.View.GestionReservation
            
 
         }
-=======
 
-        public FormulaireReservation()
-        {
-            InitializeComponent();
-            DataContext = new ReservationViewModel();
-
-        }
-
->>>>>>> main
     }
 
 }

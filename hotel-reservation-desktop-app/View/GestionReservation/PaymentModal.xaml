@@ -3,13 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-<<<<<<< HEAD
+
         xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.GestionReservation" 
         xmlns:viewmodels="clr-namespace:hotel_reservation_desktop_app.ViewModels" 
         d:DataContext="{d:DesignInstance Type=viewmodels:ReservationViewModel}"
-=======
-        xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.GestionReservation"
->>>>>>> main
+
         mc:Ignorable="d"
         Title="PaymentModal" Height="600" Width="500"   WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent">
     <Grid  VerticalAlignment="Center">

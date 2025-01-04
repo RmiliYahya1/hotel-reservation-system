@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:hotel_reservation_desktop_app"
-<<<<<<< HEAD
-             StartupUri="View/GestionReservation/Reservations.xaml">
-=======
+
+             
+
              Startup="ApplicationStart">
 
 
->>>>>>> main
+
     <Application.Resources>
         
 
@@ -254,9 +254,9 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
-<<<<<<< HEAD
 
-=======
+
+
             
             <Style x:Key="mainBorder" TargetType="Border">
                 <Setter Property="Background" Value="White"/>
@@ -276,7 +276,7 @@
             </Style>
            
             
->>>>>>> main
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

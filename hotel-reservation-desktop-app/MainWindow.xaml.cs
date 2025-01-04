@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using hotel_reservation_desktop_app.view.gestionClient;
 using hotel_reservation_desktop_app.View.dashbord;
+using hotel_reservation_desktop_app.View.gestionChambre;
 using hotel_reservation_desktop_app.View.GestionReservation;
 using hotel_reservation_desktop_app.View.gestionRoomType;
 using hotel_reservation_desktop_app.View.gestionUtilisateurs;
@@ -77,5 +78,11 @@ public partial class MainWindow : Window
     {
         Dashbord dashbord = new Dashbord();
         ContentControlMain.Content = dashbord;
+    }
+
+    private void ShowRoom(object sender, RoutedEventArgs e)
+    {
+        ChambreMainSection room = new ChambreMainSection();
+        ContentControlMain.Content = room;
     }
 }

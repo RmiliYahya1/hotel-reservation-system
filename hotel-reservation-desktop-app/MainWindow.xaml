@@ -62,7 +62,7 @@
                         <Image Source="Assets/suite.png"  />
                     </MenuItem.Icon>
                     <!--submenu de room -->
-                    <MenuItem Header="Room" Template="{StaticResource Item_Template}" Click="ShowRoomControl">
+                    <MenuItem Header="Room" Template="{StaticResource Item_Template}" Click="ShowRoom">
                         <MenuItem.Icon>
                             <Image Source="Assets/chambre.png"/>
                         </MenuItem.Icon>
