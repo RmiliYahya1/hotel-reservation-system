@@ -23,14 +23,15 @@ public class RelayCommand : ICommand
         _execute.Invoke();
     }
 
+    public void RaiseCanExecuteChanged()
+    {
+        //throw new NotImplementedException();
+    }
+
     public event EventHandler CanExecuteChanged
     {
         add { CommandManager.RequerySuggested += value; }
         remove { CommandManager.RequerySuggested -= value; }
     }
 
-    public void RaiseCanExecuteChanged()
-    {
-        throw new NotImplementedException();
-    }
 }

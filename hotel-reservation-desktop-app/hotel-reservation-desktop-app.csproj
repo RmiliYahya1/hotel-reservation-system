@@ -51,6 +51,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\hotel-reservation-DAL\hotel-reservation-DAL.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Page Update="View\gestionClient\Styles\DataGrid.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>

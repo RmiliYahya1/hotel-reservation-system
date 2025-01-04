@@ -129,7 +129,8 @@
                         Margin="0 40 20 0"
                         HorizontalAlignment="Right"
                         Name="Button"
-                        Command="{Binding SaveReservationCommand}"
+                        Click="Button_Click_add"
+                        
                     >
                         <Button.Effect>
                             <DropShadowEffect 
@@ -148,7 +149,7 @@
                         Margin="20 40 0 0"
                         Width="150"
                         Content="Annuler"
-                        Command="{Binding CancelCommand}" 
+                        Click="ButtonBase_OnClick"                      
                     >
                     </Button>
         

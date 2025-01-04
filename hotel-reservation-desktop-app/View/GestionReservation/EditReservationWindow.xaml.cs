@@ -15,22 +15,28 @@ namespace hotel_reservation_desktop_app.View.GestionReservation
         public EditReservationWindow(Reservation reservation)
         {
             InitializeComponent();
-             using var context = new HotelReservationContext();
-             // Charger les listes de clients et chambres
-             ClientComboBox.ItemsSource = context.Clients.ToList();
-             RoomComboBox.ItemsSource = context.Rooms.ToList();
-             RoomTypeComboBox.ItemsSource = context.RoomTypes.ToList();
+            using var context = new HotelReservationContext();
+            // Clear existing items
+            ClientComboBox.Items.Clear();
+            RoomComboBox.Items.Clear();
+            RoomTypeComboBox.Items.Clear();
 
-             // Pré-remplir les champs avec les données de la réservation
-             EditedReservation = reservation;
+            // Charger les listes de clients et chambres
+            ClientComboBox.ItemsSource = context.Clients.ToList();
+            RoomComboBox.ItemsSource = context.Rooms.ToList();
+            RoomTypeComboBox.ItemsSource = context.RoomTypes.ToList();
 
-             ClientComboBox.SelectedValue = reservation.ClientId;
-             RoomComboBox.SelectedValue = reservation.RoomId;
-             RoomTypeComboBox.SelectedValue = reservation.Room.RoomTypeId;
-             CheckInDatePicker.SelectedDate = reservation.CheckInDate;
-             CheckOutDatePicker.SelectedDate = reservation.CheckOutDate;
-             DataContext = new ReservationViewModel();
+            // Pré-remplir les champs avec les données de la réservation
+            EditedReservation = reservation;
+
+            ClientComboBox.SelectedValue = reservation.ClientId;
+            RoomComboBox.SelectedValue = reservation.RoomId;
+            RoomTypeComboBox.SelectedValue = reservation.Room.RoomTypeId;
+            CheckInDatePicker.SelectedDate = reservation.CheckInDate;
+            CheckOutDatePicker.SelectedDate = reservation.CheckOutDate;
+            DataContext = new ReservationViewModel();
         }
+
 
         private void DatePicker_SelectedDateChanged(object sender, RoutedEventArgs e)
         {
@@ -77,6 +83,7 @@ namespace hotel_reservation_desktop_app.View.GestionReservation
             EditedReservation.RoomId = (int)RoomComboBox.SelectedValue;
             EditedReservation.CheckInDate = CheckInDatePicker.SelectedDate.Value;
             EditedReservation.CheckOutDate = CheckOutDatePicker.SelectedDate.Value;
+            EditedReservation.Price = (EditedReservation.CheckOutDate - EditedReservation.CheckInDate).Days * EditedReservation.Room.RoomType.Price;
 
             DialogResult = true; // Indiquer que l'édition a été validée
             this.Close();

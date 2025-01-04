@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.GestionReservation"
         mc:Ignorable="d"
+
+      
         Title="EditReservationWindow" Height="600" Width="500"   WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent"  >
     <Grid VerticalAlignment="Center">
         <Border CornerRadius="7" Background="#ffffff" BorderThickness="1" BorderBrush="#374655">
@@ -93,28 +95,30 @@
                 </ComboBox>
             </Grid>
         </StackPanel>
-        
-        <StackPanel Grid.Column="0" Grid.Row="3" Margin="20 10">
-            <TextBlock
-                Text="Date de Check-In" 
-                Foreground="#97a5b4"
-                FontSize="13"
-                Margin="0 0 0 8"
-            />
-            <DatePicker x:Name="CheckInDatePicker" Width="200" Margin="290,-16,290,36" SelectedDateChanged="DatePicker_SelectedDateChanged" />
-        </StackPanel>
-        
-        <StackPanel Grid.Column="1" Grid.Row="3" Margin="20 10">
-            <TextBlock
-                Text="Date de Check-Out" 
-                Foreground="#97a5b4"
-                FontSize="13"
-                Margin="0 0 0 8"
-            />
-            <DatePicker x:Name="CheckOutDatePicker" Width="200" Margin="290,-22,290,42" SelectedDateChanged="DatePicker_SelectedDateChanged" />
-        </StackPanel>
-        
-        <StackPanel  Grid.Column="0" Grid.Row="4" Margin="20 10">
+
+
+                    <StackPanel Grid.Column="0" Grid.Row="3" Margin="20 10">
+                        <TextBlock
+        Text="Date de Check-In" 
+        Foreground="#97a5b4"
+        FontSize="13"
+        Margin="0 0 0 8"
+    />
+                        <DatePicker x:Name="CheckInDatePicker" Width="200" Margin="0,0,0,0" SelectedDateChanged="DatePicker_SelectedDateChanged" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Grid.Row="3" Margin="20 10">
+                        <TextBlock
+        Text="Date de Check-Out" 
+        Foreground="#97a5b4"
+        FontSize="13"
+        Margin="0 0 0 8"
+    />
+                        <DatePicker x:Name="CheckOutDatePicker" Width="200" Margin="0,0,0,0" SelectedDateChanged="DatePicker_SelectedDateChanged" />
+                    </StackPanel>
+
+
+                    <StackPanel  Grid.Column="0" Grid.Row="4" Margin="20 10">
             <TextBlock
                 Text="Chambre" 
                 Foreground="#97a5b4"
@@ -179,5 +183,6 @@
     </Grid>
             </Border>
         </Border>
+
     </Grid>
 </Window>

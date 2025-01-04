@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hotel_reservation_desktop_app.View.GestionReservation"
         mc:Ignorable="d"
-        Title="FormulairePaiement"  Height="400" Width="400"  WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent">
+          Title="FormulairePaiement"  Height="400" Width="400"  WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent">
+
     <Grid VerticalAlignment="Center">
         <Border CornerRadius="7" Background="#ffffff" BorderThickness="1" BorderBrush="#374655">
             <Border.Effect>

@@ -27,7 +27,7 @@ namespace hotel_reservation_desktop_app.View.GestionReservation
             
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        public void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
